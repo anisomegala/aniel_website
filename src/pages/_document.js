@@ -4,7 +4,17 @@ import Script from 'next/script'
 export default function Document() {
   return (
     <Html lang="en">
-      <Head />
+      <Head>
+        {/* Meta Pixel Noscript Fallback */}
+        <noscript>
+          <img
+            height="1"
+            width="1"
+            style={{ display: 'none' }}
+            src="https://www.facebook.com/tr?id=${process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID}&ev=PageView&noscript=1"
+          />
+        </noscript>
+      </Head>
       <body>
         <Script id='theme-switcher' strategy='beforeInteractive'>
           {`
