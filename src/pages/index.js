@@ -14,7 +14,7 @@ const StickyAudioPlayer = dynamic(() => Promise.resolve(() => (
     initial={{ y: 100 }}
     animate={{ y: 0 }}
     transition={{ delay: 1, duration: 0.5 }}
-    className="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-md z-50"
+    className="fixed bottom-6 right-1 -translate-x-1/2 w-[90%] max-w-md z-50"
   >
     <div className="flex items-center gap-4 bg-light/80 dark:bg-dark/80 backdrop-blur-md p-3 rounded-full border border-primary/30 shadow-[0_10px_30px_rgba(0,0,0,0.2)]">
       <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center animate-pulse">
