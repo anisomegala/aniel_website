@@ -1,193 +1,139 @@
 import Link from 'next/link'
-import React, {useEffect, useState} from 'react'
-import Logo from '../components/Logo'
+import React, { useState } from 'react'
+import Logo from './Logo'
 import { useRouter } from 'next/router'
-import {InstagramIcon, FacebookIcon, LinkedInIcon, GithubIcon, SunIcon,  MoonIcon, YoutubeIcon } from './icons'
-import {motion} from "framer-motion";
+import { 
+    TwitterIcon, 
+    GithubIcon, 
+    LinkedInIcon, 
+    SunIcon, 
+    MoonIcon,
+    InstagramIcon, // Ensure these are exported from your icons file
+    FacebookIcon 
+} from './icons'
+import { motion, AnimatePresence } from 'framer-motion'
 import useThemeSwitcher from './hooks/useThemeSwitcher'
 
-
-const CustomLink = ({href, title, className}) => {
-
+const CustomLink = ({ href, title, className = "" }) => {
     const router = useRouter();
-
     return (
         <Link href={href} className={`${className} relative group`}>
             {title}
-            <span className={`h-1 inline-block bg-dark absolute left-0 
-            -bottom-0.5 group-hover:w-full  transition-[width] 
-            ease duration-600 ${router.asPath === href ? 'w-full' : 'w-0'} dark:bg-light
-            `}
-            
-            >&nbsp;</span>
+            <span className={`
+                h-[1px] inline-block bg-dark absolute left-0 -bottom-0.5
+                group-hover:w-full transition-[width] ease duration-300
+                ${router.asPath === href ? 'w-full' : 'w-0'}
+                dark:bg-light`}
+            >
+                &nbsp;
+            </span>
         </Link>
     )
 }
 
-
-
-const CustomMobilLink = ({href, title, className="", toggle }) => {
-
-    const router = useRouter();
-    
-    const handelClick2 = () => {
-        toggle();
-        router.push(href)
-    }
-
-
-    return (
-        <button href={href} className={`${className} relative group text-light dark:text-dark my-2`} onClick={handelClick2}>
-            {title}
-            <span className={`h-1 inline-block bg-light dark:bg-dark absolute left-0 
-            -bottom-0.5 group-hover:w-full  transition-[width] 
-            ease duration-600 ${router.asPath === href ? 'w-full' : 'w-0'} dark:bg-light
-            `}
-            
-            >&nbsp;</span>
-        </button>
-    )
-}
-
-
 const NavBar = () => {
-
     const [mode, setMode] = useThemeSwitcher();
-    const [isHidden, setIsHidden] = useState(true);
+    const router = useRouter();
+    const [isHovered, setIsHovered] = useState(false);
+    
+    const isHomePage = router.asPath === "/";
 
-    const [isOpen, setIsOpen] = useState(false);
-
-    const handleClick = () => {
-        setIsOpen(!isOpen);
-        setIsHidden(!isHidden);
-    }
+    // Social Media Data with 5 icons distributed around the top/sides
+    const socialIcons = [
+        { icon: <FacebookIcon />, href: "https://facebook.com", angle: -160 }, 
+        { icon: <InstagramIcon />, href: "https://instagram.com", angle: -125 },
+        { icon: <TwitterIcon />, href: "https://twitter.com", angle: -90 },     // Top Center
+        { icon: <LinkedInIcon />, href: "https://linkedin.com", angle: -55 },
+        { icon: <GithubIcon />, href: "https://github.com", angle: -20 },
+    ];
 
     return (
-        <header className='w-full px-32 py-8 font-medium flex items-center justify-between dark:text-light relative z-10 lg:px-16 md:px-12 sm:px-8'
-        >
-            <button className="flex-col justify-center items-center hidden lg:flex"  onClick={handleClick}>
-                <span className={`bg-dark dark:bg-light transition-all durastion-300 ease-out block h-0.5 w-6 rounded-sm -translate-y-0.5 -translate-x-0.5 ${isOpen ? "rotate-45 translate-y-1 translate-x-1.5" : "-translate-y-0.5 -translate-x-1" }`}></span>
-                <span className={`bg-dark dark:bg-light transition-all durastion-300 ease-out block h-0.5 w-6 rounded-sm my-0.4 ${isOpen ?  "-rotate-45 translate-y-0.5 -translate-x-2" : ""}`}></span>
-                <span className={`bg-dark dark:bg-light transition-all durastion-300 ease-out block h-0.5 w-6 rounded-sm translate-y-0.5 translate-x-0.5 ${isOpen ?  "-translate-x-0.5": "translate-x-1" }`}></span>
-            </button>
+        <header className={`w-full px-32 py-8 font-medium flex items-center dark:text-light relative z-50 lg:px-16 md:px-12 sm:px-8 
+            ${isHomePage ? "justify-center" : "justify-between"}`}>
+            
+            {/* 1. Standard Navigation - Only on Non-Home Pages */}
+            {!isHomePage && (
+                <>
+                    <nav className='flex items-center space-x-8'>
+                        <CustomLink href="/" title="Home" />
+                        <CustomLink href="/about" title="About" />
+                        <CustomLink href="/projects" title="Projects" />
+                        <CustomLink href="/experience" title="Experience" />
+                        <CustomLink href="/articles" title="Articles" />
+                    </nav>
 
-            <div className='w-full flex justify-between items-center lg:hidden'>
-                <nav>
-                    <CustomLink href='/'  title='Home' className='mr-4' />
-                    <CustomLink href='/about'  title='About'  className='mx-4'/>
-                    <CustomLink href='/shows'  title='Shows'  className='mx-4'/>
-                    <CustomLink href='/projects'  title='Projects'  className='ml-4' />
-                </nav>
-                <nav className='flex items-center justify-center flex-wrap gap-5'>
-                <motion.a href='https://www.instagram.com/anielsomeillan/' target={'_blank'}
-                whileHover={{y:-2}}
-                className='w-6'
-                >
-                    <InstagramIcon />
-                </motion.a>
-                <motion.a href='https://www.facebook.com/anielsomeillan/' target={'_blank'}
-                whileHover={{y:-2}}
-                className='w-6'
-                >
-                    <FacebookIcon />
-                </motion.a>
-                <motion.a href='https://www.linkedin.com/in/aniel-someillan-8ba47a10b/' target={'_blank'}
-                whileHover={{y:-2}}
-                className='w-6'
-                >
-                    <LinkedInIcon />
-                </motion.a>
-                <motion.a href='https://www.youtube.com/channel/UCFxWUuuoTJ8B21uSz9j9gHg' target={'_blank'}
-                whileHover={{y:-2}}
-                className='w-6'
-                >
-                    <YoutubeIcon  className='w-7'/>
-                </motion.a>
-                <button
-                    onClick={() => setMode(mode === "light" ? "dark" : "light")}
-                    className={`flex items-center justify-center rounded-full p-1
-                        ${mode === "light" ? "bg-primary text-light" : "bg-light text-dark"}
-                    `}
-                >
-                    
-                    {
-                        mode === "dark" ? 
-                        <SunIcon  className={'fill-dark w-6'} /> :
-                        <MoonIcon className={'fill-dark w-6'} />                    
-                    }
-                </button>
-            </nav>
+                    <nav className='flex items-center justify-center flex-wrap'>
+                        <motion.a href="https://twitter.com" target={"_blank"} whileHover={{ y: -2 }} className="w-6 mr-3"><TwitterIcon /></motion.a>
+                        <motion.a href="https://github.com" target={"_blank"} whileHover={{ y: -2 }} className="w-6 mx-3"><GithubIcon /></motion.a>
+                        <motion.a href="https://linkedin.com" target={"_blank"} whileHover={{ y: -2 }} className="w-6 mx-3"><LinkedInIcon /></motion.a>
+                        <button onClick={() => setMode(mode === "light" ? "dark" : "light")} className="ml-3 flex items-center justify-center rounded-full p-1">
+                            {mode === "dark" ? <SunIcon className={"fill-dark"} /> : <MoonIcon className={"fill-dark"} />}
+                        </button>
+                    </nav>
+                </>
+            )}
+
+            {/* 2. LOGO AREA - Centered on Home with Circular Hover Effect */}
+            <div 
+                className={`relative flex items-center justify-center cursor-pointer 
+                ${isHomePage ? "" : "absolute left-[50%] top-2 translate-x-[-50%]"}`}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+            >
+                {/* Logo reduced to scale-90 to make room for 5 icons */}
+                <div className={`${isHomePage ? "scale-90" : "scale-100"} transition-transform duration-300`}>
+                    <Logo />
+                </div>
+
+                {/* Animated Social Icons - Only on Home Page */}
+                {isHomePage && (
+                    <AnimatePresence>
+                        {isHovered && socialIcons.map((item, i) => {
+                            // RADIUS: 50px keeps icons tight against the smaller logo
+                            const radius = 50; 
+                            const x = Math.cos((item.angle * Math.PI) / 180) * radius;
+                            const y = Math.sin((item.angle * Math.PI) / 180) * radius;
+
+                            return (
+                                <motion.a
+                                    key={i}
+                                    href={item.href}
+                                    target="_blank"
+                                    initial={{ opacity: 0, x: 0, y: 0, scale: 0 }}
+                                    animate={{ 
+                                        opacity: 1, 
+                                        x: x, 
+                                        y: y, 
+                                        scale: 0.75 // Smaller icons for a cleaner halo
+                                    }}
+                                    exit={{ opacity: 0, x: 0, y: 0, scale: 0 }}
+                                    whileHover={{ scale: 1, transition: { duration: 0.2 } }}
+                                    className="absolute w-8 h-8 flex items-center justify-center z-[-1] text-dark dark:text-light"
+                                >
+                                    <div className="w-5 h-5">
+                                        {item.icon}
+                                    </div>
+                                </motion.a>
+                            );
+                        })}
+                    </AnimatePresence>
+                )}
             </div>
 
-
-
-
-            {
-                isOpen ? 
-                <motion.div 
-                    initial={{scale:0, opacity:0, x:"-50%", y: "-50%"}}
-                    animate={{scale:1, opacity:1}}
-                className='min-w-[70vw] flex flex-col justify-between z-30 items-center fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-                bg-dark/90 dark:bg-light/75 rounded-lg backdrop-blur-md py-32'>
-                <nav className='flex items-center flex-col justify-center'>
-                    <CustomMobilLink href='/'  title='Home' className=''  toggle={handleClick}/>
-                    <CustomMobilLink href='/about'  title='About'  className='' toggle={handleClick}/>
-                    <CustomMobilLink href='/shows'  title='Shows'  className='' toggle={handleClick}/>
-                    <CustomMobilLink href='/projects'  title='Projects'  className=''  toggle={handleClick}/>
-                </nav>
-                <nav className='flex items-center justify-center flex-wrap gap-5 mt-2 sm:gap-2'>
-                <motion.a href='https://www.instagram.com/anielsomeillan/' target={'_blank'}
-                whileHover={{y:-2}}
-                className='w-6'
-                >
-                    <InstagramIcon />
-                </motion.a>
-                <motion.a href='https://www.facebook.com/anielsomeillan/' target={'_blank'}
-                whileHover={{y:-2}}
-                className='w-6'
-                >
-                    <FacebookIcon />
-                </motion.a>
-                <motion.a href='https://www.linkedin.com/in/aniel-someillan-8ba47a10b/' target={'_blank'}
-                whileHover={{y:-2}}
-                className='w-6'
-                >
-                    <LinkedInIcon />
-                </motion.a>
-                <motion.a href='https://www.youtube.com/channel/UCFxWUuuoTJ8B21uSz9j9gHg' target={'_blank'}
-                whileHover={{y:-2}}
-                className='w-6'
-                >
-                    <YoutubeIcon />
-                </motion.a>
-                <button
-                    onClick={() => setMode(mode === "light" ? "dark" : "light")}
-                    className={`flex items-center justify-center rounded-full p-1
-                        ${mode === "light" ? "bg-primary text-light" : "bg-light text-dark"}
-                    `}
-                >
-                    
-                    {
-                        mode === "dark" ? 
-                        <SunIcon  className={'fill-dark w-6'} /> :
-                        <MoonIcon className={'fill-dark w-6'} />                    
-                    }
-                </button>
-            </nav>
-            </motion.div>
-
-
-                : " "
-
-            }
-
-
-
-            <div className='absolute left-[50%] top-2 translate-x-[-50%]'>
-                   <Logo />
-            </div>
+            {/* 3. HOME PAGE THEME SWITCHER - Fixed on Right */}
+            {isHomePage && (
+                <div className="absolute right-32 lg:right-16 md:right-12 sm:right-8">
+                     <button
+                        onClick={() => setMode(mode === "light" ? "dark" : "light")}
+                        className={`flex items-center justify-center rounded-full p-1 transition-all
+                        ${mode === "light" ? "bg-dark text-light" : "bg-light text-dark"}`}
+                    >
+                        {mode === "dark" ? <SunIcon className={"fill-dark w-6 h-6"} /> : <MoonIcon className={"fill-dark w-6 h-6"} />}
+                    </button>
+                </div>
+            )}
         </header>
     )
 }
 
-export default NavBar
+export default NavBar;
