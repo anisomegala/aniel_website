@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import NavBar from '../components/NavBar'
 import Footer from '../components/Footer'
+import Schema from '../components/Schema';
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700", "800", "900"],
@@ -37,7 +38,7 @@ export default function App({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* Meta Pixel Main Script */}
+      <Schema />
       <Script
         id="fb-pixel"
         strategy="afterInteractive"

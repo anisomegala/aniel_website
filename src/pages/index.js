@@ -9,6 +9,7 @@ import profile_main_pic from '../../public/images/profile/profile_main_pic.png'
 import AnimatedText from '../components/AnimatedText'
 import { LinkArrow } from '../components/icons'
 import { useState, useRef, useEffect } from 'react';
+import Magnetic from '../components/Magnetic';
 
 const StickyAudioPlayer = dynamic(() => Promise.resolve(() => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -38,17 +39,17 @@ const StickyAudioPlayer = dynamic(() => Promise.resolve(() => {
       className="fixed bottom-6 right-1 -translate-x-1/2 w-[94vw] max-w-md z-50 shadow-2xl"
     >
       <div className="flex items-center bg-light/90 dark:bg-dark/90 backdrop-blur-md p-2 rounded-full border border-primary/30 relative overflow-hidden">
-        
+
         {/* Background Progress Bar (Subtle) */}
-        <div 
-          className="absolute bottom-0 left-0 h-[2px] bg-primary transition-all duration-300 ease-linear" 
+        <div
+          className="absolute bottom-0 left-0 h-[2px] bg-primary transition-all duration-300 ease-linear"
           style={{ width: `${progress}%` }}
         />
 
         <div className="flex items-center justify-center w-full px-2 gap-3 sm:gap-4">
-          
+
           {/* 1. Play/Pause Custom Button */}
-          <button 
+          <button
             onClick={togglePlay}
             className="flex-shrink-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center hover:scale-105 transition-transform"
           >
@@ -74,7 +75,7 @@ const StickyAudioPlayer = dynamic(() => Promise.resolve(() => {
               </p>
             </div>
             {/* Hidden Native Player for Logic */}
-            <audio 
+            <audio
               ref={audioRef}
               onTimeUpdate={onTimeUpdate}
               onEnded={() => setIsPlaying(false)}
@@ -86,7 +87,7 @@ const StickyAudioPlayer = dynamic(() => Promise.resolve(() => {
 
           {/* 3. LIVE Badge (Smaller on mobile) */}
           <div className="flex-shrink-0 px-3 py-1 rounded-full bg-dark/5 dark:bg-light/10 border border-dark/10 dark:border-light/10">
-             <span className="text-primary text-[8px] sm:text-[10px] font-black tracking-widest uppercase">LIVE</span>
+            <span className="text-primary text-[8px] sm:text-[10px] font-black tracking-widest uppercase">LIVE</span>
           </div>
 
         </div>
@@ -129,8 +130,14 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Aniel Someillan | Professional Musician & Bass Player</title>
-        <meta name="description" content="Aniel Someillan - Versatile Cuban musician, Electric and Double Bass player." />
+        <title>Aniel Someillan | Afro-Cuban Jazz Bassist & Composer</title>
+        <meta name="description" content="Official portfolio of Aniel Someillan, a versatile Cuban musician and bass player. Winner of Jazz Junior Competition and Montreux Jazz Academy invitee." />
+
+        {/* Social Media Preview Tags */}
+        <meta property="og:title" content="Aniel Someillan | Professional Musician" />
+        <meta property="og:description" content="Explore the musical journey of Aniel Someillan, featuring Ilú Trio and international collaborations." />
+        <meta property="og:image" content="/images/profile/profile_main_pic.png" />
+        <meta property="og:type" content="website" />
       </Head>
       <main className='flex flex-col items-center text-primaryText w-full min-h-screen dark:text-light relative pb-24'>
         <Layout className='pt-16 md:pt-16 sm:pt-8'>
@@ -156,21 +163,25 @@ export default function Home() {
                 </p>
 
                 <div className='flex items-center self-start mt-2 gap-4 lg:self-center'>
-                  <Link href='/anielCV.pdf' target={'_blank'} className='flex items-center bg-dark text-light p-2.5 px-6 rounded-lg text-lg font-semibold hover:bg-light hover:text-dark border border-solid border-transparent hover:border-primary dark:bg-light dark:text-dark hover:dark:bg-dark hover:dark:text-light transition-all'>
-                    Résumé <LinkArrow className={'!w-6 ml-1'} />
-                  </Link>
-                  <Link href='/contact'>
-                    <motion.div
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="px-6 py-2.5 rounded-full border border-dark dark:border-light bg-transparent 
+                  <Magnetic >
+                    <Link href='/anielCV.pdf' target={'_blank'} className='flex items-center bg-dark text-light p-2.5 px-6 rounded-lg text-lg font-semibold hover:bg-light hover:text-dark border border-solid border-transparent hover:border-primary dark:bg-light dark:text-dark hover:dark:bg-dark hover:dark:text-light transition-all'>
+                      Résumé <LinkArrow className={'!w-6 ml-1'} />
+                    </Link>
+                  </Magnetic>
+                  <Magnetic>
+                    <Link href='/contact'>
+                      <motion.div
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="px-6 py-2.5 rounded-full border border-dark dark:border-light bg-transparent 
                text-dark dark:text-light text-lg font-semibold tracking-wide
                hover:bg-dark hover:text-light dark:hover:bg-light dark:hover:text-dark 
                transition-all duration-300 cursor-pointer text-center inline-block"
-                    >
-                      Get in Touch
-                    </motion.div>
-                  </Link>
+                      >
+                        Get in Touch
+                      </motion.div>
+                    </Link>
+                  </Magnetic>
                 </div>
               </div>
             </div>
