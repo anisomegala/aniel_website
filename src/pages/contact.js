@@ -33,7 +33,7 @@ const Contact = () => {
             });
 
             if (response.ok) {
-                setStatus("Success! Your inquiry has been sent and tracked.");
+                setStatus("Success! Your inquiry has been sent.");
                 e.target.reset(); // Clear form on success
             } else {
                 throw new Error("API Error");

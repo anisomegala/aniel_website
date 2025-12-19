@@ -8,27 +8,92 @@ import Layout from '../components/Layout'
 import profile_main_pic from '../../public/images/profile/profile_main_pic.png'
 import AnimatedText from '../components/AnimatedText'
 import { LinkArrow } from '../components/icons'
+import { useState, useRef, useEffect } from 'react';
 
-const StickyAudioPlayer = dynamic(() => Promise.resolve(() => (
-  <motion.div
-    initial={{ y: 100 }}
-    animate={{ y: 0 }}
-    transition={{ delay: 1, duration: 0.5 }}
-    className="fixed bottom-6 right-1 -translate-x-1/2 w-[90%] max-w-md z-50"
-  >
-    <div className="flex items-center gap-4 bg-light/80 dark:bg-dark/80 backdrop-blur-md p-3 rounded-full border border-primary/30 shadow-[0_10px_30px_rgba(0,0,0,0.2)]">
-      <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center animate-pulse">
-        <span className="text-light text-[10px] font-bold tracking-tighter">LIVE</span>
+const StickyAudioPlayer = dynamic(() => Promise.resolve(() => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const audioRef = useRef(null);
+
+  const togglePlay = () => {
+    if (isPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
+
+  const onTimeUpdate = () => {
+    const duration = audioRef.current.duration;
+    const ct = audioRef.current.currentTime;
+    setProgress((ct / duration) * 100);
+  };
+
+  return (
+    <motion.div
+      initial={{ y: 100 }}
+      animate={{ y: 0 }}
+      transition={{ delay: 1, duration: 0.5 }}
+      className="fixed bottom-6 right-1 -translate-x-1/2 w-[94vw] max-w-md z-50 shadow-2xl"
+    >
+      <div className="flex items-center bg-light/90 dark:bg-dark/90 backdrop-blur-md p-2 rounded-full border border-primary/30 relative overflow-hidden">
+        
+        {/* Background Progress Bar (Subtle) */}
+        <div 
+          className="absolute bottom-0 left-0 h-[2px] bg-primary transition-all duration-300 ease-linear" 
+          style={{ width: `${progress}%` }}
+        />
+
+        <div className="flex items-center justify-center w-full px-2 gap-3 sm:gap-4">
+          
+          {/* 1. Play/Pause Custom Button */}
+          <button 
+            onClick={togglePlay}
+            className="flex-shrink-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center hover:scale-105 transition-transform"
+          >
+            {isPlaying ? (
+              <span className="flex gap-1">
+                <div className="w-1 h-4 bg-light rounded-full animate-pulse" />
+                <div className="w-1 h-4 bg-light rounded-full animate-pulse delay-75" />
+              </span>
+            ) : (
+              <div className="w-0 h-0 border-t-[8px] border-t-transparent border-l-[12px] border-l-light border-b-[8px] border-b-transparent ml-1" />
+            )}
+          </button>
+
+          {/* 2. Audio Info */}
+          <div className="flex flex-col flex-1 min-w-0">
+            <div className="flex items-center gap-2">
+              <span className="flex h-2 w-2 relative">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+              </span>
+              <p className="text-[10px] sm:text-xs font-bold text-dark dark:text-light truncate">
+                Black Narcissus — Aniel Someillan
+              </p>
+            </div>
+            {/* Hidden Native Player for Logic */}
+            <audio 
+              ref={audioRef}
+              onTimeUpdate={onTimeUpdate}
+              onEnded={() => setIsPlaying(false)}
+              preload="none"
+            >
+              <source src="/audio/Black_Narcissus.mp3" type="audio/mpeg" />
+            </audio>
+          </div>
+
+          {/* 3. LIVE Badge (Smaller on mobile) */}
+          <div className="flex-shrink-0 px-3 py-1 rounded-full bg-dark/5 dark:bg-light/10 border border-dark/10 dark:border-light/10">
+             <span className="text-primary text-[8px] sm:text-[10px] font-black tracking-widest uppercase">LIVE</span>
+          </div>
+
+        </div>
       </div>
-      <div className="flex-1 overflow-hidden">
-        <p className="text-xs font-bold text-dark dark:text-light truncate">Aniel Someillan - Black Narcissus</p>
-        <audio controls preload="none" className="w-full h-6 scale-90 -ml-4 filter sepia brightness-110 contrast-125">
-          <source src="/audio/Black_Narcissus.mp3" type="audio/mpeg" />
-        </audio>
-      </div>
-    </div>
-  </motion.div>
-)), { ssr: false });
+    </motion.div>
+  );
+}), { ssr: false });
 
 const gridItemVariants = {
   hidden: { opacity: 0, scale: 0.8 },
