@@ -10,7 +10,7 @@ import AnimatedText from '../components/AnimatedText'
 import { LinkArrow } from '../components/icons'
 
 const StickyAudioPlayer = dynamic(() => Promise.resolve(() => (
-  <motion.div 
+  <motion.div
     initial={{ y: 100 }}
     animate={{ y: 0 }}
     transition={{ delay: 1, duration: 0.5 }}
@@ -71,58 +71,69 @@ export default function Home() {
         <Layout className='pt-16 md:pt-16 sm:pt-8'>
           {/* Changed items-center to items-start to align tops */}
           <div className='flex items-start justify-between w-full lg:flex-col gap-12'>
-            
+
             {/* Left: SEO Content & Image */}
             <div className='w-2/5 flex flex-col items-center lg:w-full lg:text-center'>
               <div className="relative w-full aspect-square mb-8 rounded-2xl overflow-hidden border-2 border-primary/20 shadow-2xl">
-                 <Image 
-                    src={profile_main_pic} 
-                    alt='Aniel Someillan - Professional Musician' 
-                    className='w-full h-auto object-cover' 
-                    priority 
-                  />
+                <Image
+                  src={profile_main_pic}
+                  alt='Aniel Someillan - Professional Musician'
+                  className='w-full h-auto object-cover'
+                  priority
+                />
               </div>
-              
+
               <div className="w-full">
-                <AnimatedText text='"Life without playing music is inconceivable to me."'  className='text-left !text-4xl lg:!text-center md:!text-3xl sm:!text-2xl'/>
-                
+                <AnimatedText text='"Life without playing music is inconceivable to me."' className='text-left !text-4xl lg:!text-center md:!text-3xl sm:!text-2xl' />
+
                 <p className='my-4 text-base font-medium md:text-sm sm:text-xs leading-relaxed'>
-                  I am **Aniel Someillan**, a versatile musician holding a Bachelor&apos;s in Classical Guitar. Notable achievements include winning the Jazz Junior Competition with &quot;Ilú&quot; and receiving an invitation to the Montreux Jazz Academy. 
+                  I am **Aniel Someillan**, a versatile musician holding a Bachelor&apos;s in Classical Guitar. Notable achievements include winning the Jazz Junior Competition with &quot;Ilú&quot; and receiving an invitation to the Montreux Jazz Academy.
                 </p>
-                
+
                 <div className='flex items-center self-start mt-2 gap-4 lg:self-center'>
                   <Link href='/anielCV.pdf' target={'_blank'} className='flex items-center bg-dark text-light p-2.5 px-6 rounded-lg text-lg font-semibold hover:bg-light hover:text-dark border border-solid border-transparent hover:border-primary dark:bg-light dark:text-dark hover:dark:bg-dark hover:dark:text-light transition-all'>
-                    Résumé <LinkArrow className={'!w-6 ml-1'}/>
+                    Résumé <LinkArrow className={'!w-6 ml-1'} />
                   </Link>
-                  <Link href='mailto:anielsomeillan@icloud.com' className="text-lg font-medium text-dark dark:text-light underline decoration-primary underline-offset-4 decoration-2">Contact</Link>
+                  <Link href='/contact'>
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="px-6 py-2.5 rounded-full border border-dark dark:border-light bg-transparent 
+               text-dark dark:text-light text-lg font-semibold tracking-wide
+               hover:bg-dark hover:text-light dark:hover:bg-light dark:hover:text-dark 
+               transition-all duration-300 cursor-pointer text-center inline-block"
+                    >
+                      Get in Touch
+                    </motion.div>
+                  </Link>
                 </div>
               </div>
             </div>
 
             {/* Right: Navigation Grid aligned to top of picture */}
             <div className='w-3/5 lg:w-full grid grid-cols-2 sm:grid-cols-1 gap-4 pt-0'>
-              <NavCard 
-                index={1} 
-                title="About" 
-                href="/about" 
+              <NavCard
+                index={1}
+                title="About"
+                href="/about"
                 description="Musical explorer hailing from the vibrant streets of Havana..."
               />
-              <NavCard 
-                index={2} 
-                title="Projects" 
-                href="/projects" 
+              <NavCard
+                index={2}
+                title="Projects"
+                href="/projects"
                 description="Their music cannot be put in just few words — it needs to be listened to get you carried away.."
               />
-              <NavCard 
-                index={3} 
-                title="Upcoming Shows" 
-                href="/shows" 
+              <NavCard
+                index={3}
+                title="Upcoming Shows"
+                href="/shows"
                 description="List of upcoming musical performances..."
               />
-              <NavCard 
-                index={4} 
-                title="Articles" 
-                href="/articles" 
+              <NavCard
+                index={4}
+                title="Articles"
+                href="/articles"
                 description="Read online articles about me..."
               />
             </div>
