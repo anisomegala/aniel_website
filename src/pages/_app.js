@@ -3,10 +3,12 @@ import { Poppins } from 'next/font/google'
 import Head from 'next/head'
 import Script from 'next/script'
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import NavBar from '../components/NavBar'
 import Footer from '../components/Footer'
 import Schema from '../components/Schema';
+import { AnimatePresence } from 'framer-motion'
+import Loader from '../components/Loader'
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700", "800", "900"],
@@ -15,7 +17,26 @@ const poppins = Poppins({
 })
 
 export default function App({ Component, pageProps }) {
+  const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
+
+  useEffect(() => {
+    // Simulate a minimum loading time for the animation to feel intentional
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Ensure body scroll is disabled while loading
+  useEffect(() => {
+    if (isLoading) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [isLoading]);
 
   useEffect(() => {
     // This part ensures that every time the user changes pages, the Pixel tracks it.
@@ -58,11 +79,15 @@ export default function App({ Component, pageProps }) {
         }}
       />
 
+      <AnimatePresence mode="wait">
+        {isLoading && <Loader key="loader" />}
+      </AnimatePresence>
+
       <main className={`${poppins.variable} font-pp bg-light dark:bg-dark w-full min-h-screen`}>
         <NavBar />
         <Component {...pageProps} />
         <Footer />
       </main>
     </>
-  ) 
+  )
 }
