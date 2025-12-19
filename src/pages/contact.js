@@ -5,22 +5,44 @@ import Layout from '../components/Layout'
 const Contact = () => {
     const [status, setStatus] = useState("");
 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
-        // 1. Send the data to your email service (Formspree, SendGrid, etc.)
-        // 2. Track the Facebook Lead Event
+        const formData = new FormData(e.target);
+
+        // Safety check: get the value and provide a fallback string before splitting
+        const fullName = formData.get("name") || "";
+
+        const data = {
+            email: formData.get("email"),
+            firstName: fullName.split(" ")[0] || "Guest",
+            lastName: fullName.split(" ").slice(1).join(" ") || "", // Handles middle/last names better
+        };
+
+        // 1. Browser-side Tracking (Standard Pixel)
         if (window.fbq) {
-            window.fbq('track', 'Lead', {
-                content_category: 'Contact Form',
-                content_name: 'Inquiry',
-                value: 1.00,
-                currency: 'USD'
-            });
+            window.fbq('track', 'Lead', { currency: 'USD', value: 1.00 });
         }
 
-        setStatus("Message Sent! Meta is now tracking this as a Lead.");
+        // 2. Server-side Tracking (CAPI)
+        try {
+            const response = await fetch('/api/fb-lead', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+            });
+
+            if (response.ok) {
+                setStatus("Success! Your inquiry has been sent and tracked.");
+                e.target.reset(); // Clear form on success
+            } else {
+                throw new Error("API Error");
+            }
+        } catch (err) {
+            setStatus("Message sent, but tracking encountered an error.");
+        }
     };
+
 
     return (
         <>
@@ -32,21 +54,28 @@ const Contact = () => {
                 <Layout className="pt-16">
                     <div className="max-w-2xl mx-auto bg-light/50 dark:bg-dark/50 p-8 rounded-3xl border border-dark/10 dark:border-light/10 backdrop-blur-md">
                         <h1 className="text-4xl font-bold mb-8">Start a Project</h1>
-                        
+
+
                         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                            <input 
-                                type="text" placeholder="Your Name" required
+                            <input
+                                name="name" // IMPORTANT: This must match formData.get("name")
+                                type="text"
+                                placeholder="Your Name"
+                                required
                                 className="p-3 rounded-xl bg-transparent border border-dark/20 dark:border-light/20 outline-none focus:border-primary transition-colors"
                             />
-                            <input 
-                                type="email" placeholder="Your Email" required
+                            <input
+                                name="email" // IMPORTANT: This must match formData.get("email")
+                                type="email"
+                                placeholder="Your Email"
+                                required
                                 className="p-3 rounded-xl bg-transparent border border-dark/20 dark:border-light/20 outline-none focus:border-primary transition-colors"
                             />
-                            <textarea 
+                            <textarea
                                 placeholder="How can we collaborate?" rows="4"
                                 className="p-3 rounded-xl bg-transparent border border-dark/20 dark:border-light/20 outline-none focus:border-primary transition-colors"
                             />
-                            <button 
+                            <button
                                 type="submit"
                                 className="bg-dark text-light dark:bg-light dark:text-dark py-3 rounded-xl font-bold hover:bg-primary dark:hover:bg-primaryDark transition-all"
                             >
@@ -56,7 +85,7 @@ const Contact = () => {
                         {status && <p className="mt-4 text-primary font-semibold">{status}</p>}
                     </div>
                 </Layout>
-            </main>
+            </main >
         </>
     )
 }
