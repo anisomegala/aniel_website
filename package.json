@@ -16,7 +16,8 @@
     "next-sitemap": "^4.2.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-h5-audio-player": "^3.10.1"
+    "react-h5-audio-player": "^3.10.1",
+    "stripe": "^20.1.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.16",

@@ -85,7 +85,7 @@ const ProjectsPage = () => {
                             title="Ílú trio" 
                             img={project1}
                             link='https://ilu-epk.vercel.app'
-                            youtube="https://www.youtube.com/watch?v=ug-NmgN5D78&t=1470s"
+                            youtube="https://www.youtube.com/watch?v=mEp4YXsEipo&list=RDmEp4YXsEipo&start_radio=1"
                             className="col-span-8 row-span-2 md:col-span-12"
                         />
 
@@ -94,8 +94,8 @@ const ProjectsPage = () => {
                             type="Independent Project"
                             title="Aniel y El Quilombo" 
                             img={project2}
-                            link='http://googleusercontent.com/spotify.com/6'
-                            youtube="https://www.youtube.com/watch?v=QtgpURPdVQc&t=3934s"
+                            link='https://youtu.be/NSOpIyYc_m8?si=e-3oq5x4-tK6slUm'
+                            youtube="https://youtu.be/NSOpIyYc_m8?si=e-3oq5x4-tK6slUm"
                             className="col-span-4 row-span-3 md:col-span-6 sm:h-[400px]"
                         />
 
@@ -104,8 +104,8 @@ const ProjectsPage = () => {
                             type="Multicultural Project"
                             title="Odyssey" 
                             img={project3}
-                            link='http://googleusercontent.com/spotify.com/7'
-                            youtube="https://www.youtube.com/watch?v=ysGmw90I-18&t=4s"
+                            link='https://youtu.be/IVFD-Q6oHCI?si=peRea__BTe2_5Vvc'
+                            youtube="https://youtu.be/IVFD-Q6oHCI?si=peRea__BTe2_5Vvc"
                             className="col-span-4 row-span-1 md:col-span-6"
                         />
 
@@ -114,8 +114,8 @@ const ProjectsPage = () => {
                             type="Tour 2023"
                             title="Amaro Freitas Trio" 
                             img={project4}
-                            link='http://googleusercontent.com/spotify.com/8'
-                            youtube="https://www.youtube.com/watch?v=7dIrnzFM4hI&t=201s"
+                            link='https://youtu.be/7dIrnzFM4hI?si=kPQg6Uq7LIN6IT9X'
+                            youtube="https://youtu.be/7dIrnzFM4hI?si=kPQg6Uq7LIN6IT9X"
                             className="col-span-4 row-span-2 md:col-span-12"
                         />
 
@@ -124,8 +124,8 @@ const ProjectsPage = () => {
                             type="World Tour 2022"
                             title="Dayme Arocena" 
                             img={project5}
-                            link='http://googleusercontent.com/spotify.com/9'
-                            youtube="https://www.youtube.com/watch?v=WRC0nbpEFJ8"
+                            link='https://youtu.be/WRC0nbpEFJ8?si=5HPGlGPUt16pE0SS'
+                            youtube="https://youtu.be/WRC0nbpEFJ8?si=5HPGlGPUt16pE0SS"
                             className="col-span-8 row-span-1 md:col-span-12"
                         />
 
@@ -134,8 +134,8 @@ const ProjectsPage = () => {
                             type="Core Member"
                             title="Luedji Luna" 
                             img={project6}
-                            link='https://open.spotify.com/album/1dVpFsHYwATW0VsPGfd5ZI?si=qeTUwMXQTZWhFsrJGwlVAQ0'
-                            youtube="https://www.youtube.com/watch?v=YwoCX1z2at8&t=3535s"
+                            link='https://www.youtube.com/watch?v=VzI_tRIOBdk&list=RDVzI_tRIOBdk&start_radio=1'
+                            youtube="https://www.youtube.com/watch?v=VzI_tRIOBdk&list=RDVzI_tRIOBdk&start_radio=1"
                             className="col-span-4 row-span-1 md:col-span-6"
                         />
                         <ProjectCard 

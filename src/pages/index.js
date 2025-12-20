@@ -105,26 +105,27 @@ const gridItemVariants = {
   })
 };
 
-const NavCard = ({ title, href, index, description }) => (
-  <motion.div
-    custom={index}
-    initial="hidden"
-    animate="visible"
-    variants={gridItemVariants}
-    whileHover={{ y: -10, transition: { duration: 0.2 } }}
-    className="relative overflow-hidden rounded-2xl bg-light/50 dark:bg-dark/50 border border-dark/10 dark:border-light/10 p-6 backdrop-blur-sm group hover:border-primary transition-colors h-full"
-  >
-    <Link href={href} className="flex flex-col h-full justify-between">
-      <div>
-        <h3 className="text-xl font-bold text-dark dark:text-light group-hover:text-primary transition-colors">{title}</h3>
-        <p className="text-sm text-dark/60 dark:text-light/60 mt-2 leading-relaxed">{description}</p>
-      </div>
-      <div className="mt-4 self-end">
-        <LinkArrow className="w-6 fill-dark dark:fill-light group-hover:fill-primary transition-colors" />
+// Inside your NavCard component:
+const NavCard = ({ index, title, href, description, className = "" }) => {
+  return (
+    // The className must be here on the outermost tag for the grid to work
+    <Link 
+      href={href} 
+      className={`block w-full h-full ${className}`} 
+    >
+      <div className="group p-8 rounded-2xl border border-dark/10 dark:border-light/10 bg-light/50 dark:bg-dark/50 backdrop-blur-sm hover:border-primary transition-all duration-300 h-full flex flex-col justify-between">
+         {/* Your card content (index, title, description) */}
+         <div>
+           <h2 className="text-2xl font-bold mt-2">{title}</h2>
+           <p className="text-sm opacity-60 mt-4">{description}</p>
+         </div>
+         <div className="self-end text-primary group-hover:translate-x-2 transition-transform">
+           →
+         </div>
       </div>
     </Link>
-  </motion.div>
-);
+  );
+};
 
 export default function Home() {
   return (
@@ -198,7 +199,7 @@ export default function Home() {
                 index={2}
                 title="Projects"
                 href="/projects"
-                description="Their music cannot be put in just few words — it needs to be listened to get you carried away.."
+                description="Their music cannot be put in just few words..."
               />
               <NavCard
                 index={3}
@@ -212,8 +213,16 @@ export default function Home() {
                 href="/articles"
                 description="Read online articles about me..."
               />
-            </div>
 
+              {/* This item now stretches across both columns */}
+              <NavCard
+                className="col-span-2 sm:col-span-1"
+                index={5}
+                title="Shop"
+                href="/shop"
+                description="Collectors' Corner..."
+              />
+            </div>
           </div>
         </Layout>
 

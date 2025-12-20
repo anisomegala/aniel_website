@@ -9,7 +9,10 @@ const navLinks = [
     { href: "/projects", label: "Projects" },
     { href: "/shows", label: "Shows" },
     { href: "/articles", label: "Articles" },
+    { href: "/shop", label: "Shop" },
 ];
+
+
 
 const FloatingNav = () => {
     const [isOpen, setIsOpen] = useState(false);

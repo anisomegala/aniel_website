@@ -65,7 +65,7 @@ export default function Shows() {
   return (
     <main className="w-full min-h-screen dark:text-light">
       <Layout>
-        <AnimatedText text="Upcoming Performances" className="!text-6xl mb-16" />
+        <AnimatedText text="Upcoming Performances" className="!text-7xl mb-16 lg:!text-6xl md:!text-4xl"  />
         
         <div className="max-w-4xl mx-auto">
           {loading ? (
