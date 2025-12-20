@@ -4,22 +4,29 @@ import { TwitterIcon, LinkedInIcon, SunIcon, MoonIcon, InstagramIcon, FacebookIc
 import { motion, AnimatePresence } from 'framer-motion'
 import useThemeSwitcher from './hooks/useThemeSwitcher'
 
+import dynamic from 'next/dynamic';
+
+const GlobeIcon = dynamic(() => import('./GlobeIcon'), {
+    ssr: false,
+    loading: () => <div className="w-16 h-16 bg-transparent" />
+});
+
 const NavBar = () => {
     const [mode, setMode] = useThemeSwitcher();
     const [isHovered, setIsHovered] = useState(false);
-    
+
     const socialIcons = [
-        { icon: <TwitterIcon />, href: "https://twitter.com", angle: -90 },    
-        { icon: <InstagramIcon />, href: "https://instagram.com", angle: -18 }, 
-        { icon: <FacebookIcon />, href: "https://facebook.com", angle: 54 },    
-        { icon: <LinkedInIcon />, href: "https://linkedin.com", angle: 126 },   
-        { icon: <GithubIcon />, href: "https://github.com", angle: 198 },      
+        { icon: <TwitterIcon />, href: "https://twitter.com", angle: -90 },
+        { icon: <InstagramIcon />, href: "https://instagram.com", angle: -18 },
+        { icon: <FacebookIcon />, href: "https://facebook.com", angle: 54 },
+        { icon: <LinkedInIcon />, href: "https://linkedin.com", angle: 126 },
+        { icon: <GithubIcon />, href: "https://github.com", angle: 198 },
     ];
 
     return (
         /* CHANGE: Increased 'py-20' and removed any potential overflow issues */
         <header className="w-full px-32 py-20 flex items-center justify-between dark:text-light relative z-50 lg:px-16 md:px-12 sm:px-8 overflow-visible">
-            
+
             <div className="flex items-center">
                 <button
                     onClick={() => setMode(mode === "light" ? "dark" : "light")}
@@ -29,7 +36,7 @@ const NavBar = () => {
                 </button>
             </div>
 
-            <div 
+            <div
                 className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center"
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
@@ -42,7 +49,7 @@ const NavBar = () => {
                 <AnimatePresence>
                     {isHovered && socialIcons.map((item, i) => {
                         // Tight radius to keep it close to the logo
-                        const radius = 52; 
+                        const radius = 52;
                         const x = Math.cos((item.angle * Math.PI) / 180) * radius;
                         const y = Math.sin((item.angle * Math.PI) / 180) * radius;
 
@@ -68,7 +75,10 @@ const NavBar = () => {
                 </AnimatePresence>
             </div>
 
-            <div className="w-10" />
+            <div className="absolute right-8 top-1/2 -translate-y-1/2 flex items-center justify-center">
+                <GlobeIcon />
+            </div>
+
         </header>
     )
 }

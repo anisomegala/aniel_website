@@ -1,0 +1,17 @@
+{
+  "nav": {
+    "home": "Start",
+    "about": "O mnie",
+    "projects": "Projekty",
+    "shows": "Koncerty",
+    "articles": "Artykuły",
+    "shop": "Sklep"
+  },
+  "shop": {
+    "title": "Kącik Kolekcjonera",
+    "buyNow": "Kup Teraz",
+    "soldOut": "Wyprzedane",
+    "lowStock": "Zostało tylko {{count}}!",
+    "redirecting": "Przekierowywanie..."
+  }
+}

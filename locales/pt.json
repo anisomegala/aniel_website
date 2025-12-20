@@ -1,0 +1,17 @@
+{
+  "nav": {
+    "home": "Início",
+    "about": "Sobre",
+    "projects": "Projetos",
+    "shows": "Shows",
+    "articles": "Artigos",
+    "shop": "Loja"
+  },
+  "shop": {
+    "title": "Canto do Colecionador",
+    "buyNow": "Comprar",
+    "soldOut": "Esgotado",
+    "lowStock": "Apenas {{count}} restantes!",
+    "redirecting": "Redirecionando..."
+  }
+}

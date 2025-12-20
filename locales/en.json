@@ -1,0 +1,17 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "shows": "Shows",
+    "articles": "Articles",
+    "shop": "Shop"
+  },
+  "shop": {
+    "title": "Collectors' Corner",
+    "buyNow": "Buy Now",
+    "soldOut": "Sold Out",
+    "lowStock": "Only {{count}} left in stock!",
+    "redirecting": "Redirecting..."
+  }
+}

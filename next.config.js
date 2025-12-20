@@ -1,5 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  i18n: {
+    locales: ['en', 'es', 'pt', 'pl'],
+    defaultLocale: 'en',
+    localeDetection: true, 
+  },
   reactStrictMode: true,
   images: {
     remotePatterns: [

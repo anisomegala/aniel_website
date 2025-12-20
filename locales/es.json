@@ -1,0 +1,17 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Sobre Mí",
+    "projects": "Proyectos",
+    "shows": "Conciertos",
+    "articles": "Artículos",
+    "shop": "Tienda"
+  },
+  "shop": {
+    "title": "Rincón del Coleccionista",
+    "buyNow": "Comprar",
+    "soldOut": "Agotado",
+    "lowStock": "¡Solo quedan {{count}}!",
+    "redirecting": "Redirigiendo..."
+  }
+}
