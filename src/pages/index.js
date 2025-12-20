@@ -220,7 +220,7 @@ export default function Home() {
                 index={5}
                 title="Shop"
                 href="/shop"
-                description="Collectors' Corner..."
+                description="Collectors' Corner is my online store - Visit"
               />
             </div>
           </div>
