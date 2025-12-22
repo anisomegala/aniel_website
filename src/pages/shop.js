@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Stripe from 'stripe';
 import Layout from '../components/Layout';
 import Head from 'next/head';
@@ -44,17 +44,40 @@ export default function Shop({ products }) {
     // Mapping locales to translation files
     const t = locale === 'es' ? es : locale === 'pt' ? pt : locale === 'pl' ? pl : en;
 
-    const handleCheckout = async (priceId) => {
-        setLoadingId(priceId);
+    const handleCheckout = async (product) => {
+        setLoadingId(product.priceId);
+        if (window.fbq) {
+
+            const priceString = product.price ? String(product.price) : "0";
+            const numericValue = parseFloat(priceString.replace(/[^0-9.-]+/g, "")) || 0;
+
+            window.fbq('track', 'AddToCart', {
+                content_ids: [product.id],
+                content_name: product.name,
+                content_type: 'product',
+                value: numericValue,
+                currency: 'USD'
+            });
+        }
         const res = await fetch('/api/checkout', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ priceId }),
+            body: JSON.stringify({ priceId: product.priceId }),
         });
         const data = await res.json();
         if (data.url) window.location.href = data.url;
         setLoadingId(null);
     };
+
+    useEffect(() => {
+        if (window.fbq) {
+            window.fbq('track', 'ViewContent', {
+                content_type: 'product',
+                // You can optionally pass the names of products currently visible
+                content_names: products.map(p => p.name)
+            });
+        }
+    }, [products]);
 
     return (
         <>
@@ -92,7 +115,7 @@ export default function Shop({ products }) {
                                     )}
                                     <button
                                         disabled={product.stock === 0}
-                                        onClick={() => handleCheckout(product.priceId)}
+                                        onClick={() => handleCheckout(product)}
                                         className='bg-dark text-light px-8 py-3 rounded-full dark:bg-light dark:text-dark font-bold hover:scale-105 transition-transform disabled:opacity-50'
                                     >
                                         {/* Toggles between Buy Now and Sold Out labels */}
