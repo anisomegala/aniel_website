@@ -1,14 +1,15 @@
 // src/pages/api/fb-lead.js
 import crypto from 'crypto';
+import nodemailer from 'nodemailer';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' });
   }
 
-  const { email, firstName, lastName } = req.body;
+  const { email, firstName, lastName, message } = req.body;
 
-  // Meta requires user data to be hashed using SHA256 for privacy
+  // 1. Meta Hashing Logic
   const hashData = (data) => {
     if (!data) return null;
     return crypto.createHash('sha256').update(data.trim().toLowerCase()).digest('hex');
@@ -16,8 +17,7 @@ export default async function handler(req, res) {
 
   const pixelId = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID;
   const accessToken = process.env.FB_ACCESS_TOKEN;
-
-  const url = `https://graph.facebook.com/v18.0/${pixelId}/events?access_token=${accessToken}`;
+  const fbUrl = `https://graph.facebook.com/v18.0/${pixelId}/events?access_token=${accessToken}`;
 
   const eventData = {
     data: [
@@ -39,16 +39,56 @@ export default async function handler(req, res) {
     ],
   };
 
-  try {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(eventData),
-    });
+  // 2. Nodemailer Configuration for iCloud
+  const transporter = nodemailer.createTransport({
+    host: 'smtp.mail.me.com',
+    port: 587,
+    secure: false, // iCloud uses STARTTLS
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  });
+  // Add this temporarily to check your connection
+  transporter.verify(function (error, success) {
+    if (error) {
+      console.log("❌ iCloud Connection Error:", error);
+    } else {
+      console.log("✅ iCloud is ready to send emails!");
+    }
+  });
 
-    const result = await response.json();
-    return res.status(200).json(result);
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: process.env.EMAIL_RECEIVER || process.env.EMAIL_USER,
+    subject: `New Lead: ${firstName} ${lastName}`,
+    text: `New inquiry from: ${firstName} ${lastName}\nEmail: ${email}\n\nMessage:\n${message}`,
+    html: `
+      <h3>New Project Inquiry</h3>
+      <p><strong>Name:</strong> ${firstName} ${lastName}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <div style="margin-top: 20px; padding: 15px; background-color: #f4f4f4; border-radius: 10px;">
+        <strong>Message:</strong><br/>
+        ${message.replace(/\n/g, '<br/>')}
+      </div>
+    `,
+  };
+
+  try {
+    // Fire both actions: Facebook CAPI and Email notification
+    const [fbResponse, mailResponse] = await Promise.all([
+      fetch(fbUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(eventData),
+      }),
+      transporter.sendMail(mailOptions)
+    ]);
+
+    const fbResult = await fbResponse.json();
+    return res.status(200).json({ success: true, fbResult, mailId: mailResponse.messageId });
   } catch (error) {
+    console.error("Integration Error:", error);
     return res.status(500).json({ error: error.message });
   }
 }

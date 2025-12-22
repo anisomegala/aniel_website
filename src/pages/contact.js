@@ -25,7 +25,8 @@ const Contact = () => {
         const data = {
             email: formData.get("email"),
             firstName: fullName.split(" ")[0] || "Guest",
-            lastName: fullName.split(" ").slice(1).join(" ") || "", // Handles middle/last names better
+            lastName: fullName.split(" ").slice(1).join(" ") || "",
+            message: formData.get("message")
         };
 
         // 1. Browser-side Tracking (Standard Pixel)
@@ -81,6 +82,7 @@ const Contact = () => {
                                 className="p-3 rounded-xl bg-transparent border border-dark/20 dark:border-light/20 outline-none focus:border-primary transition-colors"
                             />
                             <textarea
+                                name="message"
                                 placeholder="How can we collaborate?" rows="4"
                                 className="p-3 rounded-xl bg-transparent border border-dark/20 dark:border-light/20 outline-none focus:border-primary transition-colors"
                             />
