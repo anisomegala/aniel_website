@@ -2,21 +2,27 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-
-const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
-    { href: "/projects", label: "Projects" },
-    { href: "/shows", label: "Shows" },
-    { href: "/articles", label: "Articles" },
-    { href: "/shop", label: "Shop" },
-];
-
-
+import en from '../../locales/en.json';
+import es from '../../locales/es.json';
+import pt from '../../locales/pt.json';
+import pl from '../../locales/pl.json';
 
 const FloatingNav = () => {
     const [isOpen, setIsOpen] = useState(false);
     const router = useRouter();
+    const { locale } = router;
+
+    // Mapping locales to translation files
+    const t = locale === 'es' ? es : locale === 'pt' ? pt : locale === 'pl' ? pl : en;
+
+    const navLinks = [
+        { href: "/", label: t.nav.home },
+        { href: "/about", label: t.nav.about },
+        { href: "/projects", label: t.nav.projects },
+        { href: "/shows", label: t.nav.shows },
+        { href: "/articles", label: t.nav.articles },
+        { href: "/shop", label: t.nav.shop },
+    ];
 
     // Only show on sub-pages (not home)
     if (router.pathname === "/") return null;

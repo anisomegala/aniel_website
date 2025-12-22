@@ -7,11 +7,47 @@
     "articles": "Artículos",
     "shop": "Tienda"
   },
+  "home": {
+    "quote": "\"La vida sin tocar música es inconcebible para mí.\"",
+    "biography": "Soy **Aniel Someillan**, un músico versátil con una Licenciatura en Guitarra Clásica. Entre mis logros destacan haber ganado el Concurso Jazz Junior con \"Ilú\" y haber sido invitado a la Montreux Jazz Academy.",
+    "resume": "Currículum",
+    "getInTouch": "Contactar"
+  },
+  "about": {
+    "title": "La pasión se une a la precisión",
+    "journeyTitle": "Trayectoria musical",
+    "p1": "Soy **Aniel Someillan**, un músico versátil de las vibrantes calles de La Habana, Cuba. Mi viaje con la música comenzó a una edad temprana, impulsado por el rico tapiz cultural de mi tierra natal. Esta pasión me llevó a cursar una educación formal, obteniendo finalmente una **Licenciatura en Guitarra Clásica y Artes**.",
+    "p2": "Sin embargo, mi exploración musical no se detuvo allí. Con el tiempo, me convertí en un **bajista y contrabajista profesional**, instrumentos que me permitieron encontrar el latido rítmico del jazz y la música contemporánea.",
+    "p3": "Uno de mis logros más significativos fue ganar el prestigioso concurso **Jazz Junior** con mi proyecto \"Ilú\". Este reconocimiento fue un punto de inflexión, mostrando mi compromiso con la superación de los límites de los sonidos tradicionales.",
+    "quote": "\"La vida sin tocar música es inconcebible para mí.\"",
+    "p4": "Ya sea actuando en escenarios internacionales o grabando en el estudio, mi objetivo sigue siendo el mismo: crear música que resuene profundamente y transporte al oyente.",
+    "education": "Educación",
+    "eduDegree": "Licenciatura en Guitarra Clásica",
+    "focus": "Especialidad",
+    "focusInstrument": "Bajo Eléctrico y Contrabajo"
+  },
+  "projects": {
+    "title": "Un viaje visual a través de la música",
+    "viewProject": "Ver Proyecto"
+  },
+  "articles": {
+    "title": "En la prensa",
+    "readFull": "Leer artículo completo"
+  },
   "shop": {
     "title": "Rincón del Coleccionista",
-    "buyNow": "Comprar",
+    "buyNow": "Comprar ahora",
     "soldOut": "Agotado",
-    "lowStock": "¡Solo quedan {{count}}!",
+    "lowStock": "¡Solo quedan {{count}} en stock!",
     "redirecting": "Redirigiendo..."
+  },
+  "shows": {
+    "calendarBtn": "Añadir al calendario",
+    "syncing": "Sincronizando con el calendario...",
+    "noShows": "No hay conciertos programados próximamente. ¡Vuelve pronto!"
+  },
+  "success": {
+    "title": "¡Gracias por su apoyo!",
+    "message": "Se ha enviado un correo electrónico de confirmación y su contenido digital a su bandeja de entrada."
   }
 }

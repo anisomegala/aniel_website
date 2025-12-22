@@ -1,10 +1,19 @@
 import React, { useState } from 'react'
 import Head from 'next/head'
 import Layout from '../components/Layout'
+import { useRouter } from 'next/router'
+import en from '../../locales/en.json'
+import es from '../../locales/es.json'
+import pt from '../../locales/pt.json'
+import pl from '../../locales/pl.json'
 
 const Contact = () => {
     const [status, setStatus] = useState("");
+    const router = useRouter();
+    const { locale } = router;
 
+    // Mapping locales to translation files
+    const t = locale === 'es' ? es : locale === 'pt' ? pt : locale === 'pl' ? pl : en;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -53,7 +62,7 @@ const Contact = () => {
             <main className="w-full min-h-screen flex flex-col items-center justify-center dark:text-light">
                 <Layout className="pt-16">
                     <div className="max-w-2xl mx-auto bg-light/50 dark:bg-dark/50 p-8 rounded-3xl border border-dark/10 dark:border-light/10 backdrop-blur-md">
-                        <h1 className="text-4xl font-bold mb-8">Start a Project</h1>
+                        <h1 className="text-4xl font-bold mb-8">{t.nav.contact}</h1>
 
 
                         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -79,7 +88,7 @@ const Contact = () => {
                                 type="submit"
                                 className="bg-dark text-light dark:bg-light dark:text-dark py-3 rounded-xl font-bold hover:bg-primary dark:hover:bg-primaryDark transition-all"
                             >
-                                Send Message
+                                {t.home.getInTouch}
                             </button>
                         </form>
                         {status && <p className="mt-4 text-primary font-semibold">{status}</p>}

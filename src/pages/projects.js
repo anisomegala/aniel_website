@@ -6,6 +6,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { YoutubeIcon } from '../components/icons'
+import { useRouter } from 'next/router'
+import en from '../../locales/en.json'
+import es from '../../locales/es.json'
+import pt from '../../locales/pt.json'
+import pl from '../../locales/pl.json'
 
 // Image Imports
 import project1 from '../../public/images/projects/Ilu trio.jpg'
@@ -19,7 +24,7 @@ import project7 from '../../public/images/projects/JulitoPadron.jpg'
 const FramerImage = motion(Image);
 
 // 1. Improved Card for the Puzzle Grid
-const ProjectCard = ({ type, title, img, link, youtube, className="" }) => {
+const ProjectCard = ({ type, title, img, link, youtube, className="", viewText="" }) => {
     return (
         <motion.article 
             initial={{ opacity: 0, y: 20 }}
@@ -54,7 +59,7 @@ const ProjectCard = ({ type, title, img, link, youtube, className="" }) => {
                         <YoutubeIcon className="!fill-light group-hover:!fill-primary" /> 
                     </Link>
                     <Link href={link} target="_blank" className='text-xs font-bold uppercase underline underline-offset-4 tracking-widest hover:text-primary'>
-                        View Project
+                        {viewText}
                     </Link>
                 </div>
             </div>
@@ -63,6 +68,12 @@ const ProjectCard = ({ type, title, img, link, youtube, className="" }) => {
 }
 
 const ProjectsPage = () => {
+    const router = useRouter();
+    const { locale } = router;
+
+    // Mapping locales to translation files
+    const t = locale === 'es' ? es : locale === 'pt' ? pt : locale === 'pl' ? pl : en;
+
     return (
         <>
             <Head>
@@ -73,7 +84,7 @@ const ProjectsPage = () => {
                 <Layout className='pt-16'>
                     <AnimatedText 
                         className='mb-16 lg:!text-7xl sm:mb-8 sm:!text-6xl xs:!text-3xl' 
-                        text="Visual Journey through Music" 
+                        text={t.projects.title} 
                     />
                     
                     {/* 2. THE PUZZLE GRID ENGINE */}
@@ -87,6 +98,7 @@ const ProjectsPage = () => {
                             link='https://ilu-epk.vercel.app'
                             youtube="https://www.youtube.com/watch?v=mEp4YXsEipo&list=RDmEp4YXsEipo&start_radio=1"
                             className="col-span-8 row-span-2 md:col-span-12"
+                            viewText={t.projects.viewProject}
                         />
 
                         {/* Tall Piece */}
@@ -97,6 +109,7 @@ const ProjectsPage = () => {
                             link='https://youtu.be/NSOpIyYc_m8?si=e-3oq5x4-tK6slUm'
                             youtube="https://youtu.be/NSOpIyYc_m8?si=e-3oq5x4-tK6slUm"
                             className="col-span-4 row-span-3 md:col-span-6 sm:h-[400px]"
+                            viewText={t.projects.viewProject}
                         />
 
                         {/* Wide Piece */}
@@ -107,6 +120,7 @@ const ProjectsPage = () => {
                             link='https://youtu.be/IVFD-Q6oHCI?si=peRea__BTe2_5Vvc'
                             youtube="https://youtu.be/IVFD-Q6oHCI?si=peRea__BTe2_5Vvc"
                             className="col-span-4 row-span-1 md:col-span-6"
+                            viewText={t.projects.viewProject}
                         />
 
                         {/* Standard Block */}
@@ -117,6 +131,7 @@ const ProjectsPage = () => {
                             link='https://youtu.be/7dIrnzFM4hI?si=kPQg6Uq7LIN6IT9X'
                             youtube="https://youtu.be/7dIrnzFM4hI?si=kPQg6Uq7LIN6IT9X"
                             className="col-span-4 row-span-2 md:col-span-12"
+                            viewText={t.projects.viewProject}
                         />
 
                         {/* Horizontal Piece */}
@@ -127,6 +142,7 @@ const ProjectsPage = () => {
                             link='https://youtu.be/WRC0nbpEFJ8?si=5HPGlGPUt16pE0SS'
                             youtube="https://youtu.be/WRC0nbpEFJ8?si=5HPGlGPUt16pE0SS"
                             className="col-span-8 row-span-1 md:col-span-12"
+                            viewText={t.projects.viewProject}
                         />
 
                         {/* Small Dynamic Blocks */}
@@ -137,6 +153,7 @@ const ProjectsPage = () => {
                             link='https://www.youtube.com/watch?v=VzI_tRIOBdk&list=RDVzI_tRIOBdk&start_radio=1'
                             youtube="https://www.youtube.com/watch?v=VzI_tRIOBdk&list=RDVzI_tRIOBdk&start_radio=1"
                             className="col-span-4 row-span-1 md:col-span-6"
+                            viewText={t.projects.viewProject}
                         />
                         <ProjectCard 
                             type="Jazz Collab"
@@ -145,6 +162,7 @@ const ProjectsPage = () => {
                             link='#'
                             youtube="#"
                             className="col-span-8 row-span-1 md:col-span-6"
+                            viewText={t.projects.viewProject}
                         />
                     </div>
                 </Layout>

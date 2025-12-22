@@ -2,11 +2,21 @@ import React, { useState, useEffect } from 'react';
 import Layout from '@/components/Layout';
 import AnimatedText from '@/components/AnimatedText';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/router';
+import en from '../../locales/en.json';
+import es from '../../locales/es.json';
+import pt from '../../locales/pt.json';
+import pl from '../../locales/pl.json';
 
-const ShowItem = ({ show }) => {
+const ShowItem = ({ show, t }) => {
+  const router = useRouter();
+  const { locale } = router;
+  
   const dateObj = new Date(show.date);
-  const day = dateObj.toLocaleDateString('en-US', { day: '2-digit' });
-  const month = dateObj.toLocaleDateString('en-US', { month: 'short' });
+  
+  // Use the current locale for date formatting
+  const day = dateObj.toLocaleDateString(locale, { day: '2-digit' });
+  const month = dateObj.toLocaleDateString(locale, { month: 'short' });
 
   // Format dates for Google Calendar (YYYYMMDDTHHMMSSZ)
   const formatGoogleDate = (date) => {
@@ -43,7 +53,7 @@ const ShowItem = ({ show }) => {
         rel="noopener noreferrer"
         className="bg-dark text-light px-6 py-2 rounded-full font-semibold hover:bg-primary transition-colors dark:bg-light dark:text-dark text-sm"
       >
-        + Add to Calendar
+        + {t.shows.calendarBtn}
       </a>
     </motion.div>
   );
@@ -52,6 +62,11 @@ const ShowItem = ({ show }) => {
 export default function Shows() {
   const [shows, setShows] = useState([]);
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
+  const { locale } = router;
+
+  // Mapping locales to translation files
+  const t = locale === 'es' ? es : locale === 'pt' ? pt : locale === 'pl' ? pl : en;
 
   useEffect(() => {
     fetch('/api/getShows')
@@ -65,15 +80,15 @@ export default function Shows() {
   return (
     <main className="w-full min-h-screen dark:text-light">
       <Layout>
-        <AnimatedText text="Upcoming Performances" className="!text-7xl mb-16 lg:!text-6xl md:!text-4xl"  />
+        <AnimatedText text={t.nav.shows} className="!text-7xl mb-16 lg:!text-6xl md:!text-4xl"  />
         
         <div className="max-w-4xl mx-auto">
           {loading ? (
-            <div className="animate-pulse text-center">Syncing with calendar...</div>
+            <div className="animate-pulse text-center">{t.shows.syncing}</div>
           ) : shows.length > 0 ? (
-            shows.map(show => <ShowItem key={show.id} show={show} />)
+            shows.map(show => <ShowItem key={show.id} show={show} t={t} />)
           ) : (
-            <p className="text-center opacity-60">No upcoming shows scheduled. Check back soon!</p>
+            <p className="text-center opacity-60">{t.shows.noShows}</p>
           )}
         </div>
       </Layout>

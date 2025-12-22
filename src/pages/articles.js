@@ -2,8 +2,13 @@ import React, { useState, useEffect } from 'react';
 import Layout from '@/components/Layout';
 import AnimatedText from '@/components/AnimatedText';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/router';
+import en from '../../locales/en.json';
+import es from '../../locales/es.json';
+import pt from '../../locales/pt.json';
+import pl from '../../locales/pl.json';
 
-const ArticleLink = ({ article, index }) => (
+const ArticleLink = ({ article, index, t }) => (
     <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -20,7 +25,9 @@ const ArticleLink = ({ article, index }) => (
             <p className="text-dark/70 dark:text-light/70 leading-relaxed mb-4">
                 {article.snippet}
             </p>
-            <span className="text-primary font-semibold underline underline-offset-4">Read Full Article &rarr;</span>
+            <span className="text-primary font-semibold underline underline-offset-4">
+                {t.articles.readFull} &rarr;
+            </span>
         </a>
     </motion.div>
 );
@@ -28,6 +35,11 @@ const ArticleLink = ({ article, index }) => (
 export default function Articles() {
     const [articles, setArticles] = useState([]);
     const [loading, setLoading] = useState(true);
+    const router = useRouter();
+    const { locale } = router;
+
+    // Mapping locales to translation files
+    const t = locale === 'es' ? es : locale === 'pt' ? pt : locale === 'pl' ? pl : en;
 
     useEffect(() => {
         fetch('/api/getArticles')
@@ -41,7 +53,10 @@ export default function Articles() {
     return (
         <main className="w-full min-h-screen dark:text-light">
             <Layout>
-                <AnimatedText text="In the Press" className="!text-7xl mb-16 lg:!text-6xl md:!text-5xl" />
+                <AnimatedText 
+                    text={t.articles.title} 
+                    className="!text-7xl mb-16 lg:!text-6xl md:!text-5xl" 
+                />
                 
                 <div className="max-w-4xl mx-auto pb-20">
                     {loading ? (
@@ -50,7 +65,7 @@ export default function Articles() {
                         </div>
                     ) : (
                         articles.map((art, index) => (
-                            <ArticleLink key={index} article={art} index={index} />
+                            <ArticleLink key={index} article={art} index={index} t={t} />
                         ))
                     )}
                 </div>

@@ -7,11 +7,47 @@
     "articles": "Articles",
     "shop": "Shop"
   },
+  "home": {
+    "quote": "\"Life without playing music is inconceivable to me.\"",
+    "biography": "I am **Aniel Someillan**, a versatile musician holding a Bachelor's in Classical Guitar. Notable achievements include winning the Jazz Junior Competition with \"Ilú\" and receiving an invitation to the Montreux Jazz Academy.",
+    "resume": "Résumé",
+    "getInTouch": "Get in Touch"
+  },
+  "about": {
+    "title": "Passion Meets Precision",
+    "journeyTitle": "Musical Journey",
+    "p1": "I am **Aniel Someillan**, a versatile musician hailing from the vibrant streets of Havana, Cuba. My journey with music began at a young age, fueled by the rich cultural tapestry of my homeland. This passion led me to pursue a formal education, eventually obtaining a **Bachelor's in Classical Guitar and Arts**.",
+    "p2": "However, my musical exploration didn't stop there. Over time, I transitioned into a professional **Electric and Double Bass player**, instruments that allowed me to find the rhythmic heartbeat of jazz and contemporary music.",
+    "p3": "One of my most significant achievements was winning the prestigious **Jazz Junior Competition** with my project \"Ilú.\" This recognition was a turning point, showcasing my commitment to pushing the boundaries of traditional sounds. My dedication to the craft further earned me a coveted invitation to the **Montreux Jazz Academy**, where I had the privilege of learning from and performing with some of the world's greatest musical minds.",
+    "quote": "\"Life without playing music is inconceivable to me.\"",
+    "p4": "Whether I am performing on international stages or recording in the studio, my goal remains the same: to create music that resonates deeply and carries the listener away. I continue to explore new sounds and collaborations, always keeping the spirit of Havana in my strings.",
+    "education": "Education",
+    "eduDegree": "B.A. Classical Guitar",
+    "focus": "Focus",
+    "focusInstrument": "Electric & Double Bass"
+  },
+  "projects": {
+    "title": "Visual Journey through Music",
+    "viewProject": "View Project"
+  },
+  "articles": {
+    "title": "In the Press",
+    "readFull": "Read Full Article"
+  },
   "shop": {
     "title": "Collectors' Corner",
     "buyNow": "Buy Now",
     "soldOut": "Sold Out",
     "lowStock": "Only {{count}} left in stock!",
     "redirecting": "Redirecting..."
+  },
+  "shows": {
+    "calendarBtn": "Add to Calendar",
+    "syncing": "Syncing with calendar...",
+    "noShows": "No upcoming shows scheduled. Check back soon!"
+  },
+  "success": {
+    "title": "Thank You for Your Support!",
+    "message": "A confirmation email and your digital content have been sent to your inbox."
   }
 }

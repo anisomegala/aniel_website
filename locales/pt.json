@@ -7,11 +7,47 @@
     "articles": "Artigos",
     "shop": "Loja"
   },
+  "home": {
+    "quote": "\"A vida sem tocar música é inconcebível para mim.\"",
+    "biography": "Sou **Aniel Someillan**, um músico versátil com bacharelado em Violão Clássico. Conquistas notáveis incluem vencer o Concurso Jazz Junior com \"Ilú\" e receber um convite para a Montreux Jazz Academy.",
+    "resume": "Currículo",
+    "getInTouch": "Entre em contato"
+  },
+  "about": {
+    "title": "Paixão encontra precisão",
+    "journeyTitle": "Jornada musical",
+    "p1": "Sou **Aniel Someillan**, um músico versátil das ruas vibrantes de Havana, Cuba. Minha jornada com a música começou cedo, alimentada pela rica tapeçaria cultural de minha terra natal. Essa paixão me levou a buscar uma educação formal, obtendo o **Bacharelado em Violão Clássico e Artes**.",
+    "p2": "Entretanto, minha exploração musical não parou por aí. Com o tempo, fiz a transição para **baixista e contrabaixista profissional**, instrumentos que me permitiram encontrar a batida rítmica do jazz e da música contemporânea.",
+    "p3": "Uma das minhas conquistas mais significativas foi vencer o prestigiado concurso **Jazz Junior** com o meu projeto \"Ilú\". Este reconhecimento foi um divisor de águas, demonstrando o meu compromisso em desafiar os limites dos sons tradicionais.",
+    "quote": "\"A vida sem tocar música é inconcebível para mim.\"",
+    "p4": "Seja tocando em palcos internacionais ou gravando em estúdio, meu objetivo continua sendo o mesmo: criar música que ressoe profundamente e encante o ouvinte.",
+    "education": "Educação",
+    "eduDegree": "Bacharel em Violão Clássico",
+    "focus": "Foco",
+    "focusInstrument": "Baixo Elétrico e Acústico"
+  },
+  "projects": {
+    "title": "Jornada visual através da música",
+    "viewProject": "Ver projeto"
+  },
+  "articles": {
+    "title": "Na imprensa",
+    "readFull": "Ler artigo completo"
+  },
   "shop": {
     "title": "Canto do Colecionador",
-    "buyNow": "Comprar",
+    "buyNow": "Comprar Agora",
     "soldOut": "Esgotado",
-    "lowStock": "Apenas {{count}} restantes!",
+    "lowStock": "Apenas {{count}} em estoque!",
     "redirecting": "Redirecionando..."
+  },
+  "shows": {
+    "calendarBtn": "Adicionar ao calendário",
+    "syncing": "Sincronizando com o calendário...",
+    "noShows": "Não há shows agendados. Volte em breve!"
+  },
+  "success": {
+    "title": "Dziękujemy za wsparcie!",
+    "message": "E-mail z potwierdzeniem oraz treść cyfrowa zostały wysłane na Twoją skrzynkę odbiorczą."
   }
 }

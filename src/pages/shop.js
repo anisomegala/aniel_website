@@ -5,6 +5,11 @@ import Head from 'next/head';
 import AnimatedText from '../components/AnimatedText';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
+import en from '../../locales/en.json';
+import es from '../../locales/es.json';
+import pt from '../../locales/pt.json';
+import pl from '../../locales/pl.json';
 
 export async function getStaticProps() {
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
@@ -33,6 +38,11 @@ export async function getStaticProps() {
 
 export default function Shop({ products }) {
     const [loadingId, setLoadingId] = useState(null);
+    const router = useRouter();
+    const { locale } = router;
+
+    // Mapping locales to translation files
+    const t = locale === 'es' ? es : locale === 'pt' ? pt : locale === 'pl' ? pl : en;
 
     const handleCheckout = async (priceId) => {
         setLoadingId(priceId);
@@ -48,10 +58,10 @@ export default function Shop({ products }) {
 
     return (
         <>
-            <Head><title>Shop | Aniel Someillan</title></Head>
+            <Head><title>{t.nav.shop} | Aniel Someillan</title></Head>
             <main className='w-full mb-16 dark:text-light'>
                 <Layout className='pt-16'>
-                    <AnimatedText text="Collectors' Corner" className='mb-16' />
+                    <AnimatedText text={t.shop.title} className='mb-16' />
                     <div className='grid grid-cols-2 lg:grid-cols-1 gap-12'>
                         {products.map((product) => (
                             <motion.div key={product.id} className='p-6 rounded-3xl border border-dark/10 dark:border-light/10 bg-light/50 dark:bg-dark/50 backdrop-blur-sm'>
@@ -76,7 +86,8 @@ export default function Shop({ products }) {
                                     <span className='text-2xl font-bold text-primary'>{product.price}</span>
                                     {product.stock <= 5 && product.stock > 0 && (
                                         <p className="text-orange-500 text-xs font-bold animate-pulse">
-                                            Only {product.stock} left in stock!
+                                            {/* Handles dynamic stock count in localized text */}
+                                            {t.shop.lowStock.replace('{{count}}', product.stock)}
                                         </p>
                                     )}
                                     <button
@@ -84,7 +95,8 @@ export default function Shop({ products }) {
                                         onClick={() => handleCheckout(product.priceId)}
                                         className='bg-dark text-light px-8 py-3 rounded-full dark:bg-light dark:text-dark font-bold hover:scale-105 transition-transform disabled:opacity-50'
                                     >
-                                        {product.stock === 0 ? "Sold Out" : "Buy Now"}
+                                        {/* Toggles between Buy Now and Sold Out labels */}
+                                        {product.stock === 0 ? t.shop.soldOut : t.shop.buyNow}
                                     </button>
 
                                 </div>

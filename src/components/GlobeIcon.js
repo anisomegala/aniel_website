@@ -3,15 +3,17 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { Sphere, useTexture } from '@react-three/drei';
 import { useRouter } from 'next/router';
 import * as THREE from 'three';
+import en from '../../locales/en.json';
+import es from '../../locales/es.json';
+import pt from '../../locales/pt.json';
+import pl from '../../locales/pl.json';
 
-// 3D Globe Component (Now just for visual/hover)
 const GlobeModel = ({ isHovered }) => {
     const meshRef = useRef();
     const texture = useTexture('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_atmos_2048.jpg');
 
     useFrame(() => {
         if (meshRef.current) {
-            // Spin faster when the dropdown is open (hovered)
             meshRef.current.rotation.y += isHovered ? 0.04 : 0.005;
         }
     });
@@ -37,22 +39,17 @@ export default function GlobeIcon() {
 
     if (!locales) return null;
 
-    // Flag mapping
-    const flags = {
-        en: "🇺🇸",
-        es: "es",
-        pt: "pt",
-        pl: "pl"
-    };
-
     const handleLanguageChange = (newLocale) => {
         router.push(pathname, asPath, { locale: newLocale });
-        setIsHovered(false); // Close menu after selection
+        setIsHovered(false); 
     };
 
     return (
+        /* FIX: The hover is managed by this parent div. 
+           We use 'pb-4' to create a hidden bridge so the mouse 
+           never "leaves" the container when moving toward the menu. */
         <div 
-            className="relative flex flex-col items-center z-50"
+            className="relative flex flex-col items-center z-50 pb-2"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
@@ -74,10 +71,10 @@ export default function GlobeIcon() {
 
             {/* Dropdown Menu */}
             <div className={`
-                absolute top-full mt-2 py-2 w-32 bg-white/90 dark:bg-dark/90 
+                absolute top-full w-32 bg-white/90 dark:bg-dark/90 
                 backdrop-blur-md rounded-xl shadow-xl border border-white/20 
                 transition-all duration-300 flex flex-col items-center gap-1
-                ${isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[-10px] pointer-events-none'}
+                ${isHovered ? 'opacity-100 translate-y-0 visible' : 'opacity-0 translate-y-[-10px] invisible pointer-events-none'}
             `}>
                 {locales.map((l) => (
                     <button
@@ -90,7 +87,6 @@ export default function GlobeIcon() {
                         `}
                     >
                         <span className="uppercase">{l}</span>
-                        {/* You can use emojis or your own SVG flag icons here */}
                         <span className="text-lg">
                            {l === 'en' ? '🇺🇸' : l === 'es' ? '🇪🇸' : l === 'pt' ? '🇵🇹' : '🇵🇱'}
                         </span>

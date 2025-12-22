@@ -7,11 +7,47 @@
     "articles": "Artykuły",
     "shop": "Sklep"
   },
+  "home": {
+    "quote": "\"Życie bez grania muzyki jest dla mnie niewyobrażalne.\"",
+    "biography": "Jestem **Aniel Someillan**, wszechstronnym muzykiem z tytułem licencjata w zakresie gitary klasycznej. Do moich najważniejszych osiągnięć należą zwycięstwo w konkursie Jazz Junior z projektem „Ilú” oraz zaproszenie do Akademii Jazzowej w Montreux.",
+    "resume": "Résumé",
+    "getInTouch": "Skontaktuj się"
+  },
+  "about": {
+    "title": "Pasja spotyka precyzję",
+    "journeyTitle": "Muzyczna podróż",
+    "p1": "Jestem **Aniel Someillan**, wszechstronny muzyk pochodzący z tętniących życiem ulic Hawany na Kubie. Moja przygoda z muzyką zaczęła się w młodym wieku, napędzana bogatym gobelinem kulturowym mojej ojczyzny. Ta pasja doprowadziła mnie do podjęcia formalnej edukacji, co zaowocowało uzyskaniem **licencjata w zakresie gitary klasycznej i sztuki**.",
+    "p2": "Jednak moja muzyczna eksploracja na tym się nie skończyła. Z czasem stałem się profesjonalnym **basistą i kontrabasistą**, a instrumenty te pozwoliły mi odnaleźć rytmiczne bicie serca jazzu i muzyki współczesnej.",
+    "p3": "Jednym z moich najważniejszych osiągnięć było zwycięstwo w prestiżowym konkursie **Jazz Junior** z moim projektem „Ilú”. To uznanie było punktem zwrotnym, pokazującym moje zaangażowanie w przesuwanie granic tradycyjnych brzmień.",
+    "quote": "\"Życie bez grania muzyki jest dla mnie niewyobrażalne.\"",
+    "p4": "Niezależnie od tego, czy występuję na międzynarodowych scenach, czy nagrywam w studiu, mój cel pozostaje ten sam: tworzyć muzykę, która głęboko rezonuje i porywa słuchacza.",
+    "education": "Edukacja",
+    "eduDegree": "Licencjat, Gitara Klasyczna",
+    "focus": "Specjalizacja",
+    "focusInstrument": "Gitara basowa i kontrabas"
+  },
+  "projects": {
+    "title": "Wizualna podróż przez muzykę",
+    "viewProject": "Zobacz projekt"
+  },
+  "articles": {
+    "title": "W prasie",
+    "readFull": "Przeczytaj cały artykuł"
+  },
   "shop": {
     "title": "Kącik Kolekcjonera",
     "buyNow": "Kup Teraz",
     "soldOut": "Wyprzedane",
-    "lowStock": "Zostało tylko {{count}}!",
+    "lowStock": "Zostało tylko {{count}} sztuk!",
     "redirecting": "Przekierowywanie..."
+  },
+  "shows": {
+    "calendarBtn": "Dodaj do kalendarza",
+    "syncing": "Synchronizacja z kalendarzem...",
+    "noShows": "Brak nadchodzących koncertów. Zajrzyj tu wkrótce!"
+  },
+  "success": {
+    "title": "Obrigado pelo seu apoio!",
+    "message": "Um e-mail de confirmação e seu conteúdo digital foram enviados para sua caixa de entrada."
   }
 }

@@ -5,6 +5,11 @@ import AnimatedText from '@/components/AnimatedText'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import profile_main_pic from '../../public/images/profile/aboutImage.jpg'
+import { useRouter } from 'next/router'
+import en from '../../locales/en.json'
+import es from '../../locales/es.json'
+import pt from '../../locales/pt.json'
+import pl from '../../locales/pl.json'
 
 // Animation for section headers
 const titleVariants = {
@@ -13,6 +18,12 @@ const titleVariants = {
 };
 
 export default function About() {
+  const router = useRouter();
+  const { locale } = router;
+
+  // Mapping locales to translation files
+  const t = locale === 'es' ? es : locale === 'pt' ? pt : locale === 'pl' ? pl : en;
+
   return (
     <>
       <Head>
@@ -23,7 +34,7 @@ export default function About() {
       <main className="flex w-full flex-col items-center justify-center dark:text-light">
         <Layout className="pt-16">
           <AnimatedText 
-            text="Passion Meets Precision" 
+            text={t.about.title} 
             className="!text-6xl mb-16 lg:!text-5xl md:!text-4xl sm:!text-3xl"
           />
 
@@ -38,28 +49,28 @@ export default function About() {
                 variants={titleVariants}
                 className="mb-6 text-xl font-bold uppercase text-primary tracking-widest"
               >
-                Musical Journey
+                {t.about.journeyTitle}
               </motion.h2>
 
               <div className="space-y-6 text-lg font-medium leading-relaxed text-dark/80 dark:text-light/80">
                 <p>
-                  I am **Aniel Someillan**, a versatile musician hailing from the vibrant streets of Havana, Cuba. My journey with music began at a young age, fueled by the rich cultural tapestry of my homeland. This passion led me to pursue a formal education, eventually obtaining a **Bachelor&apos;s in Classical Guitar and Arts**. 
+                  {t.about.p1}
                 </p>
 
                 <p>
-                  However, my musical exploration didn&apos;t stop there. Over time, I transitioned into a professional **Electric and Double Bass player**, instruments that allowed me to find the rhythmic heartbeat of jazz and contemporary music.
+                  {t.about.p2}
                 </p>
 
                 <p>
-                  One of my most significant achievements was winning the prestigious **Jazz Junior Competition** with my project &quot;Ilú.&quot; This recognition was a turning point, showcasing my commitment to pushing the boundaries of traditional sounds. My dedication to the craft further earned me a coveted invitation to the **Montreux Jazz Academy**, where I had the privilege of learning from and performing with some of the world&apos;s greatest musical minds.
+                  {t.about.p3}
                 </p>
 
                 <blockquote className="py-6 border-y border-primary/20 italic text-2xl text-dark dark:text-light font-bold lg:text-xl">
-                  &quot;Life without playing music is inconceivable to me.&quot;
+                  {t.about.quote}
                 </blockquote>
 
                 <p>
-                  Whether I am performing on international stages or recording in the studio, my goal remains the same: to create music that resonates deeply and carries the listener away. I continue to explore new sounds and collaborations, always keeping the spirit of Havana in my strings.
+                  {t.about.p4}
                 </p>
               </div>
             </div>
@@ -91,12 +102,12 @@ export default function About() {
                 {/* Quick Info Grid under image */}
                 <div className="mt-8 grid grid-cols-2 gap-4">
                     <div className="p-4 rounded-xl bg-light/50 dark:bg-dark/50 border border-dark/5 border-light/5">
-                        <h4 className="text-primary font-bold text-sm uppercase">Education</h4>
-                        <p className="text-xs font-medium">B.A. Classical Guitar</p>
+                        <h4 className="text-primary font-bold text-sm uppercase">{t.about.education}</h4>
+                        <p className="text-xs font-medium">{t.about.eduDegree}</p>
                     </div>
                     <div className="p-4 rounded-xl bg-light/50 dark:bg-dark/50 border border-dark/5 border-light/5">
-                        <h4 className="text-primary font-bold text-sm uppercase">Focus</h4>
-                        <p className="text-xs font-medium">Electric & Double Bass</p>
+                        <h4 className="text-primary font-bold text-sm uppercase">{t.about.focus}</h4>
+                        <p className="text-xs font-medium">{t.about.focusInstrument}</p>
                     </div>
                 </div>
               </div>

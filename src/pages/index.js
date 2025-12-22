@@ -10,6 +10,11 @@ import AnimatedText from '../components/AnimatedText'
 import { LinkArrow } from '../components/icons'
 import { useState, useRef, useEffect } from 'react';
 import Magnetic from '../components/Magnetic';
+import { useRouter } from 'next/router';
+import en from '../../locales/en.json';
+import es from '../../locales/es.json';
+import pt from '../../locales/pt.json';
+import pl from '../../locales/pl.json';
 
 const StickyAudioPlayer = dynamic(() => Promise.resolve(() => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -128,6 +133,12 @@ const NavCard = ({ index, title, href, description, className = "" }) => {
 };
 
 export default function Home() {
+  const router = useRouter();
+  const { locale } = router;
+
+  // Use the synchronized translation files
+  const t = locale === 'es' ? es : locale === 'pt' ? pt : locale === 'pl' ? pl : en;
+
   return (
     <>
       <Head>
@@ -157,16 +168,16 @@ export default function Home() {
               </div>
 
               <div className="w-full">
-                <AnimatedText text='"Life without playing music is inconceivable to me."' className='text-left !text-4xl lg:!text-center md:!text-3xl sm:!text-2xl' />
+                <AnimatedText text={t.home.quote} className='text-left !text-4xl lg:!text-center md:!text-3xl sm:!text-2xl' />
 
                 <p className='my-4 text-base font-medium md:text-sm sm:text-xs leading-relaxed'>
-                  I am **Aniel Someillan**, a versatile musician holding a Bachelor&apos;s in Classical Guitar. Notable achievements include winning the Jazz Junior Competition with &quot;Ilú&quot; and receiving an invitation to the Montreux Jazz Academy.
+                  {t.home.biography}
                 </p>
 
                 <div className='flex items-center self-start mt-2 gap-4 lg:self-center'>
                   <Magnetic >
                     <Link href='/anielCV.pdf' target={'_blank'} className='flex items-center bg-dark text-light p-2.5 px-6 rounded-lg text-lg font-semibold hover:bg-light hover:text-dark border border-solid border-transparent hover:border-primary dark:bg-light dark:text-dark hover:dark:bg-dark hover:dark:text-light transition-all'>
-                      Résumé <LinkArrow className={'!w-6 ml-1'} />
+                      {t.home.resume} <LinkArrow className={'!w-6 ml-1'} />
                     </Link>
                   </Magnetic>
                   <Magnetic>
@@ -179,7 +190,7 @@ export default function Home() {
                hover:bg-dark hover:text-light dark:hover:bg-light dark:hover:text-dark 
                transition-all duration-300 cursor-pointer text-center inline-block"
                       >
-                        Get in Touch
+                        {t.home.getInTouch}
                       </motion.div>
                     </Link>
                   </Magnetic>
@@ -191,25 +202,25 @@ export default function Home() {
             <div className='w-3/5 lg:w-full grid grid-cols-2 sm:grid-cols-1 gap-4 pt-0'>
               <NavCard
                 index={1}
-                title="About"
+                title={t.nav.about}
                 href="/about"
                 description="Musical explorer hailing from the vibrant streets of Havana..."
               />
               <NavCard
                 index={2}
-                title="Projects"
+                title={t.nav.projects}
                 href="/projects"
                 description="Their music cannot be put in just few words..."
               />
               <NavCard
                 index={3}
-                title="Upcoming Shows"
+                title={t.nav.shows}
                 href="/shows"
                 description="List of upcoming musical performances..."
               />
               <NavCard
                 index={4}
-                title="Articles"
+                title={t.nav.articles}
                 href="/articles"
                 description="Read online articles about me..."
               />
@@ -218,9 +229,9 @@ export default function Home() {
               <NavCard
                 className="col-span-2 sm:col-span-1"
                 index={5}
-                title="Shop"
+                title={t.nav.shop}
                 href="/shop"
-                description="Collectors' Corner is my online store - Visit"
+                description={`${t.shop.title} is my online store - Visit`}
               />
             </div>
           </div>
