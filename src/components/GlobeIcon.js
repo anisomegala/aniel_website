@@ -4,40 +4,27 @@ import { Sphere, useTexture } from '@react-three/drei';
 import { useRouter } from 'next/router';
 import * as THREE from 'three';
 
-const GlobeModel = ({ nextLocale }) => {
+// 3D Globe Component (Now just for visual/hover)
+const GlobeModel = ({ isHovered }) => {
     const meshRef = useRef();
-    const router = useRouter();
-    const [hovered, setHovered] = useState(false);
-
     const texture = useTexture('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_atmos_2048.jpg');
 
-    useFrame((state) => {
+    useFrame(() => {
         if (meshRef.current) {
-            meshRef.current.rotation.y += hovered ? 0.05 : 0.005;
+            // Spin faster when the dropdown is open (hovered)
+            meshRef.current.rotation.y += isHovered ? 0.04 : 0.005;
         }
     });
 
     return (
-        <Sphere
-            ref={meshRef}
-            args={[1, 64, 64]} 
-            scale={1.8} 
-            onPointerOver={() => setHovered(true)}
-            onPointerOut={() => setHovered(false)}
-            onClick={(e) => {
-                e.stopPropagation();
-                router.push(router.pathname, router.asPath, { locale: nextLocale });
-            }}
-        >
+        <Sphere ref={meshRef} args={[1, 64, 64]} scale={1.8}>
             <meshStandardMaterial 
                 map={texture} 
-                metalness={0.0} // Reduced metalness to keep the colors bright
-                roughness={0.9} // Higher roughness stops harsh black reflections
-                
-                // VIBRANCY FIX: We increase emissive intensity to make the texture "pop"
+                metalness={0.0} 
+                roughness={0.9}
                 emissive={new THREE.Color("#ffffff")}
                 emissiveMap={texture}
-                emissiveIntensity={0.4} // Bumped from 0.15 to 0.4
+                emissiveIntensity={0.4}
             />
         </Sphere>
     );
@@ -45,39 +32,71 @@ const GlobeModel = ({ nextLocale }) => {
 
 export default function GlobeIcon() {
     const router = useRouter();
-    const { locale, locales } = router;
+    const { locale, locales, pathname, asPath } = router;
+    const [isHovered, setIsHovered] = useState(false);
+
     if (!locales) return null;
 
-    const currentIndex = locales.indexOf(locale);
-    const nextLocale = locales[(currentIndex + 1) % locales.length];
+    // Flag mapping
+    const flags = {
+        en: "🇺🇸",
+        es: "es",
+        pt: "pt",
+        pl: "pl"
+    };
+
+    const handleLanguageChange = (newLocale) => {
+        router.push(pathname, asPath, { locale: newLocale });
+        setIsHovered(false); // Close menu after selection
+    };
 
     return (
-        <div className="w-16 h-16 relative flex items-center justify-center group z-50">
-            <Canvas
-                camera={{ position: [0, 0, 5], fov: 45 }}
-                style={{ width: '64px', height: '64px', background: 'transparent' }}
-                gl={{ antialias: true, alpha: true }}
-            >
-                {/* 1. HEMISPHERE LIGHT: Acts like a wrap-around light source (Sky/Ground) */}
-                <hemisphereLight intensity={1.0} color="#ffffff" groundColor="#444444" />
+        <div 
+            className="relative flex flex-col items-center z-50"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+        >
+            {/* The 3D Trigger */}
+            <div className="w-16 h-16 cursor-pointer">
+                <Canvas
+                    camera={{ position: [0, 0, 5], fov: 45 }}
+                    style={{ width: '64px', height: '64px', background: 'transparent' }}
+                    gl={{ antialias: true, alpha: true }}
+                >
+                    <hemisphereLight intensity={1.0} color="#ffffff" groundColor="#444444" />
+                    <ambientLight intensity={1.8} /> 
+                    <directionalLight position={[10, 10, 10]} intensity={2.5} />
+                    <Suspense fallback={null}>
+                        <GlobeModel isHovered={isHovered} />
+                    </Suspense>
+                </Canvas>
+            </div>
 
-                {/* 2. AMBIENT LIGHT: Higher base light level */}
-                <ambientLight intensity={1.8} /> 
-                
-                {/* 3. DIRECTIONAL LIGHT: Strong sunlight from the front */}
-                <directionalLight position={[10, 10, 10]} intensity={2.5} />
-
-                {/* 4. POINT LIGHT: Secondary fill light to remove any remaining dark spots */}
-                <pointLight position={[-10, -5, 5]} intensity={1.5} color="#ffffff" />
-
-                <Suspense fallback={null}>
-                    <GlobeModel nextLocale={nextLocale} />
-                </Suspense>
-            </Canvas>
-            
-            <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-dark/80 text-light px-2 py-0.5 rounded text-[10px] opacity-0 group-hover:opacity-100 transition-opacity uppercase pointer-events-none font-bold">
-                {nextLocale}
-            </span>
+            {/* Dropdown Menu */}
+            <div className={`
+                absolute top-full mt-2 py-2 w-32 bg-white/90 dark:bg-dark/90 
+                backdrop-blur-md rounded-xl shadow-xl border border-white/20 
+                transition-all duration-300 flex flex-col items-center gap-1
+                ${isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[-10px] pointer-events-none'}
+            `}>
+                {locales.map((l) => (
+                    <button
+                        key={l}
+                        onClick={() => handleLanguageChange(l)}
+                        className={`
+                            w-full px-4 py-2 flex items-center justify-between text-sm font-bold transition-colors
+                            hover:bg-primary/10 rounded-lg
+                            ${locale === l ? 'text-primary' : 'text-dark dark:text-light'}
+                        `}
+                    >
+                        <span className="uppercase">{l}</span>
+                        {/* You can use emojis or your own SVG flag icons here */}
+                        <span className="text-lg">
+                           {l === 'en' ? '🇺🇸' : l === 'es' ? '🇪🇸' : l === 'pt' ? '🇵🇹' : '🇵🇱'}
+                        </span>
+                    </button>
+                ))}
+            </div>
         </div>
     );
 }
