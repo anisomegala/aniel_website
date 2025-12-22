@@ -17,13 +17,14 @@ const poppins = Poppins({
 })
 
 export default function App({ Component, pageProps }) {
-  const [isLoading, setIsLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
+
   const router = useRouter();
 
   useEffect(() => {
     // Simulate a minimum loading time for the animation to feel intentional
     const timer = setTimeout(() => {
-      setIsLoading(false);
+      setLoading(false);
     }, 2500);
 
     return () => clearTimeout(timer);
@@ -31,12 +32,12 @@ export default function App({ Component, pageProps }) {
 
   // Ensure body scroll is disabled while loading
   useEffect(() => {
-    if (isLoading) {
+    if (loading) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
     }
-  }, [isLoading]);
+  }, [loading]);
 
   useEffect(() => {
     // This part ensures that every time the user changes pages, the Pixel tracks it.
@@ -81,12 +82,14 @@ export default function App({ Component, pageProps }) {
       />
 
       <AnimatePresence mode="wait">
-        {isLoading && <Loader key="loader" />}
+        {loading && <Loader key="loader" finishLoading={() => setLoading(false)} />}
       </AnimatePresence>
 
       <main className={`${poppins.variable} font-pp bg-light dark:bg-dark w-full min-h-screen`}>
         <NavBar />
-        <Component {...pageProps} />
+        {!loading && (
+          <Component {...pageProps} key={router.asPath} />
+        )}
         <Footer />
       </main>
     </>

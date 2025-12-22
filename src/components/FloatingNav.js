@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -9,10 +9,10 @@ import pl from '../../locales/pl.json';
 
 const FloatingNav = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const containerRef = useRef(null); 
     const router = useRouter();
     const { locale } = router;
 
-    // Mapping locales to translation files
     const t = locale === 'es' ? es : locale === 'pt' ? pt : locale === 'pl' ? pl : en;
 
     const navLinks = [
@@ -24,24 +24,31 @@ const FloatingNav = () => {
         { href: "/shop", label: t.nav.shop },
     ];
 
-    // Only show on sub-pages (not home)
-    if (router.pathname === "/") return null;
+    // Click outside logic
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (isOpen && containerRef.current && !containerRef.current.contains(event.target)) {
+                setIsOpen(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, [isOpen]);
 
     return (
-        /* Positioning Logic:
-           right-6: Distance from right edge
-           top-1/2: Move the top of the container to 50% height
-           -translate-y-1/2: Pull the container back up by half its own height to center it
-        */
-        <div className="fixed right-6 top-1/2 -translate-y-1/2 z-[100] flex items-center justify-end">
-            
+        <motion.div 
+            ref={containerRef}
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.5, duration: 0.3 }} // Small delay so it appears after page content
+            className="fixed right-6 top-1/2 -translate-y-1/2 z-[100] flex items-center justify-end"
+        >
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
                         initial={{ opacity: 0, x: 20, scale: 0.9 }}
                         animate={{ opacity: 1, x: 0, scale: 1 }}
                         exit={{ opacity: 0, x: 20, scale: 0.9 }}
-                        // 'mr-4' pushes the menu to the left of the button
                         className="mr-4 bg-light/90 dark:bg-dark/90 backdrop-blur-xl border border-primary/20 p-2 rounded-2xl shadow-2xl min-w-[160px]"
                     >
                         <nav className="flex flex-col gap-1">
@@ -64,9 +71,8 @@ const FloatingNav = () => {
                 )}
             </AnimatePresence>
 
-            {/* THE CENTRAL BUTTON */}
             <motion.button
-                whileHover={{ scale: 1.1, x: -5 }} // Subtle move left on hover
+                whileHover={{ scale: 1.1, x: -5 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setIsOpen(!isOpen)}
                 className="w-14 h-14 rounded-full bg-dark dark:bg-light flex flex-col items-center justify-center gap-1.5 shadow-2xl border border-primary/40 relative z-[101]"
@@ -84,7 +90,7 @@ const FloatingNav = () => {
                     className="w-6 h-0.5 bg-light dark:bg-dark block" 
                 />
             </motion.button>
-        </div>
+        </motion.div>
     );
 };
 
