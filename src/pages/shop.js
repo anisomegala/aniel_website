@@ -70,13 +70,12 @@ export default function Shop({ products }) {
     };
 
     useEffect(() => {
-        if (window.fbq) {
-            window.fbq('track', 'ViewContent', {
-                content_type: 'product',
-                // You can optionally pass the names of products currently visible
-                content_names: products.map(p => p.name)
-            });
-        }
+        if (typeof window !== 'undefined' && window.fbq) {
+        window.fbq('track', 'ViewContent', {
+            content_type: 'product',
+            content_names: products.map(p => p.name)
+        });
+    }
     }, [products]);
 
     return (

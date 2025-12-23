@@ -30,11 +30,9 @@ export default function Success() {
             <div className="flex flex-col items-center">
                 <div className="w-20 h-20 bg-primary/20 text-primary rounded-full flex items-center justify-center text-4xl mb-6">✓</div>
 
-                {/* Localized Thank You Message */}
-                <AnimatedText text={t.success.title} className='!text-5xl' />
 
-                {/* Localized Confirmation Subtext */}
-                <p className='text-lg mt-4 opacity-80'>{t.success.message}</p>
+                <AnimatedText text={t?.success?.title || "Thank You!"} className='!text-5xl' />
+                <p className='text-lg mt-4 opacity-80'>{t?.success?.message || "Order confirmed."}</p>
 
                 {/* Localized Navigation Link */}
                 <Link href="/" className="mt-10 underline text-xl font-bold hover:text-primary transition-colors">
