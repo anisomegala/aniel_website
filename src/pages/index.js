@@ -10,6 +10,7 @@ import AnimatedText from '../components/AnimatedText'
 import { LinkArrow } from '../components/icons'
 import { useState, useRef, useEffect } from 'react';
 import Magnetic from '../components/Magnetic';
+import InnerCircle from '../components/InnerCircle';
 import { useRouter } from 'next/router';
 import en from '../../locales/en.json';
 import es from '../../locales/es.json';
@@ -114,19 +115,19 @@ const gridItemVariants = {
 const NavCard = ({ index, title, href, description, className = "" }) => {
   return (
     // The className must be here on the outermost tag for the grid to work
-    <Link 
-      href={href} 
-      className={`block w-full h-full ${className}`} 
+    <Link
+      href={href}
+      className={`block w-full h-full ${className}`}
     >
       <div className="group p-8 rounded-2xl border border-dark/10 dark:border-light/10 bg-light/50 dark:bg-dark/50 backdrop-blur-sm hover:border-primary transition-all duration-300 h-full flex flex-col justify-between">
-         {/* Your card content (index, title, description) */}
-         <div>
-           <h2 className="text-2xl font-bold mt-2">{title}</h2>
-           <p className="text-sm opacity-60 mt-4">{description}</p>
-         </div>
-         <div className="self-end text-primary group-hover:translate-x-2 transition-transform">
-           →
-         </div>
+        {/* Your card content (index, title, description) */}
+        <div>
+          <h2 className="text-2xl font-bold mt-2">{title}</h2>
+          <p className="text-sm opacity-60 mt-4">{description}</p>
+        </div>
+        <div className="self-end text-primary group-hover:translate-x-2 transition-transform">
+          →
+        </div>
       </div>
     </Link>
   );
@@ -236,8 +237,9 @@ export default function Home() {
             </div>
           </div>
         </Layout>
-
+        <InnerCircle />
         <StickyAudioPlayer />
+
       </main>
     </>
   )
