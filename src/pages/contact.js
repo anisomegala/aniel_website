@@ -64,8 +64,6 @@ const Contact = () => {
                 <Layout className="pt-16">
                     <div className="max-w-2xl mx-auto bg-light/50 dark:bg-dark/50 p-8 rounded-3xl border border-dark/10 dark:border-light/10 backdrop-blur-md">
                         <h1 className="text-4xl font-bold mb-8">{t.nav.contact}</h1>
-
-
                         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                             <input
                                 name="name" // IMPORTANT: This must match formData.get("name")

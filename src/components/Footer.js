@@ -25,7 +25,7 @@ const Footer = () => {
                 {/* 3. Utility Links (Modern Minimalist) */}
                 <div className="flex items-center gap-6 order-2 md:order-3">
                     <Link 
-                        href="mailto:your-email@example.com" 
+                        href="/contact" 
                         className="hover:text-primary transition-colors duration-200 underline underline-offset-4"
                     >
                         Say Hello
