@@ -8,6 +8,9 @@ export default async function handler(req, res) {
       const session = await stripe.checkout.sessions.create({
         line_items: [{ price: req.body.priceId, quantity: 1 }],
         mode: 'payment',
+        shipping_address_collection: {
+          allowed_countries: ['ES', 'PL', 'GE'], 
+        },
         success_url: `${req.headers.origin}/success?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${req.headers.origin}/shop`,
       });
