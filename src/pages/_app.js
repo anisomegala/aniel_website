@@ -5,6 +5,7 @@ import Script from 'next/script'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import NavBar from '../components/NavBar'
+import CookieConsent from '@/components/CookieConsent';
 import Footer from '../components/Footer'
 import Schema from '../components/Schema';
 import { AnimatePresence } from 'framer-motion'
@@ -89,7 +90,9 @@ export default function App({ Component, pageProps }) {
         <NavBar />
         {!loading && (
           <Component {...pageProps} key={router.asPath} />
+          
         )}
+        <CookieConsent />
         <Footer />
       </main>
     </>

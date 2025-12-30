@@ -40,13 +40,23 @@ export default function Shop({ products }) {
     const [loadingId, setLoadingId] = useState(null);
     const router = useRouter();
     const { locale } = router;
+    const hasConsented = localStorage.getItem('cookie-consent') === 'true';
 
     // Mapping locales to translation files
     const t = locale === 'es' ? es : locale === 'pt' ? pt : locale === 'pl' ? pl : en;
 
+    useEffect(() => {
+        if (hasConsented && typeof window !== 'undefined' && window.fbq) {
+            window.fbq('track', 'ViewContent', {
+                content_type: 'product',
+                content_names: products.map(p => p.name)
+            });
+        }
+    }, [products]);
+
     const handleCheckout = async (product) => {
         setLoadingId(product.priceId);
-        if (window.fbq) {
+        if (hasConsented && window.fbq) {
 
             const priceString = product.price ? String(product.price) : "0";
             const numericValue = parseFloat(priceString.replace(/[^0-9.-]+/g, "")) || 0;
@@ -69,14 +79,6 @@ export default function Shop({ products }) {
         setLoadingId(null);
     };
 
-    useEffect(() => {
-        if (typeof window !== 'undefined' && window.fbq) {
-        window.fbq('track', 'ViewContent', {
-            content_type: 'product',
-            content_names: products.map(p => p.name)
-        });
-    }
-    }, [products]);
 
     return (
         <>
