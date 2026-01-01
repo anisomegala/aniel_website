@@ -51,5 +51,8 @@
   "success": {
     "title": "Obrigado pelo seu apoio!",
     "message": "Um e-mail de confirmação e seu conteúdo digital foram enviados para sua caixa de entrada."
-  }
+  },
+  "common": {
+  "share": "Compartilhar"
+}
 }

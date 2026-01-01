@@ -51,5 +51,8 @@
   "success": {
     "title": "Thank You for Your Support!",
     "message": "A confirmation email and your digital content have been sent to your inbox."
-  }
+  },
+  "common": {
+  "share": "Share"
+}
 }

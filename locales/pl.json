@@ -51,5 +51,8 @@
   "success": {
     "title": "Dziękujemy za wsparcie!",
     "message": "E-mail z potwierdzeniem oraz treść cyfrowa zostały wysłane na Twoją skrzynkę odbiorczą."
-  }
+  },
+  "common": {
+  "share": "Udostępnij"
+}
 }

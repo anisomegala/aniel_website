@@ -1,14 +1,25 @@
 import React from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+import en from '../../locales/en.json'
+import es from '../../locales/es.json'
+import pt from '../../locales/pt.json'
+import pl from '../../locales/pl.json'
+import SocialShare from './SocialShare'
 
 const Footer = () => {
+    const { locale } = useRouter();
+    const t = locale === 'es' ? es : locale === 'pt' ? pt : locale === 'pl' ? pl : en;
     return (
         <footer className="w-full border-t border-solid border-dark/10 dark:border-light/10 font-medium text-sm sm:text-xs bg-light dark:bg-dark py-8 px-32 lg:px-16 md:px-12 sm:px-8">
             <div className="flex flex-col md:flex-row items-center justify-between text-dark/70 dark:text-light/70 gap-4">
-                
+
                 {/* 1. Copyright Section */}
                 <div className="flex items-center gap-1 order-3 md:order-1">
                     <span>{new Date().getFullYear()} &copy; All Rights Reserved.</span>
+                </div>
+                <div className='flex items-center lg:py-2'>
+                    <SocialShare t={t} />
                 </div>
 
                 {/* 2. Modern Tagline / Status */}
@@ -24,14 +35,14 @@ const Footer = () => {
 
                 {/* 3. Utility Links (Modern Minimalist) */}
                 <div className="flex items-center gap-6 order-2 md:order-3">
-                    <Link 
-                        href="/contact" 
+                    <Link
+                        href="/contact"
                         className="hover:text-primary transition-colors duration-200 underline underline-offset-4"
                     >
                         Say Hello
                     </Link>
-                    <Link 
-                        href="/privacy" 
+                    <Link
+                        href="/privacy"
                         className="hover:text-primary transition-colors duration-200"
                     >
                         Privacy

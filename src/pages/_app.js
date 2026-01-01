@@ -60,6 +60,20 @@ export default function App({ Component, pageProps }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="canonical" href="https://anielsomeillan.com" />
+
+        {/* --- ADD THESE OPEN GRAPH TAGS --- */}
+        <meta property="og:title" content="Aniel Someillan | Musician & Composer" />
+        <meta property="og:description" content="Official website of Aniel Someillan. Explore musical projects, upcoming shows, and original compositions." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://anielsomeillan.com" />
+        {/* Important: Use an absolute URL for the image */}
+        <meta property="og:image" content="https://anielsomeillan.com/images/profile/profile_main_pic.png" />
+        <meta property="og:site_name" content="Aniel Someillan" />
+        
+        {/* Twitter/X Cards (Optional but recommended) */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Aniel Someillan | Musician & Composer" />
+        <meta name="twitter:image" content="https://anielsomeillan.com/images/profile/profile_main_pic.png" />
       </Head>
 
       <Schema />
