@@ -20,6 +20,7 @@ import project4 from '../../public/images/projects/Amaro_Freitas_2023_MJF.jpg'
 import project5 from '../../public/images/projects/DaymeArocena.jpg'
 import project6 from '../../public/images/projects/LuedjiLuna.jpg'
 import project7 from '../../public/images/projects/JulitoPadron.jpg'
+import project8 from '../../public/images/profile/aboutImage.jpg'
 
 const FramerImage = motion(Image);
 
@@ -92,12 +93,21 @@ const ProjectsPage = () => {
                         
                         {/* Huge Main Piece */}
                         <ProjectCard
+                            type="Independent Project"
+                            title="Memorias de brascubas - Nostalgia Cubana" 
+                            img={project8}
+                            link='https://www.youtube.com/watch?v=effh96qKGwM'
+                            youtube="https://www.youtube.com/watch?v=effh96qKGwM    "
+                            className="col-span-8 row-span-2 md:col-span-12"
+                            viewText={t.projects.viewProject}
+                        />
+                        <ProjectCard
                             type="Featured Collaboration"
                             title="Ílú trio" 
                             img={project1}
                             link='https://ilu-epk.vercel.app'
                             youtube="https://www.youtube.com/watch?v=mEp4YXsEipo&list=RDmEp4YXsEipo&start_radio=1"
-                            className="col-span-8 row-span-2 md:col-span-12"
+                            className="col-span-4 row-span-2 md:col-span-12"
                             viewText={t.projects.viewProject}
                         />
 
@@ -119,7 +129,7 @@ const ProjectsPage = () => {
                             img={project3}
                             link='https://youtu.be/IVFD-Q6oHCI?si=peRea__BTe2_5Vvc'
                             youtube="https://youtu.be/IVFD-Q6oHCI?si=peRea__BTe2_5Vvc"
-                            className="col-span-4 row-span-1 md:col-span-6"
+                            className="col-span-4 row-span-2 md:col-span-6"
                             viewText={t.projects.viewProject}
                         />
 
