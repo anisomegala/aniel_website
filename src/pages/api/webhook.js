@@ -2,13 +2,9 @@ import { buffer } from "micro";
 import Stripe from "stripe";
 import nodemailer from "nodemailer";
 
-// Initialize Stripe
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-
-// Signing secret from Stripe Dashboard
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
-// Disable default body parser for signature verification
 export const config = {
   api: {
     bodyParser: false,
@@ -33,19 +29,17 @@ export default async function handler(req, res) {
     return res.status(400).send(`Webhook Error: ${err.message}`);
   }
 
-  // Handle 'checkout.session.completed'
   if (event.type === "checkout.session.completed") {
     const session = event.data.object;
 
-    // 1. Extract Customer & Shipping Info for Fulfillment
-    const customerName = session.shipping_details?.name || "Customer";
+    const shippingCost = session.total_details?.amount_shipping / 100;
+    // session.shipping_details is populated because you added shipping_address_collection in checkout.js
+    const customerName = session.shipping_details?.name || "Valued Customer";
     const email = session.customer_details?.email;
     const address = session.shipping_details?.address;
 
-    console.log(`🔔 Payment received for Session: ${session.id}`);
-
     try {
-      // 2. Fetch Line Items to identify purchased products
+      // 1. Fetch Line Items to identify products for the email
       const lineItems = await stripe.checkout.sessions.listLineItems(session.id);
       let orderSummary = "";
 
@@ -53,25 +47,22 @@ export default async function handler(req, res) {
         const product = await stripe.products.retrieve(item.price.product);
         orderSummary += `- ${item.quantity}x ${product.name}\n`;
 
-        // 3. Update Inventory via Metadata
-        if (product.metadata && product.metadata.stock) {
+        // 2. Inventory Management (using metadata.stock)
+        if (product.metadata?.stock) {
           const currentStock = parseInt(product.metadata.stock);
-          const quantityPurchased = item.quantity || 1;
-          const newStock = Math.max(0, currentStock - quantityPurchased);
+          const newStock = Math.max(0, currentStock - (item.quantity || 1));
 
           await stripe.products.update(product.id, {
             metadata: { stock: newStock.toString() },
           });
 
-          // Auto-Deactivate if stock hits zero
           if (newStock === 0) {
             await stripe.products.update(product.id, { active: false });
-            console.log(`🚫 ${product.name} is now out of stock.`);
           }
         }
       }
 
-      // 4. Send Fulfillment Notification Email to Yourself
+      // 3. Automated Notification using your existing iCloud setup
       const transporter = nodemailer.createTransport({
         service: "icloud",
         auth: {
@@ -83,34 +74,27 @@ export default async function handler(req, res) {
       const mailOptions = {
         from: process.env.EMAIL_USER,
         to: process.env.EMAIL_RECEIVER || process.env.EMAIL_USER,
-        subject: `📦 New Order to Ship: ${customerName}`,
+        subject: `📦 New Physical Order: ${customerName}`,
         text: `
-          You have a new order to fulfill!
+          New order ready for fulfillment!
 
-          CUSTOMER:
+          SHIPPING TO:
           Name: ${customerName}
+          Address: ${address?.line1}, ${address?.city}, ${address?.postal_code}, ${address?.country}
           Email: ${email}
-
-          SHIPPING ADDRESS:
-          Street: ${address?.line1} ${address?.line2 || ""}
-          City: ${address?.city}
-          State: ${address?.state || "N/A"}
-          Postal Code: ${address?.postal_code}
-          Country: ${address?.country}
-
-          ITEMS PURCHASED:
+          SHIPPING METHOD COST: ${shippingCost} ${session.currency.toUpperCase()}
+    SHIPPING TO: ${address?.line1}, ${address?.city}, ${address?.country}
+          ITEMS:
           ${orderSummary}
-          
-          Please ship the items and update the tracking in your Stripe Dashboard.
         `,
       };
 
       await transporter.sendMail(mailOptions);
-      console.log(`📧 Fulfillment email sent to artist.`);
+      console.log(`📧 Fulfillment data captured and emailed for session: ${session.id}`);
 
     } catch (error) {
-      console.error(`❌ Error during fulfillment process: ${error.message}`);
-      return res.status(500).json({ error: "Fulfillment update failed" });
+      console.error(`❌ Fulfillment error: ${error.message}`);
+      return res.status(500).json({ error: "Processing failed" });
     }
   }
 
