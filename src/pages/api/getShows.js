@@ -1,4 +1,6 @@
 export default async function handler(req, res) {
+
+  res.setHeader('Cache-Control', 'no-store, max-age=0, must-revalidate');
    
     const API_KEY = process.env.GOOGLE_CALENDAR_API_KEY;
     const CALENDAR_ID = process.env.GOOGLE_CALENDAR_ID;

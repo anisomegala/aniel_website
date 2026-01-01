@@ -13,27 +13,32 @@ const ShowItem = ({ show, t }) => {
   const { locale } = router;
   
   const dateObj = new Date(show.date);
-  
-  // Use the current locale for date formatting
   const day = dateObj.toLocaleDateString(locale, { day: '2-digit' });
   const month = dateObj.toLocaleDateString(locale, { month: 'short' });
 
-  // Format dates for Google Calendar (YYYYMMDDTHHMMSSZ)
   const formatGoogleDate = (date) => {
     return new Date(date).toISOString().replace(/-|:|\.\d\d\d/g, "");
   };
 
+  // IMPROVED: Extract URL from description even if it has other text
+  const extractUrl = (text) => {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    const match = text?.match(urlRegex);
+    return match ? match[0] : null;
+  };
+
+  const ticketUrl = extractUrl(show.link); //
+  
   const startTime = formatGoogleDate(show.date);
-  // Default end time to 2 hours after start
   const endTime = formatGoogleDate(new Date(new Date(show.date).getTime() + 2 * 60 * 60 * 1000));
 
-  const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(show.title)}&dates=${startTime}/${endTime}&details=${encodeURIComponent("Don't miss the show! Details: " + show.link)}&location=${encodeURIComponent(show.location)}`;
+  const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(show.title)}&dates=${startTime}/${endTime}&details=${encodeURIComponent("Details: " + (ticketUrl || show.link))}&location=${encodeURIComponent(show.location)}`;
 
   return (
     <motion.div 
       initial={{ opacity: 0, x: -20 }}
       whileInView={{ opacity: 1, x: 0 }}
-      className="flex items-center justify-between w-full p-6 mb-4 rounded-2xl border border-dark/10 dark:border-light/10 bg-light/50 dark:bg-dark/50 backdrop-blur-sm"
+      className="flex items-center justify-between w-full p-6 mb-4 rounded-2xl border border-dark/10 dark:border-light/10 bg-light/50 dark:bg-dark/50 backdrop-blur-sm sm:flex-col sm:items-start sm:gap-4"
     >
       <div className="flex items-center gap-8">
         <div className="flex flex-col items-center border-r border-primary/30 pr-8 text-primary font-bold">
@@ -46,19 +51,34 @@ const ShowItem = ({ show, t }) => {
         </div>
       </div>
       
-      {/* ADD TO CALENDAR BUTTON */}
-      <a 
-        href={googleCalendarUrl} 
-        target="_blank" 
-        rel="noopener noreferrer"
-        className="bg-dark text-light px-6 py-2 rounded-full font-semibold hover:bg-primary transition-colors dark:bg-light dark:text-dark text-sm"
-      >
-        + {t.shows.calendarBtn}
-      </a>
+      {/* BUTTON GROUP: Placed alongside */}
+      <div className="flex items-center gap-4 sm:w-full">
+        {/* BUY TICKETS BUTTON: Shows if a URL was found */}
+        {ticketUrl && (
+          <a 
+            href={ticketUrl} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="bg-primary text-light px-6 py-2 rounded-full font-semibold hover:scale-105 transition-all text-sm shadow-lg text-center flex-1 whitespace-nowrap"
+          >
+            {/* Fallback to ensure text always appears */}
+            {t?.shows?.buyTicketsBtn || "Get Tickets"}
+          </a>
+        )}
+
+        {/* ADD TO CALENDAR BUTTON */}
+        <a 
+          href={googleCalendarUrl} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="bg-dark/10 text-dark px-6 py-2 rounded-full font-semibold hover:bg-dark hover:text-light transition-all dark:bg-light/10 dark:text-light dark:hover:bg-light dark:hover:text-dark text-sm text-center flex-1 whitespace-nowrap"
+        >
+          + {t?.shows?.calendarBtn}
+        </a>
+      </div>
     </motion.div>
   );
 };
-
 export default function Shows() {
   const [shows, setShows] = useState([]);
   const [loading, setLoading] = useState(true);

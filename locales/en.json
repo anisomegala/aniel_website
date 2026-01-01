@@ -43,10 +43,11 @@
     "redirecting": "Redirecting..."
   },
   "shows": {
-    "calendarBtn": "Add to Calendar",
-    "syncing": "Syncing with calendar...",
-    "noShows": "No upcoming shows scheduled. Check back soon!"
-  },
+  "calendarBtn": "Add to Calendar",
+  "buyTicketsBtn": "Get Tickets",
+  "syncing": "Syncing shows...",
+  "noShows": "No upcoming shows at the moment."
+},
   "success": {
     "title": "Thank You for Your Support!",
     "message": "A confirmation email and your digital content have been sent to your inbox."

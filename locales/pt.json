@@ -44,6 +44,7 @@
   },
   "shows": {
     "calendarBtn": "Adicionar ao calendário",
+    "buyTicketsBtn": "Comprar Ingressos",
     "syncing": "Sincronizando com o calendário...",
     "noShows": "Não há shows agendados. Volte em breve!"
   },

@@ -44,6 +44,7 @@
   },
   "shows": {
     "calendarBtn": "Dodaj do kalendarza",
+    "buyTicketsBtn": "Kup bilet",
     "syncing": "Synchronizacja z kalendarzem...",
     "noShows": "Brak nadchodzących koncertów. Zajrzyj tu wkrótce!"
   },

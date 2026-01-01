@@ -44,6 +44,7 @@
   },
   "shows": {
     "calendarBtn": "Añadir al calendario",
+    "buyTicketsBtn": "Comprar Entradas",
     "syncing": "Sincronizando con el calendario...",
     "noShows": "No hay conciertos programados próximamente. ¡Vuelve pronto!"
   },
