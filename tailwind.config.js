@@ -7,6 +7,16 @@ module.exports = {
     // Or if using `src` directory:
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  safelist: [
+    'col-span-4',
+    'col-span-8',
+    'col-span-12',
+    'row-span-1',
+    'row-span-2',
+    'row-span-3',
+    'md:col-span-6',
+    'md:col-span-12',
+  ],
   darkMode: 'class',
   theme: {
       extend: {

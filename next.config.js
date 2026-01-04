@@ -14,6 +14,7 @@ const nextConfig = {
         pathname: '/**', // Allows all image paths from Stripe
       },
     ],
+    domains: ['www.datocms-assets.com'],
   },
 }
 
