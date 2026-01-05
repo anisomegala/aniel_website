@@ -1,4 +1,5 @@
-export async function request({ query, variables = {}, preview = false }) {
+// src/lib/datocms.js
+export async function request({ query, variables = {} }) {
   const endpoint = "https://graphql.datocms.com/";
   
   const res = await fetch(endpoint, {
@@ -11,10 +12,8 @@ export async function request({ query, variables = {}, preview = false }) {
   });
 
   const json = await res.json();
-
   if (json.errors) {
-    // This line will print the exact field or permission error in your terminal
-    console.error("DatoCMS Detail Error:", JSON.stringify(json.errors, null, 2));
+    console.error("DatoCMS Error:", json.errors);
     throw new Error("Failed to fetch API");
   }
 
