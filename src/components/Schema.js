@@ -19,7 +19,7 @@ const Schema = () => {
       "address": { "@type": "PostalAddress", "addressLocality": "Havana", "addressCountry": "CU" }
     },
     "award": [
-      "Jazz Plaza Festival Laureate 2026 — Montreux Jazz Artist Foundation",
+      "Jazz Plaza Festival Laureate 2026 — MJAF laureate concert with Rodney Barreto, Yilian Cañizares, Rolando Luna, Harold López Nussa and Héctor Quintana",
       "Montreux Jazz Academy 2023 — Montreux Jazz Artist Foundation",
       "Jazz Junior Competition Winner 2022 — Kraków, Poland",
       "Radio Katowice Young Talents Winner 2021"

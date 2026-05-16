@@ -42,7 +42,7 @@ const photos = [
 ];
 
 const credentials = [
-  { year: '2026', title: 'Festival Internacional Jazz Plaza, Havana', detail: 'MJAF Laureate — 41st edition, with Rodney Barreto' },
+  { year: '2026', title: 'Festival Internacional Jazz Plaza, Havana', detail: 'MJAF Laureate — 41st edition, with Rodney Barreto, Yilian Cañizares, Rolando Luna, Harold López Nussa & Héctor Quintana' },
   { year: '2023', title: 'Montreux Jazz Academy', detail: 'Selected by the Montreux Jazz Artist Foundation' },
   { year: '2022', title: 'Jazz Junior Competition — 1st Place', detail: 'With trio Ilú, Kraków, Poland' },
   { year: '2021', title: 'Radio Katowice Young Talents', detail: 'Winner' },
@@ -134,7 +134,7 @@ const Press = () => {
                 </p>
                 <p>
                   Selected as a <strong>Montreux Jazz Artist Foundation laureate</strong> to perform at the{' '}
-                  <strong>41st Festival Internacional Jazz Plaza in Havana (January 2026)</strong> alongside drummer Rodney Barreto,
+                  <strong>41st Festival Internacional Jazz Plaza in Havana (January 2026)</strong> alongside Rodney Barreto, Yilian Cañizares, Rolando Luna, Harold López Nussa and Héctor Quintana,
                   winner of the <strong>Jazz Junior Competition 2022</strong> with his group Ilú, and a{' '}
                   <strong>Montreux Jazz Academy 2023</strong> participant, Someillan has established himself as a distinctive voice
                   in the European jazz scene.
