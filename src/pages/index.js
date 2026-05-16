@@ -205,34 +205,34 @@ export default function Home() {
                 index={1}
                 title={t.nav.about}
                 href="/about"
-                description="Musical explorer hailing from the vibrant streets of Havana..."
+                description={t.home.navCards.about}
               />
               <NavCard
                 index={2}
                 title={t.nav.projects}
                 href="/projects"
-                description="Their music cannot be put in just few words..."
+                description={t.home.navCards.projects}
               />
               <NavCard
                 index={3}
                 title={t.nav.shows}
                 href="/shows"
-                description="List of upcoming musical performances..."
+                description={t.home.navCards.shows}
               />
               <NavCard
                 index={4}
                 title={t.nav.articles}
                 href="/articles"
-                description="Read online articles about me..."
+                description={t.home.navCards.articles}
               />
 
-              {/* This item now stretches across both columns */}
+              {/* This item stretches across both columns */}
               <NavCard
                 className="col-span-2 sm:col-span-1"
                 index={5}
                 title={t.nav.shop}
                 href="/shop"
-                description={`${t.shop.title} is my online store - Visit`}
+                description={t.home.navCards.shop}
               />
             </div>
           </div>

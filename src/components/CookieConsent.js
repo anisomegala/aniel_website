@@ -16,8 +16,7 @@ const CookieConsent = () => {
     const handleAccept = () => {
         localStorage.setItem('cookie-consent', 'true');
         setIsVisible(false);
-        // Trigger a page refresh or custom event to initialize Pixel
-        window.location.reload(); 
+        if (window.fbq) window.fbq('track', 'PageView');
     };
 
     const handleDecline = () => {

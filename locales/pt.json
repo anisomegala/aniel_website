@@ -13,7 +13,14 @@
     "quote": "\"A vida sem tocar música é inconcebível para mim.\"",
     "biography": "Sou **Aniel Someillan**, um músico versátil com bacharelado em Violão Clássico. Conquistas notáveis incluem vencer o Concurso Jazz Junior com \"Ilú\" e receber um convite para a Montreux Jazz Academy.",
     "resume": "Currículo",
-    "getInTouch": "Entre em contato"
+    "getInTouch": "Entre em contato",
+    "navCards": {
+      "about": "Minha jornada musical de Havana para o mundo",
+      "projects": "Colaborações, álbuns e apresentações ao vivo",
+      "shows": "Próximas apresentações ao vivo e ingressos",
+      "articles": "Cobertura de imprensa e entrevistas",
+      "shop": "Música, merch e lançamentos exclusivos"
+    }
   },
   "about": {
     "title": "Paixão encontra precisão",
@@ -54,6 +61,6 @@
     "message": "Um e-mail de confirmação e seu conteúdo digital foram enviados para sua caixa de entrada."
   },
   "common": {
-  "share": "Compartilhar"
-}
+    "share": "Compartilhar"
+  }
 }

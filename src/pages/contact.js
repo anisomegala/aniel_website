@@ -9,6 +9,7 @@ import pl from '../../locales/pl.json'
 
 const Contact = () => {
     const [status, setStatus] = useState("");
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const router = useRouter();
     const { locale } = router;
 
@@ -17,6 +18,7 @@ const Contact = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsSubmitting(true);
         const formData = new FormData(e.target);
 
         // Safety check: get the value and provide a fallback string before splitting
@@ -44,12 +46,14 @@ const Contact = () => {
 
             if (response.ok) {
                 setStatus("Success! Your inquiry has been sent.");
-                e.target.reset(); // Clear form on success
+                e.target.reset();
             } else {
                 throw new Error("API Error");
             }
         } catch (err) {
             setStatus("Message sent, but tracking encountered an error.");
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -86,9 +90,15 @@ const Contact = () => {
                             />
                             <button
                                 type="submit"
-                                className="bg-dark text-light dark:bg-light dark:text-dark py-3 rounded-xl font-bold hover:bg-primary dark:hover:bg-primaryDark transition-all"
+                                disabled={isSubmitting}
+                                className="bg-dark text-light dark:bg-light dark:text-dark py-3 rounded-xl font-bold hover:bg-primary dark:hover:bg-primaryDark transition-all disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                             >
-                                {t.home.getInTouch}
+                                {isSubmitting ? (
+                                    <>
+                                        <span className="w-4 h-4 border-2 border-light/40 border-t-light dark:border-dark/40 dark:border-t-dark rounded-full animate-spin" />
+                                        Sending…
+                                    </>
+                                ) : t.home.getInTouch}
                             </button>
                         </form>
                         {status && <p className="mt-4 text-primary font-semibold">{status}</p>}

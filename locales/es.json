@@ -13,7 +13,14 @@
     "quote": "\"La vida sin tocar música es inconcebible para mí.\"",
     "biography": "Soy **Aniel Someillan**, un músico versátil con una Licenciatura en Guitarra Clásica. Entre mis logros destacan haber ganado el Concurso Jazz Junior con \"Ilú\" y haber sido invitado a la Montreux Jazz Academy.",
     "resume": "Currículum",
-    "getInTouch": "Contactar"
+    "getInTouch": "Contactar",
+    "navCards": {
+      "about": "Mi viaje musical desde La Habana al mundo",
+      "projects": "Colaboraciones, álbumes y actuaciones en vivo",
+      "shows": "Próximas actuaciones en vivo y entradas",
+      "articles": "Cobertura de prensa y entrevistas",
+      "shop": "Música, merch y lanzamientos exclusivos"
+    }
   },
   "about": {
     "title": "La pasión se une a la precisión",
@@ -54,6 +61,6 @@
     "message": "Se ha enviado un correo electrónico de confirmación y su contenido digital a su bandeja de entrada."
   },
   "common": {
-  "share": "Compartir"
-}
+    "share": "Compartir"
+  }
 }

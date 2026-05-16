@@ -30,7 +30,13 @@ export default function App({ Component, pageProps }) {
   const canonicalUrl = `${SITE_URL}${locale && locale !== 'en' ? `/${locale}` : ''}${canonicalPath}`;
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2500);
+    const hasVisited = sessionStorage.getItem('visited');
+    if (hasVisited) {
+      setLoading(false);
+      return;
+    }
+    sessionStorage.setItem('visited', '1');
+    const timer = setTimeout(() => setLoading(false), 1000);
     return () => clearTimeout(timer);
   }, []);
 

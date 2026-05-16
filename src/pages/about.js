@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import Layout from '@/components/Layout';
 import AnimatedText from '@/components/AnimatedText';
 import { request } from '../lib/datocms';
+import en from '../../locales/en.json';
 
 export async function getStaticProps({ locale }) {
   const query = `
@@ -44,19 +45,34 @@ const titleVariants = {
   visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } }
 };
 
+const FALLBACK = {
+  mainTitle: en.about.title,
+  journeyTitle: en.about.journeyTitle,
+  p1: en.about.p1,
+  p2: en.about.p2,
+  p3: en.about.p3,
+  p4: en.about.p4,
+  quote: en.about.quote,
+  educationLabel: en.about.education,
+  edudegree: en.about.eduDegree,
+  focuslabel: en.about.focus,
+  focusinstrument: en.about.focusInstrument,
+  profileImage: null,
+};
+
 const About = ({ aboutData }) => {
-  if (!aboutData) return null;
+  const data = aboutData || FALLBACK;
 
   return (
     <>
       <Head>
-        <title>{aboutData.mainTitle} | Professional Musician & Bassist</title>
+        <title>{data.mainTitle} | Professional Musician & Bassist</title>
       </Head>
       
       <main className="flex w-full flex-col items-center justify-center dark:text-light">
         <Layout className="pt-16">
           <AnimatedText 
-            text={aboutData.mainTitle || ""} 
+            text={data.mainTitle || ""} 
             className="!text-6xl mb-16 lg:!text-5xl md:!text-4xl sm:!text-3xl"
           />
 
@@ -71,21 +87,21 @@ const About = ({ aboutData }) => {
                 variants={titleVariants}
                 className="mb-6 text-xl font-bold uppercase text-primary tracking-widest"
               >
-                {aboutData.journeyTitle}
+                {data.journeyTitle}
               </motion.h2>
 
               <div className="space-y-6 text-lg font-medium leading-relaxed text-dark/80 dark:text-light/80">
-                <p>{aboutData.p1}</p>
-                <p>{aboutData.p2}</p>
-                <p>{aboutData.p3}</p>
+                <p>{data.p1}</p>
+                <p>{data.p2}</p>
+                <p>{data.p3}</p>
 
-                {aboutData.quote && (
+                {data.quote && (
                   <blockquote className="py-6 border-y border-primary/20 italic text-2xl text-dark dark:text-light font-bold lg:text-xl">
-                    {aboutData.quote}
+                    {data.quote}
                   </blockquote>
                 )}
 
-                <p>{aboutData.p4}</p>
+                <p>{data.p4}</p>
               </div>
             </div>
 
@@ -100,9 +116,9 @@ const About = ({ aboutData }) => {
                 >
                   <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
                   
-                  {aboutData.profileImage?.url && (
+                  {data.profileImage?.url && (
                     <Image 
-                      src={aboutData.profileImage.url} 
+                      src={data.profileImage.url} 
                       alt="Aniel Someillan - Bassist" 
                       width={800}
                       height={1000}
@@ -118,12 +134,12 @@ const About = ({ aboutData }) => {
                 {/* Quick Info Grid */}
                 <div className="mt-8 grid grid-cols-2 gap-4">
                     <div className="p-4 rounded-xl bg-light/50 dark:bg-dark/50 border border-dark/10 dark:border-light/10">
-                        <h4 className="text-primary font-bold text-sm uppercase">{aboutData.educationLabel}</h4>
-                        <p className="text-xs font-medium">{aboutData.edudegree}</p>
+                        <h4 className="text-primary font-bold text-sm uppercase">{data.educationLabel}</h4>
+                        <p className="text-xs font-medium">{data.edudegree}</p>
                     </div>
                     <div className="p-4 rounded-xl bg-light/50 dark:bg-dark/50 border border-dark/10 dark:border-light/10">
-                        <h4 className="text-primary font-bold text-sm uppercase">{aboutData.focuslabel}</h4>
-                        <p className="text-xs font-medium">{aboutData.focusinstrument}</p>
+                        <h4 className="text-primary font-bold text-sm uppercase">{data.focuslabel}</h4>
+                        <p className="text-xs font-medium">{data.focusinstrument}</p>
                     </div>
                 </div>
               </div>

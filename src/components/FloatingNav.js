@@ -75,6 +75,8 @@ const FloatingNav = () => {
             <motion.button
                 whileHover={{ scale: 1.1, x: -5 }}
                 whileTap={{ scale: 0.9 }}
+                aria-label={isOpen ? "Close navigation" : "Open navigation"}
+                aria-expanded={isOpen}
                 onClick={() => setIsOpen(!isOpen)}
                 className="w-14 h-14 rounded-full bg-dark dark:bg-light flex flex-col items-center justify-center gap-1.5 shadow-2xl border border-primary/40 relative z-[101]"
             >

@@ -13,7 +13,14 @@
     "quote": "\"Życie bez grania muzyki jest dla mnie niewyobrażalne.\"",
     "biography": "Jestem **Aniel Someillan**, wszechstronnym muzykiem z tytułem licencjata w zakresie gitary klasycznej. Do moich najważniejszych osiągnięć należą zwycięstwo w konkursie Jazz Junior z projektem „Ilú” oraz zaproszenie do Akademii Jazzowej w Montreux.",
     "resume": "Résumé",
-    "getInTouch": "Skontaktuj się"
+    "getInTouch": "Skontaktuj się",
+    "navCards": {
+      "about": "Moja muzyczna podróż z Hawany na światowe sceny",
+      "projects": "Współprace, albumy i koncerty",
+      "shows": "Nadchodzące koncerty i bilety",
+      "articles": "Recenzje prasowe i wywiady",
+      "shop": "Muzyka, merch i ekskluzywne wydania"
+    }
   },
   "about": {
     "title": "Pasja spotyka precyzję",
@@ -54,6 +61,6 @@
     "message": "E-mail z potwierdzeniem oraz treść cyfrowa zostały wysłane na Twoją skrzynkę odbiorczą."
   },
   "common": {
-  "share": "Udostępnij"
-}
+    "share": "Udostępnij"
+  }
 }

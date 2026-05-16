@@ -14,21 +14,27 @@ const ArticleLink = ({ article, index, t }) => (
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ delay: index * 0.1 }}
-        className="w-full p-8 my-6 rounded-2xl border border-dark/10 dark:border-light/10 bg-light/50 dark:bg-dark/50 backdrop-blur-sm group hover:border-primary transition-all"
+        className="w-full my-4 rounded-2xl border border-dark/10 dark:border-light/10 bg-light/50 dark:bg-dark/50 backdrop-blur-sm group hover:border-primary hover:shadow-lg transition-all overflow-hidden"
     >
-        <a href={article.link} target="_blank" rel="noopener noreferrer" className="flex flex-col">
-            <span className="text-primary font-bold text-sm uppercase tracking-widest mb-2">
-                {article.displayLink}
-            </span>
-            <h2 className="text-2xl font-bold group-hover:text-primary transition-colors mb-4">
-                {article.title}
-            </h2>
-            <p className="text-dark/70 dark:text-light/70 leading-relaxed mb-4">
-                {article.snippet}
-            </p>
-            <span className="text-primary font-semibold underline underline-offset-4">
-                {t.articles.readFull} &rarr;
-            </span>
+        <div className="h-1 bg-gradient-to-r from-primary/60 to-transparent" />
+        <a href={article.link} target="_blank" rel="noopener noreferrer" className="flex gap-6 p-6 items-start sm:flex-col sm:gap-3">
+            <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-primary font-black text-sm">
+                {index + 1}
+            </div>
+            <div className="flex flex-col flex-1 min-w-0">
+                <span className="text-primary font-bold text-xs uppercase tracking-widest mb-1">
+                    {article.displayLink}
+                </span>
+                <h2 className="text-xl font-bold group-hover:text-primary transition-colors mb-2 leading-snug">
+                    {article.title}
+                </h2>
+                <p className="text-dark/60 dark:text-light/60 text-sm leading-relaxed mb-3 line-clamp-3">
+                    {article.snippet}
+                </p>
+                <span className="text-primary text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
+                    {t.articles.readFull} <span>&rarr;</span>
+                </span>
+            </div>
         </a>
     </motion.div>
 );

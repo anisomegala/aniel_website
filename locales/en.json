@@ -13,7 +13,14 @@
     "quote": "\"Life without playing music is inconceivable to me.\"",
     "biography": "I am **Aniel Someillan**, a versatile musician holding a Bachelor's in Classical Guitar. Notable achievements include winning the Jazz Junior Competition with \"Ilú\" and receiving an invitation to the Montreux Jazz Academy.",
     "resume": "Résumé",
-    "getInTouch": "Get in Touch"
+    "getInTouch": "Get in Touch",
+    "navCards": {
+      "about": "My musical journey from Havana to the world stage",
+      "projects": "Collaborations, albums & live performances",
+      "shows": "Upcoming live performances & tickets",
+      "articles": "Press coverage & interviews",
+      "shop": "Music, merch & exclusive releases"
+    }
   },
   "about": {
     "title": "Passion Meets Precision",
