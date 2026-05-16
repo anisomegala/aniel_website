@@ -42,7 +42,7 @@ const CookieConsent = () => {
                             <h3 className="text-xl font-bold mb-2 dark:text-light">Cookie Settings</h3>
                             <p className="text-sm opacity-80 dark:text-light/80 mb-6">
                                 We use cookies to improve your experience and track shop performance via Facebook Pixel. 
-                                Read our <Link href="/about" className="underline font-bold">Privacy Policy</Link> for more details.
+                                Read our <Link href="/privacy" className="underline font-bold">Privacy Policy</Link> for more details.
                             </p>
                             
                             <div className="flex gap-4">

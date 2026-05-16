@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Head from 'next/head';
 import Layout from '@/components/Layout';
 import AnimatedText from '@/components/AnimatedText';
 import { motion } from 'framer-motion';
@@ -50,10 +51,26 @@ export default function Articles() {
             });
     }, []);
 
+    const pageMeta = {
+        en: { title: 'Press & Articles | Aniel Someillan', desc: 'Press coverage and articles featuring Aniel Someillan — Afro-Cuban jazz double bassist and composer.' },
+        pt: { title: 'Imprensa & Artigos | Aniel Someillan', desc: 'Cobertura de imprensa e artigos sobre Aniel Someillan — contrabaixista e compositor de jazz afro-cubano.' },
+        es: { title: 'Prensa & Artículos | Aniel Someillan', desc: 'Cobertura de prensa y artículos sobre Aniel Someillan — contrabajista y compositor de jazz afrocubano.' },
+        pl: { title: 'Prasa & Artykuły | Aniel Someillan', desc: 'Artykuły prasowe o Anielu Someillan — kontrabasiście i kompozytorze afrokubańskiego jazzu.' },
+    };
+    const meta = pageMeta[locale] || pageMeta.en;
+
     return (
+        <>
+        <Head>
+            <title>{meta.title}</title>
+            <meta name="description" content={meta.desc} />
+            <meta property="og:title" content={meta.title} />
+            <meta property="og:description" content={meta.desc} />
+            <meta property="og:url" content={`https://anielsomeillan.com${locale !== 'en' ? `/${locale}` : ''}/articles`} />
+        </Head>
         <main className="w-full min-h-screen dark:text-light">
             <Layout>
-                <AnimatedText 
+                <AnimatedText
                     text={t.articles.title} 
                     className="!text-7xl mb-16 lg:!text-6xl md:!text-5xl" 
                 />
@@ -71,5 +88,6 @@ export default function Articles() {
                 </div>
             </Layout>
         </main>
+        </>
     );
 }

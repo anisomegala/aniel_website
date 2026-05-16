@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Head from 'next/head';
 import Layout from '@/components/Layout';
 import AnimatedText from '@/components/AnimatedText';
 import { motion } from 'framer-motion';
@@ -97,7 +98,23 @@ export default function Shows() {
       });
   }, []);
 
+  const pageMeta = {
+    en: { title: 'Upcoming Shows | Aniel Someillan', desc: 'Live performance dates and upcoming shows by Aniel Someillan. Tickets and calendar links.' },
+    pt: { title: 'Shows | Aniel Someillan', desc: 'Datas de shows ao vivo e próximas apresentações de Aniel Someillan.' },
+    es: { title: 'Conciertos | Aniel Someillan', desc: 'Fechas de conciertos en vivo y próximas actuaciones de Aniel Someillan.' },
+    pl: { title: 'Koncerty | Aniel Someillan', desc: 'Nadchodzące koncerty Aniela Someillana. Bilety i linki do kalendarza.' },
+  };
+  const meta = pageMeta[locale] || pageMeta.en;
+
   return (
+    <>
+    <Head>
+      <title>{meta.title}</title>
+      <meta name="description" content={meta.desc} />
+      <meta property="og:title" content={meta.title} />
+      <meta property="og:description" content={meta.desc} />
+      <meta property="og:url" content={`https://anielsomeillan.com${locale !== 'en' ? `/${locale}` : ''}/shows`} />
+    </Head>
     <main className="w-full min-h-screen dark:text-light">
       <Layout>
         <AnimatedText text={t.nav.shows} className="!text-7xl mb-16 lg:!text-6xl md:!text-4xl"  />
@@ -113,5 +130,6 @@ export default function Shows() {
         </div>
       </Layout>
     </main>
+    </>
   );
 }

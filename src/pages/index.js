@@ -149,7 +149,7 @@ export default function Home() {
         {/* Social Media Preview Tags */}
         <meta property="og:title" content="Aniel Someillan | Professional Musician" />
         <meta property="og:description" content="Explore the musical journey of Aniel Someillan, featuring Ilú Trio and international collaborations." />
-        <meta property="og:image" content="/images/profile/profile_main_pic.png" />
+        <meta property="og:image" content="https://anielsomeillan.com/images/profile/profile_main_pic.png" />
         <meta property="og:type" content="website" />
       </Head>
       <main className='flex flex-col items-center text-primaryText w-full min-h-screen dark:text-light relative pb-24'>

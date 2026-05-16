@@ -1,4 +1,3 @@
-// src/components/Schema.js
 import Head from 'next/head';
 
 const Schema = () => {
@@ -6,20 +5,31 @@ const Schema = () => {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Aniel Someillan",
-    "url": "https://anielsomeillan.com", 
-    "image": "https://anielsomeillan.com/images/profile/profile_main_pic.png",
-    "jobTitle": "Professional Musician & Bass Player",
+    "url": "https://anielsomeillan.com",
+    "image": "https://anielsomeillan.com/images/press/press-performance-jazz-plaza.jpg",
+    "jobTitle": "Double Bassist & Composer",
+    "description": "Cuban-born double bassist and composer based in Warsaw, Poland. Afro-Cuban jazz, son cubano, and contemporary improvised music. Jazz Plaza 2026 MJAF laureate, Montreux Jazz Academy 2023, Jazz Junior Competition winner 2022.",
+    "birthPlace": {
+      "@type": "Place",
+      "name": "Havana, Cuba"
+    },
     "alumniOf": {
       "@type": "CollegeOrUniversity",
-      "name": "Conservatorio Amadeo Roldan" 
+      "name": "Conservatorio de Música Amadeo Roldán",
+      "address": { "@type": "PostalAddress", "addressLocality": "Havana", "addressCountry": "CU" }
     },
-    "knowsAbout": ["Afro-Cuban Jazz", "Classical Guitar", "Electric Bass", "Double Bass"],
+    "award": [
+      "Jazz Plaza Festival Laureate 2026 — Montreux Jazz Artist Foundation",
+      "Montreux Jazz Academy 2023 — Montreux Jazz Artist Foundation",
+      "Jazz Junior Competition Winner 2022 — Kraków, Poland",
+      "Radio Katowice Young Talents Winner 2021"
+    ],
+    "knowsAbout": ["Afro-Cuban Jazz", "Son Cubano", "Double Bass", "Electric Bass", "Classical Guitar", "Composition"],
     "sameAs": [
-      "https://instagram.com", 
-      "https://facebook.com",
-      "https://linkedin.com",
-      "https://youtube.com",
-      "https://github.com"
+      "https://www.instagram.com/anielsomeillan",
+      "https://www.youtube.com/@anielsomeillan",
+      "https://ilucuba.bandcamp.com",
+      "https://www.facebook.com/anielsomeillan"
     ]
   };
 

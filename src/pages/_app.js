@@ -17,63 +17,72 @@ const poppins = Poppins({
   variable: '--font-pp',
 })
 
+const SITE_URL = 'https://anielsomeillan.com'
+const LOCALES = ['en', 'es', 'pt', 'pl']
+
 export default function App({ Component, pageProps }) {
   const [loading, setLoading] = useState(true);
-
   const router = useRouter();
+  const { pathname, locale } = router;
+
+  // Canonical uses pathname without query/hash; strip locale prefix for default locale
+  const canonicalPath = pathname === '/' ? '' : pathname;
+  const canonicalUrl = `${SITE_URL}${locale && locale !== 'en' ? `/${locale}` : ''}${canonicalPath}`;
 
   useEffect(() => {
-    // Simulate a minimum loading time for the animation to feel intentional
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2500);
-
+    const timer = setTimeout(() => setLoading(false), 2500);
     return () => clearTimeout(timer);
   }, []);
 
-  // Ensure body scroll is disabled while loading
   useEffect(() => {
-    if (loading) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
+    document.body.style.overflow = loading ? 'hidden' : 'unset';
   }, [loading]);
 
   useEffect(() => {
-    // This part ensures that every time the user changes pages, the Pixel tracks it.
     const handleRouteChange = () => {
-      if (window.fbq) {
-        window.fbq('track', 'PageView');
-      }
+      if (window.fbq) window.fbq('track', 'PageView');
     };
-
     router.events.on('routeChangeComplete', handleRouteChange);
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange);
-    };
+    return () => router.events.off('routeChangeComplete', handleRouteChange);
   }, [router.events]);
 
   return (
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="Aniel Someillan" />
+        <meta name="theme-color" content="#b8975a" />
         <link rel="icon" href="/favicon.ico" />
-        <link rel="canonical" href="https://anielsomeillan.com" />
 
-        {/* --- ADD THESE OPEN GRAPH TAGS --- */}
-        <meta property="og:title" content="Aniel Someillan | Musician & Composer" />
-        <meta property="og:description" content="Official website of Aniel Someillan. Explore musical projects, upcoming shows, and original compositions." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://anielsomeillan.com" />
-        {/* Important: Use an absolute URL for the image */}
-        <meta property="og:image" content="https://anielsomeillan.com/images/profile/profile_main_pic.png" />
+        {/* Canonical — updates per page and locale */}
+        <link rel="canonical" href={canonicalUrl} />
+
+        {/* Hreflang — multilingual SEO */}
+        {LOCALES.map((l) => (
+          <link
+            key={l}
+            rel="alternate"
+            hrefLang={l}
+            href={`${SITE_URL}${l !== 'en' ? `/${l}` : ''}${canonicalPath}`}
+          />
+        ))}
+        <link rel="alternate" hrefLang="x-default" href={`${SITE_URL}${canonicalPath}`} />
+
+        {/* Default OG / Twitter — overridden by individual pages */}
         <meta property="og:site_name" content="Aniel Someillan" />
-        
-        {/* Twitter/X Cards (Optional but recommended) */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:title" content="Aniel Someillan | Afro-Cuban Jazz Bassist & Composer" />
+        <meta property="og:description" content="Official website of Aniel Someillan — Cuban double bassist and composer based in Warsaw. Jazz Plaza 2026, Montreux Jazz Academy 2023, Jazz Junior winner." />
+        <meta property="og:image" content={`${SITE_URL}/images/profile/profile_main_pic.png`} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Aniel Someillan | Musician & Composer" />
-        <meta name="twitter:image" content="https://anielsomeillan.com/images/profile/profile_main_pic.png" />
+        <meta name="twitter:title" content="Aniel Someillan | Afro-Cuban Jazz Bassist & Composer" />
+        <meta name="twitter:description" content="Cuban double bassist and composer based in Warsaw. Jazz Plaza 2026 laureate, Montreux Jazz Academy 2023, Jazz Junior winner." />
+        <meta name="twitter:image" content={`${SITE_URL}/images/profile/profile_main_pic.png`} />
       </Head>
 
       <Schema />
@@ -104,7 +113,6 @@ export default function App({ Component, pageProps }) {
         <NavBar />
         {!loading && (
           <Component {...pageProps} key={router.asPath} />
-          
         )}
         <CookieConsent />
         <Footer />
