@@ -22,6 +22,7 @@ const FloatingNav = () => {
         { href: "/shows", label: t.nav.shows },
         { href: "/articles", label: t.nav.articles },
         { href: "/shop", label: t.nav.shop },
+        { href: "/press", label: t.nav.press },
     ];
 
     // Click outside logic
