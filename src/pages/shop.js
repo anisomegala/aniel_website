@@ -12,28 +12,32 @@ import pt from '../../locales/pt.json';
 import pl from '../../locales/pl.json';
 
 export async function getStaticProps() {
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-    const { data: products } = await stripe.products.list({
-        active: true,
-        expand: ['data.default_price'],
-    });
+    try {
+        const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+        const { data: products } = await stripe.products.list({
+            active: true,
+            expand: ['data.default_price'],
+        });
 
-    return {
-        props: {
-            products: products.map(product => ({
-                id: product.id,
-                name: product.name,
-                description: product.description,
-                image: product.images && product.images.length > 0 ? product.images[0] : null,
-                stock: parseInt(product.metadata.stock) || 0,
-                price: new Intl.NumberFormat('en-US', {
-                    style: 'currency', currency: product.default_price.currency,
-                }).format(product.default_price.unit_amount / 100),
-                priceId: product.default_price.id,
-            })),
-        },
-        revalidate: 60,
-    };
+        return {
+            props: {
+                products: products.map(product => ({
+                    id: product.id,
+                    name: product.name,
+                    description: product.description,
+                    image: product.images && product.images.length > 0 ? product.images[0] : null,
+                    stock: parseInt(product.metadata.stock) || 0,
+                    price: new Intl.NumberFormat('en-US', {
+                        style: 'currency', currency: product.default_price.currency,
+                    }).format(product.default_price.unit_amount / 100),
+                    priceId: product.default_price.id,
+                })),
+            },
+            revalidate: 60,
+        };
+    } catch (error) {
+        return { props: { products: [] }, revalidate: 60 };
+    }
 }
 
 export default function Shop({ products }) {
