@@ -1,10 +1,14 @@
-import React, { useState } from 'react'; //
+import React, { useState, useEffect } from 'react';
 import { FacebookShareButton, FacebookIcon } from 'next-share';
 import { InstagramIcon } from './icons';
 
 const SocialShare = ({ t }) => {
-  const [isSharing, setIsSharing] = useState(false); // Track if a share is in progress
-  const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
+  const [isSharing, setIsSharing] = useState(false);
+  const [currentUrl, setCurrentUrl] = useState('');
+
+  useEffect(() => {
+    setCurrentUrl(window.location.href);
+  }, []);
 
   const handleNativeShare = async () => {
     // If a share is already active, exit to prevent InvalidStateError
