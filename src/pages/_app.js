@@ -52,6 +52,8 @@ export default function App({ Component, pageProps }) {
     return () => router.events.off('routeChangeComplete', handleRouteChange);
   }, [router.events]);
 
+  const isStandalone = pathname === '/memorias'
+
   return (
     <>
       <Head>
@@ -111,18 +113,24 @@ export default function App({ Component, pageProps }) {
         }}
       />
 
-      <AnimatePresence mode="wait">
-        {loading && <Loader key="loader" finishLoading={() => setLoading(false)} />}
-      </AnimatePresence>
+      {isStandalone ? (
+        <Component {...pageProps} key={router.asPath} />
+      ) : (
+        <>
+          <AnimatePresence mode="wait">
+            {loading && <Loader key="loader" finishLoading={() => setLoading(false)} />}
+          </AnimatePresence>
 
-      <main className={`${poppins.variable} font-pp bg-light dark:bg-dark w-full min-h-screen`}>
-        <NavBar />
-        {!loading && (
-          <Component {...pageProps} key={router.asPath} />
-        )}
-        <CookieConsent />
-        <Footer />
-      </main>
+          <main className={`${poppins.variable} font-pp bg-light dark:bg-dark w-full min-h-screen`}>
+            <NavBar />
+            {!loading && (
+              <Component {...pageProps} key={router.asPath} />
+            )}
+            <CookieConsent />
+            <Footer />
+          </main>
+        </>
+      )}
     </>
   )
 }

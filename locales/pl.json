@@ -62,5 +62,122 @@
   },
   "common": {
     "share": "Udostępnij"
+  },
+  "memorias": {
+    "back": "← WRÓĆ",
+    "onAir": "NA ŻYWO",
+    "scroll": "↓ DALEJ",
+    "scene": "SCENA",
+    "s1": {
+      "label": "Prezentacja",
+      "line1": "PANIE I PANOWIE...",
+      "line2": "PO RAZ PIERWSZY W WASZYM DOMU —"
+    },
+    "s2": {
+      "label": "Początek",
+      "year": "ROK",
+      "city": "MIASTO",
+      "musician": "MUZYK",
+      "then": "A POTEM... SEN.",
+      "body": "Kubański muzyk. Osiem lat w Brazylii. Wyobrażone miasto, które powtarza się noc po nocy w jego snach — zbudowane z ulic Hawany i budynków São Paulo."
+    },
+    "s3": {
+      "label": "Sen",
+      "night": "NOC PO NOCY...",
+      "q1": "\"W JEDNĄ NOC —",
+      "q2": "MELODIE,",
+      "q3": "RYTMY,",
+      "q4": "PIOSENKI.\"",
+      "body": "W tym samym czasie czytał Machado de Assisa — jego martwego narratora, niemożliwą ironię, miasto między dwoma światami."
+    },
+    "s4": {
+      "label": "Dźwięk",
+      "announcer": "A DŹWIĘK? PANIE I PANOWIE...",
+      "body": "Album głównie wokalny. Trzy języki: español · português · english. Teksty o społeczeństwie, miłości i bólu — z ogromną, celową nutą sarkazmu."
+    },
+    "s5": {
+      "label": "Studio",
+      "where": "GDZIE NAGRANO?",
+      "studioLabel": "OSOBISTE STUDIO SILVIO RODRÍGUEZA",
+      "body": "Cztery utwory już nagrane. Album podróżuje do São Paulo — następnie wraca do Hawany, by zakończyć się tam, gdzie się zaczął.",
+      "done": "NAGRANE ✓",
+      "status2": "KONIEC 2026",
+      "luedji": "Z LUEDJI LUNA",
+      "status3": "2027",
+      "final": "POWRÓT FINALNY"
+    },
+    "s6": {
+      "label": "Obsada",
+      "presenting": "PREZENTUJEMY:",
+      "threadTitle": "RODZINNA NIĆ",
+      "threadBody": "Dagoberto González pochodzi z Orquesta Aragón — tej samej orkiestry, która spopularyzowała Tres Estrellas y un Lucero, skomponowane przez wuja Aniela, René Casanovę Lugo. Na tym albumie Dagoberto jest żywą nicią łączącą tamtą rodzinną kompozycję z jej re-wersją siedem dekad później.",
+      "credits": {
+        "aniel": "KONTRABAS · GŁOS · KOMPOZYCJE",
+        "adel": "CONGAS",
+        "david": "FORTEPIAN",
+        "dagoberto": "SKRZYPCE · ARANŻACJE",
+        "joaquin": "ARANŻACJE",
+        "luedji": "WOKAL GOŚCINNY · SÃO PAULO",
+        "guests": "GOŚCIE · SÃO PAULO"
+      }
+    },
+    "s7": {
+      "label": "Piosenki",
+      "intro": "NA TYM ALBUMIE ZNAJDZIESZ:",
+      "havanaTracks": "Sesje w Hawanie I–IV",
+      "havanaNote": "Studio Ojala, Hawana · Nagrane ✓",
+      "track9note": "Re-wersja — skomponowana przez René Casanovę Lugo (wuj Aniela) · Klasyk Orquesta Aragón",
+      "track10note": "Re-wersja — skomponowana przez Enrique Jorrína, wynalazcę cha-cha-chá (1951)"
+    },
+    "s8": {
+      "label": "Twoja Szansa",
+      "title": "TO TWOJA\nSZANSA!",
+      "body": "Szukamy €7 000–€10 000 na ukończenie produkcji. Album zostanie samodzielnie wyprodukowany przed podejściem do wytwórni — pozycja siły, nie prośba.",
+      "from": "OD",
+      "licensing": "DO 5%\nZYSKU NETTO",
+      "note": "Procenty licencyjne dotyczą wyłącznie przychodów netto z synchronizacji, filmów/TV i umów z wytwórniami.",
+      "tiers": [
+        {
+          "tier": "WSPIERAJĄCY",
+          "amount": "€10–25",
+          "reward": "Album cyfrowy + imię na stronie"
+        },
+        {
+          "tier": "KOLEKCJONER",
+          "amount": "€50",
+          "reward": "Podpisana kaseta + cyfrowy + napisy"
+        },
+        {
+          "tier": "WINYL",
+          "amount": "€100",
+          "reward": "Podpisany winyl + kaseta + napisy"
+        },
+        {
+          "tier": "GOŚĆ PREMIERY",
+          "amount": "€250",
+          "reward": "Wszystko powyżej + zaproszenie na premierę"
+        },
+        {
+          "tier": "PROD. STOWARZ.",
+          "amount": "€500–1 000",
+          "reward": "Kredyt \"Producent Stowarzyszony\" + wszystko"
+        },
+        {
+          "tier": "PROD. WYKONAWCZY",
+          "amount": "€2 000–4 000",
+          "reward": "\"Producent Wykonawczy\" + 2–3% zysku netto"
+        },
+        {
+          "tier": "WS. PRODUCENT",
+          "amount": "€5 000+",
+          "reward": "\"Współproducent\" + 5% zysku netto + sesja prywatna"
+        }
+      ]
+    },
+    "s9": {
+      "label": "Zakończenie",
+      "presentedBy": "TEN PROGRAM ZOSTAŁ PRZEDSTAWIONY PRZEZ",
+      "copyright": "© 2026 · WSZYSTKIE KOMPOZYCJE: ANIEL SOMEILLAN · POUFNE"
+    }
   }
 }

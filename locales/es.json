@@ -62,5 +62,122 @@
   },
   "common": {
     "share": "Compartir"
+  },
+  "memorias": {
+    "back": "← VOLVER",
+    "onAir": "EN EL AIRE",
+    "scroll": "↓ CONTINÚE",
+    "scene": "ESCENA",
+    "s1": {
+      "label": "La Presentación",
+      "line1": "SEÑORAS Y SEÑORES...",
+      "line2": "POR PRIMERA VEZ EN SU SALA DE ESTAR —"
+    },
+    "s2": {
+      "label": "El Comienzo",
+      "year": "EL AÑO",
+      "city": "LA CIUDAD",
+      "musician": "EL MÚSICO",
+      "then": "Y ENTONCES... EL SUEÑO.",
+      "body": "Un músico cubano. Ocho años en Brasil. Una ciudad imaginaria que se repite, noche tras noche, en sus sueños — construida con calles de La Habana y edificios de São Paulo."
+    },
+    "s3": {
+      "label": "El Sueño",
+      "night": "NOCHE TRAS NOCHE...",
+      "q1": "\"EN UNA SOLA NOCHE —",
+      "q2": "LAS MELODÍAS,",
+      "q3": "LOS RITMOS,",
+      "q4": "LAS CANCIONES.\"",
+      "body": "Al mismo tiempo leía a Machado de Assis — su narrador muerto, su ironía imposible, su ciudad entre dos mundos."
+    },
+    "s4": {
+      "label": "El Sonido",
+      "announcer": "¿Y EL SONIDO? SEÑORAS Y SEÑORES...",
+      "body": "Un álbum principalmente vocal. Tres idiomas: español · português · english. Letras que hablan de sociedad, amor y dolor — con una enorme carga de sarcasmo deliberado."
+    },
+    "s5": {
+      "label": "El Estudio",
+      "where": "¿DÓNDE FUE GRABADO?",
+      "studioLabel": "EL ESTUDIO PERSONAL DE SILVIO RODRÍGUEZ",
+      "body": "Cuatro canciones ya grabadas. El disco viaja a São Paulo — luego regresa a La Habana para cerrarse donde comenzó.",
+      "done": "GRABADO ✓",
+      "status2": "FINAL 2026",
+      "luedji": "CON LUEDJI LUNA",
+      "status3": "2027",
+      "final": "REGRESO FINAL"
+    },
+    "s6": {
+      "label": "El Elenco",
+      "presenting": "PRESENTANDO:",
+      "threadTitle": "EL HILO FAMILIAR",
+      "threadBody": "Dagoberto González viene de Orquesta Aragón — la misma orquesta que popularizó Tres Estrellas y un Lucero, compuesta por el tío de Aniel, René Casanova Lugo. En este álbum, Dagoberto es el hilo vivo entre aquella composición familiar y su re-versión siete décadas después.",
+      "credits": {
+        "aniel": "CONTRABAJO · VOZ · COMPOSICIONES",
+        "adel": "CONGAS",
+        "david": "PIANO",
+        "dagoberto": "VIOLÍN · ARREGLOS",
+        "joaquin": "ARREGLOS",
+        "luedji": "VOZ INVITADA · SÃO PAULO",
+        "guests": "INVITADOS · SÃO PAULO"
+      }
+    },
+    "s7": {
+      "label": "Las Canciones",
+      "intro": "EN ESTE DISCO, USTED ENCONTRARÁ:",
+      "havanaTracks": "Sesiones de La Habana I–IV",
+      "havanaNote": "Studio Ojala, La Habana · Grabado ✓",
+      "track9note": "Re-versión — compuesta por René Casanova Lugo (tío de Aniel) · Clásico de Orquesta Aragón",
+      "track10note": "Re-versión — compuesta por Enrique Jorrín, inventor del cha-cha-chá (1951)"
+    },
+    "s8": {
+      "label": "Su Oportunidad",
+      "title": "¡ESTA ES SU\nOPORTUNIDAD!",
+      "body": "Buscamos €7.000–€10.000 para completar la producción. El álbum será autoproducido hasta su conclusión antes de abordar sellos — una posición de fuerza, no de ruego.",
+      "from": "DESDE",
+      "licensing": "HASTA 5%\nINGRESOS NETOS",
+      "note": "Los porcentajes de licencia aplican solo a ingresos netos de sync, cine/TV y contratos con sellos.",
+      "tiers": [
+        {
+          "tier": "SEGUIDOR",
+          "amount": "€10–25",
+          "reward": "Álbum digital + nombre en la web"
+        },
+        {
+          "tier": "COLECCIONISTA",
+          "amount": "€50",
+          "reward": "Casete firmado + digital + créditos"
+        },
+        {
+          "tier": "VINILO",
+          "amount": "€100",
+          "reward": "Vinilo firmado + casete + créditos"
+        },
+        {
+          "tier": "INVITADO PREMIER",
+          "amount": "€250",
+          "reward": "Todo lo anterior + invitación al estreno"
+        },
+        {
+          "tier": "PROD. ASOCIADO",
+          "amount": "€500–1.000",
+          "reward": "Crédito \"Productor Asociado\" + todo lo anterior"
+        },
+        {
+          "tier": "PROD. EJECUTIVO",
+          "amount": "€2.000–4.000",
+          "reward": "\"Productor Ejecutivo\" + 2–3% ingresos netos"
+        },
+        {
+          "tier": "CO-PRODUCTOR",
+          "amount": "€5.000+",
+          "reward": "\"Co-Productor\" + 5% ingresos netos + sesión privada"
+        }
+      ]
+    },
+    "s9": {
+      "label": "El Cierre",
+      "presentedBy": "ESTE PROGRAMA FUE PRESENTADO POR",
+      "copyright": "© 2026 · TODAS LAS COMPOSICIONES: ANIEL SOMEILLAN · CONFIDENCIAL"
+    }
   }
 }

@@ -51,16 +51,133 @@
     "redirecting": "Redirecting..."
   },
   "shows": {
-  "calendarBtn": "Add to Calendar",
-  "buyTicketsBtn": "Get Tickets",
-  "syncing": "Syncing shows...",
-  "noShows": "No upcoming shows at the moment."
-},
+    "calendarBtn": "Add to Calendar",
+    "buyTicketsBtn": "Get Tickets",
+    "syncing": "Syncing shows...",
+    "noShows": "No upcoming shows at the moment."
+  },
   "success": {
     "title": "Thank You for Your Support!",
     "message": "A confirmation email and your digital content have been sent to your inbox."
   },
   "common": {
-  "share": "Share"
-}
+    "share": "Share"
+  },
+  "memorias": {
+    "back": "← BACK",
+    "onAir": "ON AIR",
+    "scroll": "↓ SCROLL",
+    "scene": "SCENE",
+    "s1": {
+      "label": "The Presentation",
+      "line1": "LADIES AND GENTLEMEN...",
+      "line2": "FOR THE FIRST TIME IN YOUR HOME —"
+    },
+    "s2": {
+      "label": "The Beginning",
+      "year": "THE YEAR",
+      "city": "THE CITY",
+      "musician": "THE MUSICIAN",
+      "then": "AND THEN... THE DREAM.",
+      "body": "A Cuban musician. Eight years in Brazil. An imaginary city that repeats, night after night, in his dreams — built from streets of Havana and buildings of São Paulo."
+    },
+    "s3": {
+      "label": "The Dream",
+      "night": "NIGHT AFTER NIGHT...",
+      "q1": "\"IN ONE SINGLE NIGHT —",
+      "q2": "THE MELODIES,",
+      "q3": "THE RHYTHMS,",
+      "q4": "THE SONGS.\"",
+      "body": "At the same time he was reading Machado de Assis — his dead narrator, his impossible irony, his city between two worlds."
+    },
+    "s4": {
+      "label": "The Sound",
+      "announcer": "AND THE SOUND? LADIES AND GENTLEMEN...",
+      "body": "A mostly vocal album. Three languages: español · português · english. Lyrics about society, love and pain — with an enormous, deliberate sarcastic touch."
+    },
+    "s5": {
+      "label": "The Studio",
+      "where": "WHERE WAS IT RECORDED?",
+      "studioLabel": "THE PERSONAL STUDIO OF SILVIO RODRÍGUEZ",
+      "body": "Four tracks already recorded. The album travels to São Paulo — then returns to Havana to close where it began.",
+      "done": "RECORDED ✓",
+      "status2": "LATE 2026",
+      "luedji": "WITH LUEDJI LUNA",
+      "status3": "2027",
+      "final": "FINAL RETURN"
+    },
+    "s6": {
+      "label": "The Cast",
+      "presenting": "PRESENTING:",
+      "threadTitle": "THE FAMILY THREAD",
+      "threadBody": "Dagoberto González comes from Orquesta Aragón — the same orchestra that popularised Tres Estrellas y un Lucero, composed by Aniel's uncle René Casanova Lugo. On this album, Dagoberto is the living thread between that family composition and its re-version seven decades later.",
+      "credits": {
+        "aniel": "CONTRABASS · VOICE · COMPOSITIONS",
+        "adel": "CONGAS",
+        "david": "PIANO",
+        "dagoberto": "VIOLIN · ARRANGEMENTS",
+        "joaquin": "ARRANGEMENTS",
+        "luedji": "GUEST VOCAL · SÃO PAULO",
+        "guests": "GUESTS · SÃO PAULO"
+      }
+    },
+    "s7": {
+      "label": "The Songs",
+      "intro": "ON THIS RECORD, YOU WILL FIND:",
+      "havanaTracks": "Havana Session Tracks I–IV",
+      "havanaNote": "Studio Ojala, Havana · Recorded ✓",
+      "track9note": "Re-version — composed by René Casanova Lugo (Aniel's uncle) · Orquesta Aragón classic",
+      "track10note": "Re-version — composed by Enrique Jorrín, inventor of the cha-cha-chá (1951)"
+    },
+    "s8": {
+      "label": "Your Opportunity",
+      "title": "THIS IS YOUR\nOPPORTUNITY!",
+      "body": "We are seeking €7,000–€10,000 to complete production. The album will be self-produced to completion before approaching labels — a position of strength, not of pleading.",
+      "from": "FROM",
+      "licensing": "UP TO 5%\nNET LICENSING",
+      "note": "Licensing percentages apply to net sync, film/TV and label deal revenue only. No financial obligation if no licensing revenue is earned.",
+      "tiers": [
+        {
+          "tier": "SUPPORTER",
+          "amount": "€10–25",
+          "reward": "Digital album + name on website"
+        },
+        {
+          "tier": "COLLECTOR",
+          "amount": "€50",
+          "reward": "Signed cassette + digital + liner notes"
+        },
+        {
+          "tier": "VINYL BACKER",
+          "amount": "€100",
+          "reward": "Signed vinyl + cassette + liner notes"
+        },
+        {
+          "tier": "PREMIERE GUEST",
+          "amount": "€250",
+          "reward": "All above + album premiere invitation"
+        },
+        {
+          "tier": "ASSOC. PRODUCER",
+          "amount": "€500–1,000",
+          "reward": "\"Associate Producer\" credit + all above"
+        },
+        {
+          "tier": "EXEC. PRODUCER",
+          "amount": "€2,000–4,000",
+          "reward": "\"Executive Producer\" + 2–3% net licensing"
+        },
+        {
+          "tier": "CO-PRODUCER",
+          "amount": "€5,000+",
+          "reward": "\"Co-Producer\" + 5% net licensing + private session"
+        }
+      ]
+    },
+    "s9": {
+      "label": "The Closing",
+      "presentedBy": "THIS PROGRAM WAS PRESENTED BY",
+      "copyright": "© 2026 · ALL COMPOSITIONS: ANIEL SOMEILLAN · CONFIDENTIAL"
+    }
+  }
 }
