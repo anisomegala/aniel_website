@@ -140,8 +140,10 @@ const Press = () => {
                   in the European jazz scene.
                 </p>
                 <p>
-                  He has shared the stage with <strong>Giovanni Hidalgo, Daymé Arocena, Shabaka Hutchings, Amaro Freitas,
-                  Julito Padrón, Roberto Carcasses</strong> and <strong>Shai Maestro</strong>.
+                  He spent three years as bassist for <strong>Luedji Luna</strong> and two years working with pianist{' '}
+                  <strong>Amaro Freitas</strong> — two of Brazil's most internationally recognised artists — and has shared
+                  the stage with <strong>Giovanni Hidalgo, Daymé Arocena, Shabaka Hutchings, Julito Padrón,
+                  Roberto Carcasses</strong> and <strong>Shai Maestro</strong>.
                   His project <em>Aniel y el Quilombo</em> — born from a residency in Brazil — produced the album{' '}
                   <em>Quilombo</em>, weaving Afro-Cuban rhythms with Brazilian and pan-African influences.
                 </p>
