@@ -163,6 +163,8 @@ export default function Memorias({ locale: localeProp }) {
             .tiers-grid{grid-template-columns:1fr 1fr!important}
             .tiers-grid .tier-reward{grid-column:1/-1;padding-top:0!important;padding-bottom:0.5rem!important;border-top:none!important}
             .tiers-grid{row-gap:0.25rem!important}
+            .ask-grid{grid-template-columns:1fr!important}
+            .ask-grid>div{border-left:none!important}
           }
           @media(max-width:400px){
             .tiers-grid{grid-template-columns:1fr!important}
@@ -210,8 +212,8 @@ export default function Memorias({ locale: localeProp }) {
         <section className="grain" style={{ position:'relative', minHeight:'100vh',
           display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center',
           overflow:'hidden', padding:'6rem 2rem 4rem' }}>
-          <Image src="/images/press/press-portrait-bw.jpg" alt="Aniel Someillan" fill priority
-            style={{ objectFit:'cover', filter:'sepia(60%) brightness(22%) contrast(1.2)', zIndex:0 }} />
+          <Image src="/images/press/memorias-hero.jpg" alt="Aniel Someillan" fill priority
+            style={{ objectFit:'cover', objectPosition:'30% center', filter:'sepia(40%) brightness(28%) contrast(1.15)', zIndex:0 }} />
           <div style={{ position:'absolute', inset:0, zIndex:1,
             background:`linear-gradient(to bottom,${C.dark}aa 0%,rgba(17,10,4,.55) 50%,${C.dark}aa 100%)` }} />
           <div style={{ position:'relative', zIndex:2, textAlign:'center', maxWidth:800 }}>
@@ -232,8 +234,13 @@ export default function Memorias({ locale: localeProp }) {
               ))}
               <motion.div variants={wipe} style={{ height:1.5, background:C.paper, opacity:0.5, margin:'2rem auto', originX:0.5, maxWidth:500 }} />
               <motion.div variants={dropHard} style={{ fontFamily:"'Alfa Slab One',serif",
-                fontSize:'clamp(1rem,3vw,1.6rem)', color:C.paper, letterSpacing:'0.15em', marginBottom:'3rem' }}>
+                fontSize:'clamp(1rem,3vw,1.6rem)', color:C.paper, letterSpacing:'0.15em', marginBottom:'1.5rem' }}>
                 ANIEL SOMEILLAN
+              </motion.div>
+              <motion.div variants={fadeUp} style={{ display:'inline-block', padding:'6px 18px',
+                border:`1px solid ${C.terra}`, marginBottom:'2.5rem' }}>
+                <span style={{ fontFamily:"'Alfa Slab One',serif", fontSize:'0.6rem',
+                  letterSpacing:'0.25em', color:C.terra }}>{t.s1.badge}</span>
               </motion.div>
               <motion.div variants={fadeUp} style={{ fontSize:'0.7rem', letterSpacing:'0.3em',
                 color:'rgba(242,232,212,0.4)', fontFamily:"'Alfa Slab One',serif" }}>{t.scroll}</motion.div>
@@ -243,6 +250,53 @@ export default function Memorias({ locale: localeProp }) {
 
         <Marquee text="AFRO-CUBAN JAZZ  ·  SON CUBANO  ·  BOSSA NOVA  ·  SAMBA  ·  GUARACHA  ·  CHA-CHÁ-CHÁ  ·  MAMBO"
           color={C.terra} bg={C.dark} />
+
+        {/* ════════════════════════════════════════════
+            ASK STRIP — OPPORTUNITY AT A GLANCE
+        ════════════════════════════════════════════ */}
+        <section id="opportunity" style={{ background:C.paper, padding:'4rem 2rem', borderTop:`3px solid ${C.terra}` }}>
+          <div style={{ maxWidth:860, margin:'0 auto' }}>
+            <div style={{ fontFamily:"'Alfa Slab One',serif", fontSize:'0.65rem',
+              letterSpacing:'0.35em', color:C.terra, textAlign:'center', marginBottom:'2.5rem' }}>
+              {t.ask.title}
+            </div>
+
+            <div className="ask-grid" style={{ display:'grid', gridTemplateColumns:'1fr 1fr', marginBottom:'2rem' }}>
+              {[
+                { label: t.ask.what,    value: t.ask.whatVal },
+                { label: t.ask.need,    value: t.ask.needVal },
+                { label: t.ask.returns, value: t.ask.returnsVal },
+                { label: t.ask.status,  value: t.ask.statusVal },
+              ].map(({label, value}, i) => (
+                <div key={label} style={{
+                  padding:'1rem 1.25rem',
+                  borderTop:`1px solid rgba(196,82,26,0.2)`,
+                  borderLeft: i%2===1 ? `1px solid rgba(196,82,26,0.2)` : 'none',
+                }}>
+                  <div style={{ fontFamily:"'Alfa Slab One',serif", fontSize:'0.55rem',
+                    letterSpacing:'0.25em', color:C.terra, marginBottom:'0.4rem' }}>{label}</div>
+                  <div style={{ fontSize:'1rem', color:C.ink, lineHeight:1.5 }}>{value}</div>
+                </div>
+              ))}
+            </div>
+
+            <div style={{ display:'flex', gap:'1rem', flexWrap:'wrap', justifyContent:'center' }}>
+              <a href="mailto:anielsomeillan@icloud.com"
+                style={{ fontFamily:"'Alfa Slab One',serif", fontSize:'0.65rem', letterSpacing:'0.2em',
+                  padding:'0.85rem 2rem', background:C.terra, color:C.paper,
+                  textDecoration:'none', display:'inline-block' }}>
+                {t.ask.cta}
+              </a>
+              <a href="#s8"
+                onClick={e => { e.preventDefault(); document.getElementById('s8')?.scrollIntoView({behavior:'smooth'}) }}
+                style={{ fontFamily:"'Alfa Slab One',serif", fontSize:'0.65rem', letterSpacing:'0.2em',
+                  padding:'0.85rem 2rem', border:`1px solid ${C.terra}`, color:C.terra,
+                  textDecoration:'none', display:'inline-block' }}>
+                {t.ask.tiers}
+              </a>
+            </div>
+          </div>
+        </section>
 
         {/* ════════════════════════════════════════════
             S2 — THE YEAR WAS
@@ -464,7 +518,7 @@ export default function Memorias({ locale: localeProp }) {
         {/* ════════════════════════════════════════════
             S8 — YOUR OPPORTUNITY
         ════════════════════════════════════════════ */}
-        <section style={{ background:C.paper, padding:'7rem 2rem' }}>
+        <section id="s8" style={{ background:C.paper, padding:'7rem 2rem' }}>
           <div style={{ maxWidth:860, margin:'0 auto' }}>
             <Scene>
               <Tag n={`${t.scene} VIII`} label={t.s8.label} />

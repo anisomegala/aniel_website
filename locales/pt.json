@@ -71,7 +71,21 @@
     "s1": {
       "label": "A Apresentação",
       "line1": "SENHORAS E SENHORES...",
-      "line2": "PELA PRIMEIRA VEZ NA SUA SALA —"
+      "line2": "PELA PRIMEIRA VEZ NA SUA SALA —",
+      "badge": "ÁLBUM · CAMPANHA DE PRODUÇÃO"
+    },
+    "ask": {
+      "title": "A OPORTUNIDADE EM RESUMO",
+      "what": "O PROJETO",
+      "whatVal": "Álbum de jazz afro-cubano, 10 faixas",
+      "need": "BUSCAMOS",
+      "needVal": "€7.000 – €10.000 para concluir a produção",
+      "returns": "RETORNO",
+      "returnsVal": "Créditos de produtor + até 5% de licenciamento líquido",
+      "status": "STATUS",
+      "statusVal": "4 faixas gravadas no Studio Ojala, Havana · 6 em produção",
+      "cta": "CONTATAR ANIEL",
+      "tiers": "VER COTAS DE INVESTIMENTO ↓"
     },
     "s2": {
       "label": "O Início",

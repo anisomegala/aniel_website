@@ -71,7 +71,21 @@
     "s1": {
       "label": "The Presentation",
       "line1": "LADIES AND GENTLEMEN...",
-      "line2": "FOR THE FIRST TIME IN YOUR HOME —"
+      "line2": "FOR THE FIRST TIME IN YOUR HOME —",
+      "badge": "ALBUM · PRODUCTION FUNDRAISER"
+    },
+    "ask": {
+      "title": "THE OPPORTUNITY AT A GLANCE",
+      "what": "THE PROJECT",
+      "whatVal": "10-track Afro-Cuban jazz album",
+      "need": "SEEKING",
+      "needVal": "€7,000 – €10,000 to complete production",
+      "returns": "RETURNS",
+      "returnsVal": "Producer credits + up to 5% net licensing",
+      "status": "STATUS",
+      "statusVal": "4 tracks recorded at Studio Ojala, Havana · 6 in production",
+      "cta": "CONTACT ANIEL",
+      "tiers": "SEE INVESTMENT TIERS ↓"
     },
     "s2": {
       "label": "The Beginning",
