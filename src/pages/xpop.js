@@ -51,17 +51,6 @@ const LOCALES = {
       alsoLabel:'ALSO AVAILABLE',
       alsoText:'Buena Vista Social Club tribute night · Celia Cruz dedicated programme · Cuban Bolero Night (intimate format) · Custom themed selections on request',
     },
-    fee: {
-      label:'Fee for This Offer', thisOffer:'THIS OFFER', net:'net · July 11, 2026',
-      items:[
-        'Full formation — 5 musicians',
-        'Special guest Yaremi Kordos included',
-        '3 × 40-minute sets',
-        '50% deposit to confirm · balance on day',
-        'Travel & accommodation (if required) agreed separately',
-        'Technical rider available on request',
-      ],
-    },
     technical: {
       label:'Technical Requirements', channelLabel:'CHANNEL LIST',
       stage:[
@@ -126,17 +115,6 @@ const LOCALES = {
       label:'El Programa', title:'11 DE JULIO, 2026 · VARSOVIA', subtitle:'CLÁSICOS CUBANOS',
       alsoLabel:'TAMBIÉN DISPONIBLE',
       alsoText:'Noche homenaje al Buena Vista Social Club · Programa dedicado a Celia Cruz · Noche del Bolero Cubano (formato íntimo) · Selecciones temáticas personalizadas a pedido',
-    },
-    fee: {
-      label:'Tarifa para Esta Oferta', thisOffer:'ESTA OFERTA', net:'neto · 11 de julio, 2026',
-      items:[
-        'Formación completa — 5 músicos',
-        'Artista invitada Yaremi Kordos incluida',
-        '3 × 40 minutos por set',
-        '50% de depósito para confirmar · saldo el día del evento',
-        'Viajes y alojamiento (si se requiere) acordados aparte',
-        'Rider técnico disponible a pedido',
-      ],
     },
     technical: {
       label:'Requisitos Técnicos', channelLabel:'LISTA DE CANALES',
@@ -203,17 +181,6 @@ const LOCALES = {
       alsoLabel:'TAMBÉM DISPONÍVEL',
       alsoText:'Noite tributo ao Buena Vista Social Club · Programa dedicado a Celia Cruz · Noite do Bolero Cubano (formato íntimo) · Seleções temáticas personalizadas mediante pedido',
     },
-    fee: {
-      label:'Cachê para Esta Oferta', thisOffer:'ESTA OFERTA', net:'líquido · 11 de julho, 2026',
-      items:[
-        'Formação completa — 5 músicos',
-        'Artista convidada Yaremi Kordos incluída',
-        '3 × 40 minutos por set',
-        '50% de sinal para confirmar · saldo no dia',
-        'Viagens e acomodação (se necessário) acordados separadamente',
-        'Rider técnico disponível mediante pedido',
-      ],
-    },
     technical: {
       label:'Requisitos Técnicos', channelLabel:'LISTA DE CANAIS',
       stage:[
@@ -278,17 +245,6 @@ const LOCALES = {
       label:'Program', title:'11 LIPCA 2026 · WARSZAWA', subtitle:'KUBAŃSKIE KLASYKI',
       alsoLabel:'DOSTĘPNE RÓWNIEŻ',
       alsoText:'Wieczór hołdu dla Buena Vista Social Club · Program poświęcony Celii Cruz · Kubańska Noc Bolero (format kameralny) · Niestandardowe wybory tematyczne na zamówienie',
-    },
-    fee: {
-      label:'Honorarium', thisOffer:'TA OFERTA', net:'netto · 11 lipca 2026',
-      items:[
-        'Pełny skład — 5 muzyków',
-        'Gościna wokalistka Yaremi Kordos w cenie',
-        '3 × 40-minutowe sety',
-        '50% zaliczki przy rezerwacji · reszta w dniu koncertu',
-        'Koszty podróży i noclegu (jeśli wymagane) uzgadniane osobno',
-        'Technical rider dostępny na żądanie',
-      ],
     },
     technical: {
       label:'Wymagania Techniczne', channelLabel:'LISTA KANAŁÓW',
@@ -523,7 +479,6 @@ export default function XPopOffer({ locale: localeProp }) {
           @media(max-width:600px){
             .members-grid{grid-template-columns:1fr!important}
             .sets-grid{grid-template-columns:1fr!important}
-            .fee-row{flex-direction:column!important;gap:1.5rem!important}
           }
         `}</style>
       </Head>
