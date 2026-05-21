@@ -73,7 +73,7 @@ const LOCALES = {
     booking: {
       title:'READY TO CONFIRM',
       body:'July 11, 2026 · Warsaw.\nContact Aniel directly to confirm availability and secure the date.',
-      labels:['Artist & Director','Email','Phone / WhatsApp','Website','Instagram'],
+      labels:['Artist & Director','Email','Phone / WhatsApp','Website','Instagram','Event Contact'],
       email:'SEND EMAIL', call:'CALL / WHATSAPP',
     },
     footer:'X POP LATINO  ·  CONCERT PROPOSAL  ·  JULY 11 2026  ·  WARSAW  ·  CONFIDENTIAL',
@@ -138,7 +138,7 @@ const LOCALES = {
     booking: {
       title:'LISTOS PARA CONFIRMAR',
       body:'11 de julio, 2026 · Varsovia.\nContacta a Aniel directamente para confirmar disponibilidad y asegurar la fecha.',
-      labels:['Artista y Director','Email','Teléfono / WhatsApp','Sitio web','Instagram'],
+      labels:['Artista y Director','Email','Teléfono / WhatsApp','Sitio web','Instagram','Contacto del Evento'],
       email:'ENVIAR EMAIL', call:'LLAMAR / WHATSAPP',
     },
     footer:'X POP LATINO  ·  OFERTA DE CONCIERTO  ·  11 JULIO 2026  ·  VARSOVIA  ·  CONFIDENCIAL',
@@ -203,7 +203,7 @@ const LOCALES = {
     booking: {
       title:'PRONTO PARA CONFIRMAR',
       body:'11 de julho, 2026 · Varsóvia.\nContacte Aniel diretamente para confirmar disponibilidade e garantir a data.',
-      labels:['Artista e Diretor','E-mail','Telefone / WhatsApp','Site','Instagram'],
+      labels:['Artista e Diretor','E-mail','Telefone / WhatsApp','Site','Instagram','Contacto do Evento'],
       email:'ENVIAR EMAIL', call:'LIGAR / WHATSAPP',
     },
     footer:'X POP LATINO  ·  OFERTA DE CONCERTO  ·  11 JULHO 2026  ·  VARSÓVIA  ·  CONFIDENCIAL',
@@ -268,7 +268,7 @@ const LOCALES = {
     booking: {
       title:'GOTOWI DO POTWIERDZENIA',
       body:'11 lipca 2026 · Warszawa.\nSkontaktuj się bezpośrednio z Anielem, aby potwierdzić dostępność i zarezerwować termin.',
-      labels:['Artysta i Dyrektor','Email','Telefon / WhatsApp','Strona www','Instagram'],
+      labels:['Artysta i Dyrektor','Email','Telefon / WhatsApp','Strona www','Instagram','Kontakt Organizacyjny'],
       email:'WYŚLIJ EMAIL', call:'ZADZWOŃ / WHATSAPP',
     },
     footer:'X POP LATINO  ·  OFERTA KONCERTOWA  ·  11 LIPCA 2026  ·  WARSZAWA  ·  POUFNE',
@@ -749,6 +749,7 @@ export default function XPopOffer({ locale: localeProp }) {
                   ['Phone / WhatsApp','+48 784 161 684'],
                   ['Website','www.anielsomeillan.com'],
                   ['Instagram','@anielsomeillan'],
+                  ['Event Contact','Mariusz Dyba · biuro@dyba-art.pl'],
                 ].map(([_label, val], i) => (
                   <motion.div key={val} variants={fadeUp} style={{ display:'grid',
                     gridTemplateColumns:'160px 1fr', gap:'1rem', padding:'0.75rem 0',
