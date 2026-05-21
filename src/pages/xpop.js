@@ -735,38 +735,6 @@ export default function XPopOffer({ locale: localeProp }) {
             </div>
           </section>
 
-          {/* ── FEE ──────────────────────────────────── */}
-          <section style={{ background:C.dark, padding:'5rem 2rem', borderTop:`3px solid ${C.terra}` }}>
-            <div style={{ maxWidth:860, margin:'0 auto' }}>
-              <Scene><SectionLabel light center>{t.fee.label}</SectionLabel></Scene>
-              <Rule color={C.terra} my="1.5rem" />
-              <Scene>
-                <motion.div variants={fadeUp} className="fee-row"
-                  style={{ display:'flex', alignItems:'center', gap:'3rem', flexWrap:'wrap' }}>
-                  <div style={{ flex:'0 0 auto', textAlign:'center', position:'relative',
-                    border:`1.5px solid ${C.terra}`, padding:'2rem 2.5rem' }}>
-                    <div style={{ position:'absolute', inset:4, border:`0.5px solid ${C.terra}`, opacity:0.3 }} />
-                    <div style={{ fontFamily:"'Alfa Slab One',serif", fontSize:'0.55rem',
-                      letterSpacing:'0.3em', color:C.terra, marginBottom:'0.5rem' }}>{t.fee.thisOffer}</div>
-                    <div style={{ fontFamily:"'Alfa Slab One',serif", fontSize:'clamp(2.5rem,8vw,4rem)',
-                      color:C.paper, lineHeight:1 }}>8 500</div>
-                    <div style={{ fontFamily:"'Alfa Slab One',serif", fontSize:'1.1rem', color:C.terra, letterSpacing:'0.1em' }}>PLN</div>
-                    <div style={{ fontSize:'0.8rem', color:'rgba(242,232,212,0.45)', marginTop:'0.4rem', fontStyle:'italic' }}>{t.fee.net}</div>
-                  </div>
-                  <ul style={{ flex:1, minWidth:260, listStyle:'none', padding:0 }}>
-                    {t.fee.items.map(item => (
-                      <li key={item} style={{ display:'flex', gap:'0.75rem', padding:'0.5rem 0',
-                        borderBottom:`1px solid rgba(242,232,212,0.08)`,
-                        fontSize:'1rem', color:'rgba(242,232,212,0.75)', lineHeight:1.5 }}>
-                        <span style={{ color:C.terra, flexShrink:0 }}>◆</span>{item}
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
-              </Scene>
-            </div>
-          </section>
-
           {/* ── TECHNICAL ────────────────────────────── */}
           <section style={{ background:C.paperDark, padding:'4rem 2rem' }}>
             <div style={{ maxWidth:860, margin:'0 auto' }}>
