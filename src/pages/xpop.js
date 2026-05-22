@@ -46,6 +46,12 @@ const LOCALES = {
       headline: 'Three sets.\nOne night.\nThe entire golden age of Cuban music — live.',
       body: 'X Pop Latino opens with the romantic intimacy of <em>son cubano</em> and <em>bolero</em> — music for the table, for the candlelit room. The second set turns up the heat with <em>mambo</em> and <em>cha-chá-chá</em>. By the finale, the room has been transformed. This is the music that built Latin nightlife — alive, urgent, impossible to resist.',
     },
+    videos: {
+      label: 'Watch Live',
+      promo:  'X Pop Latino — Promo',
+      live:   'X Pop Latino — Live',
+      live2:  'X Pop Latino — Concert',
+    },
     programme: {
       label:'The Programme', title:'JULY 11, 2026 · WARSAW', subtitle:'CUBAN CLASSICS',
       alsoLabel:'ALSO AVAILABLE',
@@ -110,6 +116,12 @@ const LOCALES = {
       label: 'La Experiencia',
       headline: 'Tres sets.\nUna noche.\nToda la época dorada de la música cubana — en vivo.',
       body: 'X Pop Latino abre con la intimidad romántica del <em>son cubano</em> y el <em>bolero</em> — música para la mesa, para la sala iluminada por velas. El segundo set sube la temperatura con <em>mambo</em> y <em>cha-chá-chá</em>. Al llegar al final, el ambiente se ha transformado. Esta es la música que construyó la vida nocturna latina — viva, urgente, imposible de resistir.',
+    },
+    videos: {
+      label: 'Ver en Vivo',
+      promo:  'X Pop Latino — Promo',
+      live:   'X Pop Latino — En Vivo',
+      live2:  'X Pop Latino — Concierto',
     },
     programme: {
       label:'El Programa', title:'11 DE JULIO, 2026 · VARSOVIA', subtitle:'CLÁSICOS CUBANOS',
@@ -176,6 +188,12 @@ const LOCALES = {
       headline: 'Três sets.\nUma noite.\nToda a era dourada da música cubana — ao vivo.',
       body: 'X Pop Latino abre com a intimidade romântica do <em>son cubano</em> e do <em>bolero</em> — música para a mesa, para a sala iluminada por velas. O segundo set aumenta o calor com <em>mambo</em> e <em>cha-chá-chá</em>. No final, o ambiente foi transformado. Esta é a música que construiu a vida noturna latina — viva, urgente, impossível de resistir.',
     },
+    videos: {
+      label: 'Assistir ao Vivo',
+      promo:  'X Pop Latino — Promo',
+      live:   'X Pop Latino — Ao Vivo',
+      live2:  'X Pop Latino — Concerto',
+    },
     programme: {
       label:'O Programa', title:'11 DE JULHO, 2026 · VARSÓVIA', subtitle:'CLÁSSICOS CUBANOS',
       alsoLabel:'TAMBÉM DISPONÍVEL',
@@ -240,6 +258,12 @@ const LOCALES = {
       label: 'Doświadczenie',
       headline: 'Trzy sety.\nJedna noc.\nCała złota era kubańskiej muzyki — na żywo.',
       body: 'X Pop Latino otwiera romantyczną intymnością <em>son cubano</em> i <em>bolero</em> — muzyka do stołu, do sali przy świecach. Drugi set podkręca temperaturę z <em>mambo</em> i <em>cha-chá-chá</em>. Na finale sala jest odmieniona. To muzyka, która zbudowała latynoskie życie nocne — żywa, nagląca, niemożliwa do odparcia.',
+    },
+    videos: {
+      label: 'Obejrzyj na Żywo',
+      promo:  'X Pop Latino — Promo',
+      live:   'X Pop Latino — Na Żywo',
+      live2:  'X Pop Latino — Koncert',
     },
     programme: {
       label:'Program', title:'11 LIPCA 2026 · WARSZAWA', subtitle:'KUBAŃSKIE KLASYKI',
@@ -652,6 +676,56 @@ export default function XPopOffer({ locale: localeProp }) {
                 <motion.div variants={fadeUp}
                   dangerouslySetInnerHTML={{ __html: t.experience.body }}
                   style={{ fontSize:'1.05rem', lineHeight:1.8, color:'rgba(242,232,212,0.8)', maxWidth:480 }} />
+              </Scene>
+            </div>
+          </section>
+
+          {/* ── VIDEOS ───────────────────────────────── */}
+          <section style={{ background: C.ink, padding: '5rem 2rem', borderTop: `1px solid rgba(196,82,26,0.25)` }}>
+            <div style={{ maxWidth: 900, margin: '0 auto' }}>
+              <Scene>
+                <SectionLabel light center>{t.videos.label}</SectionLabel>
+                <motion.div variants={stamp} style={{ fontFamily:"'Alfa Slab One',serif",
+                  fontSize:'clamp(1.5rem,4vw,2.5rem)', color:C.paper, textAlign:'center', marginBottom:'0.5rem' }}>
+                  X POP LATINO
+                </motion.div>
+              </Scene>
+              <Rule color={C.terra} my="2rem" />
+              <Scene style={{ display:'grid', gridTemplateColumns:'1fr 1fr 1fr', gap:'2rem' }} className="members-grid">
+                {[
+                  { id:'XZEFj5geEUI', title:t.videos.promo  },
+                  { id:'sRJgjJiInyA', title:t.videos.live   },
+                  { id:'yTFww8w169Y', title:t.videos.live2  },
+                ].map(({ id, title }) => (
+                  <motion.div key={id} variants={fadeUp}>
+                    <div style={{ position:'relative', padding:'0.5rem',
+                      border:`1px solid rgba(196,82,26,0.35)`, background:'rgba(0,0,0,0.45)' }}>
+                      {/* decorative corner accents */}
+                      {[['top','left'],['top','right'],['bottom','left'],['bottom','right']].map(([v,h]) => (
+                        <div key={v+h} style={{ position:'absolute', [v]:-2, [h]:-2, width:14, height:14,
+                          [`border${v.charAt(0).toUpperCase()+v.slice(1)}`]:`2px solid ${C.terra}`,
+                          [`border${h.charAt(0).toUpperCase()+h.slice(1)}`]:`2px solid ${C.terra}` }} />
+                      ))}
+                      <div style={{ position:'relative', paddingBottom:'56.25%', height:0, overflow:'hidden' }}>
+                        <iframe
+                          src={`https://www.youtube.com/embed/${id}?rel=0&modestbranding=1&color=white`}
+                          title={title}
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                          style={{ position:'absolute', top:0, left:0, width:'100%', height:'100%', border:'none', display:'block' }}
+                        />
+                      </div>
+                    </div>
+                    <div style={{ display:'flex', alignItems:'center', gap:'0.65rem',
+                      marginTop:'0.9rem', paddingLeft:'0.25rem' }}>
+                      <div style={{ width:3, height:'1.1em', background:C.terra, flexShrink:0 }} />
+                      <div style={{ fontFamily:"'Alfa Slab One',serif", fontSize:'0.52rem',
+                        letterSpacing:'0.2em', color:'rgba(242,232,212,0.55)', textTransform:'uppercase' }}>
+                        {title}
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
               </Scene>
             </div>
           </section>
