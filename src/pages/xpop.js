@@ -17,7 +17,7 @@ const LOCALES = {
   en: {
     gate:      { label:'PRIVATE · CONCERT OFFER', placeholder:'Access code', enter:'ENTER', error:'Incorrect access code' },
     nav:       { back:'← ANIELSOMEILLAN.COM', badge:'PRIVATE · CONFIDENTIAL' },
-    hero:      { top:'CONCERT OFFER · PRIVATE', date:'JULY 11, 2026  ·  WARSAW' },
+    hero:      { top:'CONCERT OFFER · PRIVATE', date:'LIVE CUBAN MUSIC  ·  PRIVATE SHOW' },
     marquee:   'SON CUBANO  ·  BOLERO  ·  MAMBO  ·  CHA-CHÁ-CHÁ  ·  GUARACHA  ·  3 SETS  ·  40 MIN EACH',
     glance:    {
       title: 'The Event at a Glance',
@@ -53,7 +53,7 @@ const LOCALES = {
       live2:  'X Pop Latino — Concert',
     },
     programme: {
-      label:'The Programme', title:'JULY 11, 2026 · WARSAW', subtitle:'CUBAN CLASSICS',
+      label:'The Programme', title:'FULL REPERTOIRE', subtitle:'CUBAN CLASSICS',
       alsoLabel:'ALSO AVAILABLE',
       alsoText:'Buena Vista Social Club tribute night · Celia Cruz dedicated programme · Cuban Bolero Night (intimate format) · Custom themed selections on request',
     },
@@ -78,17 +78,17 @@ const LOCALES = {
     },
     booking: {
       title:'READY TO CONFIRM',
-      body:'July 11, 2026 · Warsaw.\nContact Aniel directly to confirm availability and secure the date.',
+      body:'Contact Aniel directly to check availability and secure your date.',
       labels:['Artist & Director','Email','Phone / WhatsApp','Website','Instagram','Event Contact'],
       email:'SEND EMAIL', call:'CALL / WHATSAPP',
     },
-    footer:'X POP LATINO  ·  CONCERT PROPOSAL  ·  JULY 11 2026  ·  WARSAW  ·  CONFIDENTIAL',
+    footer:'X POP LATINO  ·  CONCERT PROPOSAL  ·  PRIVATE OFFER  ·  CONFIDENTIAL',
   },
 
   es: {
     gate:      { label:'PRIVADO · OFERTA DE CONCIERTO', placeholder:'Código de acceso', enter:'ENTRAR', error:'Código de acceso incorrecto' },
     nav:       { back:'← ANIELSOMEILLAN.COM', badge:'PRIVADO · CONFIDENCIAL' },
-    hero:      { top:'OFERTA DE CONCIERTO · PRIVADA', date:'11 DE JULIO, 2026  ·  VARSOVIA' },
+    hero:      { top:'OFERTA DE CONCIERTO · PRIVADA', date:'MÚSICA CUBANA EN VIVO  ·  SHOW PRIVADO' },
     marquee:   'SON CUBANO  ·  BOLERO  ·  MAMBO  ·  CHA-CHÁ-CHÁ  ·  GUARACHA  ·  3 SETS  ·  40 MIN POR SET',
     glance:    {
       title: 'El Evento en Resumen',
@@ -124,7 +124,7 @@ const LOCALES = {
       live2:  'X Pop Latino — Concierto',
     },
     programme: {
-      label:'El Programa', title:'11 DE JULIO, 2026 · VARSOVIA', subtitle:'CLÁSICOS CUBANOS',
+      label:'El Programa', title:'REPERTORIO COMPLETO', subtitle:'CLÁSICOS CUBANOS',
       alsoLabel:'TAMBIÉN DISPONIBLE',
       alsoText:'Noche homenaje al Buena Vista Social Club · Programa dedicado a Celia Cruz · Noche del Bolero Cubano (formato íntimo) · Selecciones temáticas personalizadas a pedido',
     },
@@ -149,17 +149,17 @@ const LOCALES = {
     },
     booking: {
       title:'LISTOS PARA CONFIRMAR',
-      body:'11 de julio, 2026 · Varsovia.\nContacta a Aniel directamente para confirmar disponibilidad y asegurar la fecha.',
+      body:'Contacta a Aniel directamente para verificar disponibilidad y asegurar tu fecha.',
       labels:['Artista y Director','Email','Teléfono / WhatsApp','Sitio web','Instagram','Contacto del Evento'],
       email:'ENVIAR EMAIL', call:'LLAMAR / WHATSAPP',
     },
-    footer:'X POP LATINO  ·  OFERTA DE CONCIERTO  ·  11 JULIO 2026  ·  VARSOVIA  ·  CONFIDENCIAL',
+    footer:'X POP LATINO  ·  OFERTA DE CONCIERTO  ·  OFERTA PRIVADA  ·  CONFIDENCIAL',
   },
 
   pt: {
     gate:      { label:'PRIVADO · OFERTA DE CONCERTO', placeholder:'Código de acesso', enter:'ENTRAR', error:'Código de acesso incorreto' },
     nav:       { back:'← ANIELSOMEILLAN.COM', badge:'PRIVADO · CONFIDENCIAL' },
-    hero:      { top:'OFERTA DE CONCERTO · PRIVADA', date:'11 DE JULHO, 2026  ·  VARSÓVIA' },
+    hero:      { top:'OFERTA DE CONCERTO · PRIVADA', date:'MÚSICA CUBANA AO VIVO  ·  SHOW PRIVADO' },
     marquee:   'SON CUBANO  ·  BOLERO  ·  MAMBO  ·  CHA-CHÁ-CHÁ  ·  GUARACHA  ·  3 SETS  ·  40 MIN POR SET',
     glance:    {
       title: 'O Evento em Resumo',
@@ -195,7 +195,7 @@ const LOCALES = {
       live2:  'X Pop Latino — Concerto',
     },
     programme: {
-      label:'O Programa', title:'11 DE JULHO, 2026 · VARSÓVIA', subtitle:'CLÁSSICOS CUBANOS',
+      label:'O Programa', title:'REPERTÓRIO COMPLETO', subtitle:'CLÁSSICOS CUBANOS',
       alsoLabel:'TAMBÉM DISPONÍVEL',
       alsoText:'Noite tributo ao Buena Vista Social Club · Programa dedicado a Celia Cruz · Noite do Bolero Cubano (formato íntimo) · Seleções temáticas personalizadas mediante pedido',
     },
@@ -220,17 +220,17 @@ const LOCALES = {
     },
     booking: {
       title:'PRONTO PARA CONFIRMAR',
-      body:'11 de julho, 2026 · Varsóvia.\nContacte Aniel diretamente para confirmar disponibilidade e garantir a data.',
+      body:'Contacte Aniel diretamente para verificar disponibilidade e garantir a sua data.',
       labels:['Artista e Diretor','E-mail','Telefone / WhatsApp','Site','Instagram','Contacto do Evento'],
       email:'ENVIAR EMAIL', call:'LIGAR / WHATSAPP',
     },
-    footer:'X POP LATINO  ·  OFERTA DE CONCERTO  ·  11 JULHO 2026  ·  VARSÓVIA  ·  CONFIDENCIAL',
+    footer:'X POP LATINO  ·  OFERTA DE CONCERTO  ·  OFERTA PRIVADA  ·  CONFIDENCIAL',
   },
 
   pl: {
     gate:      { label:'PRYWATNE · OFERTA KONCERTOWA', placeholder:'Kod dostępu', enter:'WEJDŹ', error:'Nieprawidłowy kod dostępu' },
     nav:       { back:'← ANIELSOMEILLAN.COM', badge:'PRYWATNE · POUFNE' },
-    hero:      { top:'OFERTA KONCERTOWA · PRYWATNA', date:'11 LIPCA 2026  ·  WARSZAWA' },
+    hero:      { top:'OFERTA KONCERTOWA · PRYWATNA', date:'MUZYKA KUBAŃSKA NA ŻYWO  ·  SHOW PRYWATNY' },
     marquee:   'SON CUBANO  ·  BOLERO  ·  MAMBO  ·  CHA-CHÁ-CHÁ  ·  GUARACHA  ·  3 SETY  ·  40 MIN KAŻDY',
     glance:    {
       title: 'Wydarzenie w Skrócie',
@@ -266,7 +266,7 @@ const LOCALES = {
       live2:  'X Pop Latino — Koncert',
     },
     programme: {
-      label:'Program', title:'11 LIPCA 2026 · WARSZAWA', subtitle:'KUBAŃSKIE KLASYKI',
+      label:'Program', title:'PEŁNY REPERTUAR', subtitle:'KUBAŃSKIE KLASYKI',
       alsoLabel:'DOSTĘPNE RÓWNIEŻ',
       alsoText:'Wieczór hołdu dla Buena Vista Social Club · Program poświęcony Celii Cruz · Kubańska Noc Bolero (format kameralny) · Niestandardowe wybory tematyczne na zamówienie',
     },
@@ -291,11 +291,11 @@ const LOCALES = {
     },
     booking: {
       title:'GOTOWI DO POTWIERDZENIA',
-      body:'11 lipca 2026 · Warszawa.\nSkontaktuj się bezpośrednio z Anielem, aby potwierdzić dostępność i zarezerwować termin.',
+      body:'Skontaktuj się bezpośrednio z Anielem, aby sprawdzić dostępność i zarezerwować swój termin.',
       labels:['Artysta i Dyrektor','Email','Telefon / WhatsApp','Strona www','Instagram','Kontakt Organizacyjny'],
       email:'WYŚLIJ EMAIL', call:'ZADZWOŃ / WHATSAPP',
     },
-    footer:'X POP LATINO  ·  OFERTA KONCERTOWA  ·  11 LIPCA 2026  ·  WARSZAWA  ·  POUFNE',
+    footer:'X POP LATINO  ·  OFERTA KONCERTOWA  ·  OFERTA PRYWATNA  ·  POUFNE',
   },
 }
 
@@ -488,9 +488,9 @@ export default function XPopOffer({ locale: localeProp }) {
   return (
     <>
       <Head>
-        <title>X Pop Latino — Concert Offer · Warsaw July 11, 2026</title>
+        <title>X Pop Latino — Private Concert Offer</title>
         <meta name="robots" content="noindex, nofollow" />
-        <meta name="description" content="Private concert offer — X Pop Latino, Warsaw, July 11 2026." />
+        <meta name="description" content="Private concert offer — X Pop Latino, live Cuban music show." />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
         <style>{`
