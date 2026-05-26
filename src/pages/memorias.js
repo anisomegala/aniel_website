@@ -89,6 +89,117 @@ function Starburst({ children, size=160, bg=C.terra, color=C.paper }) {
   )
 }
 
+// ─── AUDIO PREVIEW ────────────────────────────────────
+const PREVIEW_TRACKS = [
+  { title:'Romance Social',  trackNum:'V',    src:'/audio/romance-social.mp3' },
+  { title:'Vienes y te Vas', trackNum:'VIII', src:'/audio/vienes-y-te-vas.mp3' },
+]
+
+function AudioPreview() {
+  const audioRef   = useRef(null)
+  const playingRef = useRef(false)
+  const [activeIdx, setActiveIdx]     = useState(0)
+  const [playing, setPlaying]         = useState(false)
+  const [progress, setProgress]       = useState(0)
+  const [currentTime, setCurrentTime] = useState(0)
+  const [duration, setDuration]       = useState(0)
+
+  useEffect(() => { playingRef.current = playing }, [playing])
+
+  useEffect(() => {
+    const el = audioRef.current
+    if (!el) return
+    el.src = PREVIEW_TRACKS[activeIdx].src
+    el.load()
+    setProgress(0); setCurrentTime(0)
+    if (playingRef.current) el.play().catch(() => {})
+  }, [activeIdx])
+
+  const toggle = () => {
+    const el = audioRef.current
+    if (!el) return
+    playing ? el.pause() : el.play().catch(() => {})
+  }
+
+  const seek = (e) => {
+    const el = audioRef.current
+    if (!el || !el.duration) return
+    const r = e.currentTarget.getBoundingClientRect()
+    el.currentTime = Math.max(0, Math.min(1, (e.clientX - r.left) / r.width)) * el.duration
+  }
+
+  const fmt = s => {
+    if (!s || isNaN(s)) return '0:00'
+    return `${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,'0')}`
+  }
+
+  return (
+    <div>
+      <audio ref={audioRef}
+        onPlay={() => setPlaying(true)}
+        onPause={() => setPlaying(false)}
+        onEnded={() => { setPlaying(false); setProgress(0); setCurrentTime(0) }}
+        onTimeUpdate={() => {
+          const el = audioRef.current
+          if (!el || !el.duration) return
+          setProgress(el.currentTime / el.duration)
+          setCurrentTime(el.currentTime)
+        }}
+        onLoadedMetadata={() => { const el = audioRef.current; if (el) setDuration(el.duration) }}
+      />
+
+      {/* Track selector */}
+      <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'0.75rem', marginBottom:'1.75rem' }}>
+        {PREVIEW_TRACKS.map((tr, i) => (
+          <button key={tr.title}
+            onClick={() => i === activeIdx ? toggle() : setActiveIdx(i)}
+            style={{
+              background: i===activeIdx ? 'rgba(196,82,26,0.15)' : 'rgba(242,232,212,0.04)',
+              border:`1px solid ${i===activeIdx ? C.terra : 'rgba(242,232,212,0.1)'}`,
+              padding:'1rem 1.25rem', cursor:'pointer', textAlign:'left', transition:'all 0.2s'
+            }}>
+            <div style={{ fontFamily:"'Alfa Slab One',serif", fontSize:'0.5rem', letterSpacing:'0.3em',
+              color: i===activeIdx ? C.terra : 'rgba(242,232,212,0.35)', marginBottom:6 }}>
+              TRACK {tr.trackNum}
+            </div>
+            <div style={{ fontFamily:"'Alfa Slab One',serif",
+              fontSize:'clamp(0.9rem,2.5vw,1.25rem)', color: i===activeIdx ? C.paper : 'rgba(242,232,212,0.45)',
+              letterSpacing:'0.03em', lineHeight:1.1 }}>{tr.title}</div>
+          </button>
+        ))}
+      </div>
+
+      {/* Controls */}
+      <div style={{ display:'flex', alignItems:'center', gap:'1.25rem' }}>
+        <button onClick={toggle} style={{
+          width:52, height:52, borderRadius:'50%', flexShrink:0,
+          background: playing ? 'transparent' : C.terra,
+          border:`2px solid ${C.terra}`, cursor:'pointer',
+          display:'flex', alignItems:'center', justifyContent:'center', transition:'all 0.15s'
+        }}>
+          {playing
+            ? <svg width="14" height="16" viewBox="0 0 14 16" fill={C.terra}><rect x="0" y="0" width="4" height="16" rx="1"/><rect x="10" y="0" width="4" height="16" rx="1"/></svg>
+            : <svg width="14" height="16" viewBox="0 0 14 16" fill={C.paper}><polygon points="2,0 14,8 2,16"/></svg>
+          }
+        </button>
+        <div style={{ flex:1 }}>
+          <div onClick={seek} style={{ height:3, background:'rgba(242,232,212,0.12)',
+            cursor:'pointer', position:'relative', marginBottom:8 }}>
+            <div style={{ position:'absolute', left:0, top:0, height:'100%',
+              width:`${progress*100}%`, background:C.terra, transition:'width 0.1s linear' }} />
+          </div>
+          <div style={{ display:'flex', justifyContent:'space-between' }}>
+            <span style={{ fontFamily:"'Alfa Slab One',serif", fontSize:'0.5rem',
+              letterSpacing:'0.15em', color:'rgba(242,232,212,0.4)' }}>{fmt(currentTime)}</span>
+            <span style={{ fontFamily:"'Alfa Slab One',serif", fontSize:'0.5rem',
+              letterSpacing:'0.15em', color:'rgba(242,232,212,0.25)' }}>{fmt(duration)}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 // ─── LOCALE SWITCHER ──────────────────────────────────
 const LANG_LABELS = { en:'EN', es:'ES', pt:'PT', pl:'PL' }
 
@@ -510,6 +621,38 @@ export default function Memorias({ locale: localeProp }) {
                     </div>
                   </motion.div>
                 ))}
+              </motion.div>
+            </Scene>
+          </div>
+        </section>
+
+        {/* ════════════════════════════════════════════
+            AUDIO PREVIEW — Private
+        ════════════════════════════════════════════ */}
+        <section id="preview" style={{ background:'#0d0705', padding:'5.5rem 2rem' }}>
+          <div style={{ maxWidth:700, margin:'0 auto' }}>
+            <Scene>
+              <motion.div variants={fadeUp} style={{ display:'flex', alignItems:'flex-start',
+                justifyContent:'space-between', flexWrap:'wrap', gap:'1rem', marginBottom:'2.5rem' }}>
+                <div>
+                  <div style={{ fontFamily:"'Alfa Slab One',serif", fontSize:'0.55rem',
+                    letterSpacing:'0.4em', color:C.terra, marginBottom:8 }}>PRIVATE PREVIEW</div>
+                  <div style={{ fontFamily:"'Alfa Slab One',serif",
+                    fontSize:'clamp(2rem,5vw,3.5rem)', color:C.paper, letterSpacing:'0.04em', lineHeight:1 }}>LISTEN.</div>
+                </div>
+                <div style={{ fontFamily:"'Alfa Slab One',serif", fontSize:'0.5rem',
+                  letterSpacing:'0.2em', color:'rgba(242,232,212,0.2)', textAlign:'right', lineHeight:2 }}>
+                  RAW MIX<br/>STUDIO OJALA<br/>HABANA · 2026
+                </div>
+              </motion.div>
+              <Rule color={C.terra} my="0" />
+              <motion.div variants={fadeUp} style={{ marginTop:'2.5rem' }}>
+                <AudioPreview />
+              </motion.div>
+              <motion.div variants={fadeUp} style={{ marginTop:'2rem',
+                fontFamily:"'Alfa Slab One',serif", fontSize:'0.45rem', letterSpacing:'0.25em',
+                color:'rgba(242,232,212,0.18)', textAlign:'center', lineHeight:2 }}>
+                CONFIDENTIAL — PRIVATE INVESTOR PREVIEW — NOT FOR PUBLIC DISTRIBUTION
               </motion.div>
             </Scene>
           </div>
