@@ -405,6 +405,12 @@ export default function Memorias({ locale: localeProp }) {
                   textDecoration:'none', display:'inline-block' }}>
                 {t.ask.tiers}
               </a>
+              <a href="/EPK-Memorias-de-Bras-Cubas.pdf" download
+                style={{ fontFamily:"'Alfa Slab One',serif", fontSize:'0.65rem', letterSpacing:'0.2em',
+                  padding:'0.85rem 2rem', border:`1px solid rgba(196,82,26,0.4)`, color:'rgba(196,82,26,0.6)',
+                  textDecoration:'none', display:'inline-block' }}>
+                DOWNLOAD EPK ↓
+              </a>
             </div>
           </div>
         </section>
