@@ -808,7 +808,7 @@ export default function Memorias({ locale: localeProp }) {
       </div>
 
       {/* Ambient audio — Romance Social, scroll-triggered */}
-      <audio ref={ambientRef} src="/audio/romance-social.mp3" loop
+      <audio ref={ambientRef} src="/audio/romance-social.mp3" preload="none" loop
         onPlay={() => setAmbientPlaying(true)}
         onPause={() => setAmbientPlaying(false)} />
 
