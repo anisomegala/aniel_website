@@ -252,23 +252,34 @@ export default function Memorias({ locale: localeProp }) {
 
   useEffect(() => { const tm = setTimeout(()=>setGone(true), 2400); return ()=>clearTimeout(tm) }, [])
 
-  // Ambient: start on first scroll after intro, fade to silence by 600px
+  // Ambient: start on first user gesture (click/touch), volume fades on scroll past 600px
   useEffect(() => {
     if (!gone) return
     const el = ambientRef.current
     if (!el) return
+
+    const startAmbient = () => {
+      if (ambientStarted.current) return
+      ambientStarted.current = true
+      const vol = Math.max(0, 1 - window.scrollY / 600) * 0.2
+      if (vol > 0) { el.volume = vol; el.play().catch(() => {}) }
+    }
+
     const onScroll = () => {
-      if (!ambientStarted.current) {
-        ambientStarted.current = true
-        el.volume = 0.2
-        el.play().catch(() => {})
-      }
+      startAmbient() // also works in Firefox; no-op if already started or blocked
       const vol = Math.max(0, 1 - window.scrollY / 600) * 0.2
       el.volume = vol
       if (vol === 0 && !el.paused) el.pause()
     }
+
+    document.addEventListener('click', startAmbient)
+    document.addEventListener('touchstart', startAmbient)
     window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    return () => {
+      document.removeEventListener('click', startAmbient)
+      document.removeEventListener('touchstart', startAmbient)
+      window.removeEventListener('scroll', onScroll)
+    }
   }, [gone])
 
   return (
