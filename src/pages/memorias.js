@@ -95,7 +95,7 @@ const PREVIEW_TRACKS = [
   { title:'Vienes y te Vas', trackNum:'VIII', src:'/audio/vienes-y-te-vas.mp3' },
 ]
 
-function AudioPreview() {
+function AudioPreview({ ambientRef }) {
   const audioRef   = useRef(null)
   const playingRef = useRef(false)
   const [activeIdx, setActiveIdx]     = useState(0)
@@ -118,7 +118,12 @@ function AudioPreview() {
   const toggle = () => {
     const el = audioRef.current
     if (!el) return
-    playing ? el.pause() : el.play().catch(() => {})
+    if (playing) {
+      el.pause()
+    } else {
+      if (ambientRef?.current) ambientRef.current.pause()
+      el.play().catch(() => {})
+    }
   }
 
   const seek = (e) => {
@@ -240,9 +245,31 @@ export default function Memorias({ locale: localeProp }) {
   const router       = useRouter()
   const locale       = router.locale || localeProp || 'en'
   const t            = LOCALES[locale] || LOCALES.en
-  const [gone, setGone] = useState(false)
+  const [gone, setGone]               = useState(false)
+  const [ambientPlaying, setAmbientPlaying] = useState(false)
+  const ambientRef     = useRef(null)
+  const ambientStarted = useRef(false)
 
   useEffect(() => { const tm = setTimeout(()=>setGone(true), 2400); return ()=>clearTimeout(tm) }, [])
+
+  // Ambient: start on first scroll after intro, fade to silence by 600px
+  useEffect(() => {
+    if (!gone) return
+    const el = ambientRef.current
+    if (!el) return
+    const onScroll = () => {
+      if (!ambientStarted.current) {
+        ambientStarted.current = true
+        el.volume = 0.2
+        el.play().catch(() => {})
+      }
+      const vol = Math.max(0, 1 - window.scrollY / 600) * 0.2
+      el.volume = vol
+      if (vol === 0 && !el.paused) el.pause()
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [gone])
 
   return (
     <>
@@ -281,6 +308,11 @@ export default function Memorias({ locale: localeProp }) {
             .tiers-grid{grid-template-columns:1fr!important}
             .tiers-grid .tier-reward{grid-column:unset}
           }
+          .epk-btn{font-family:'Alfa Slab One',serif;font-size:0.65rem;letter-spacing:0.2em;
+            padding:0.85rem 2rem;background:${C.ink};color:${C.paper};border:1px solid ${C.ink};
+            text-decoration:none;display:inline-block;cursor:pointer;
+            transition:background 0.15s,border-color 0.15s}
+          .epk-btn:hover{background:${C.terra};border-color:${C.terra}}
         `}</style>
       </Head>
 
@@ -405,10 +437,7 @@ export default function Memorias({ locale: localeProp }) {
                   textDecoration:'none', display:'inline-block' }}>
                 {t.ask.tiers}
               </a>
-              <a href="/EPK-Memorias-de-Bras-Cubas.pdf" download
-                style={{ fontFamily:"'Alfa Slab One',serif", fontSize:'0.65rem', letterSpacing:'0.2em',
-                  padding:'0.85rem 2rem', border:`1px solid rgba(196,82,26,0.4)`, color:'rgba(196,82,26,0.6)',
-                  textDecoration:'none', display:'inline-block' }}>
+              <a href="/EPK-Memorias-de-Bras-Cubas.pdf" download className="epk-btn">
                 DOWNLOAD EPK ↓
               </a>
             </div>
@@ -653,7 +682,7 @@ export default function Memorias({ locale: localeProp }) {
               </motion.div>
               <Rule color={C.terra} my="0" />
               <motion.div variants={fadeUp} style={{ marginTop:'2.5rem' }}>
-                <AudioPreview />
+                <AudioPreview ambientRef={ambientRef} />
               </motion.div>
               <motion.div variants={fadeUp} style={{ marginTop:'2rem',
                 fontFamily:"'Alfa Slab One',serif", fontSize:'0.45rem', letterSpacing:'0.25em',
@@ -766,6 +795,21 @@ export default function Memorias({ locale: localeProp }) {
         </section>
 
       </div>
+
+      {/* Ambient audio — Romance Social, scroll-triggered */}
+      <audio ref={ambientRef} src="/audio/romance-social.mp3" loop
+        onPlay={() => setAmbientPlaying(true)}
+        onPause={() => setAmbientPlaying(false)} />
+
+      {/* Ambient indicator — bottom-right, click to stop */}
+      {ambientPlaying && (
+        <div onClick={() => { const el = ambientRef.current; if (el) { el.pause(); el.currentTime = 0; ambientStarted.current = false } }}
+          style={{ position:'fixed', bottom:'1.5rem', right:'1.5rem', zIndex:800,
+            display:'flex', alignItems:'center', gap:'0.4rem', cursor:'pointer' }}>
+          <span className="rec" style={{ display:'block', width:5, height:5, borderRadius:'50%', background:'rgba(196,82,26,0.55)' }} />
+          <span style={{ fontFamily:"'Alfa Slab One',serif", fontSize:'0.45rem', letterSpacing:'0.2em', color:'rgba(196,82,26,0.55)' }}>♪</span>
+        </div>
+      )}
     </>
   )
 }
