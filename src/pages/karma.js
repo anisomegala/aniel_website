@@ -387,12 +387,47 @@ export default function Karma() {
           color={K.dark} bg={K.gold} />
 
         {/* ════════════════════════════════════════════
+            S3.5 — LIVE PERFORMANCE VIDEOS
+        ════════════════════════════════════════════ */}
+        <section style={{ background:K.cream, padding:'7rem 2rem' }}>
+          <div style={{ maxWidth:1000, margin:'0 auto' }}>
+            <Scene>
+              <Tag n="03" label="Live Performance" />
+              <Rule color={K.gold} />
+              <motion.div variants={fadeUp} style={{ display:'grid', gap:'2rem',
+                gridTemplateColumns:'repeat(auto-fit,minmax(320px,1fr))' }}>
+                {[
+                  { id:'KgXOH8UFUzI', title:'PAS Trio — Patrick Dobosz, Aniel Someillan & Shahar Elatan' },
+                  { id:'e0pLBzbEkC0', title:'Sandunga Mondongo Gandinga — PAS Trio' },
+                ].map(v=>(
+                  <motion.div key={v.id} variants={fadeUp}>
+                    <div style={{ position:'relative', width:'100%', aspectRatio:'16/9', background:K.dark }}>
+                      <iframe
+                        src={`https://www.youtube.com/embed/${v.id}`}
+                        title={v.title}
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                        style={{ position:'absolute', inset:0, width:'100%', height:'100%', border:'none' }}
+                      />
+                    </div>
+                    <div style={{ fontSize:'0.85rem', color:'rgba(8,5,4,0.6)', marginTop:'0.75rem', fontStyle:'italic' }}>
+                      {v.title}
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </Scene>
+          </div>
+        </section>
+
+        {/* ════════════════════════════════════════════
             S4 — THE MUSICIANS
         ════════════════════════════════════════════ */}
         <section style={{ background:K.dark, padding:'7rem 2rem' }}>
           <div style={{ maxWidth:1100, margin:'0 auto' }}>
             <Scene>
-              <Tag n="03" label="Three Worlds. One Sound." light />
+              <Tag n="04" label="Three Worlds. One Sound." light />
               <Rule />
             </Scene>
             <div className="musician-grid">
@@ -428,7 +463,7 @@ export default function Karma() {
         <section style={{ background:K.gold, padding:'6rem 2rem', overflow:'hidden' }}>
           <div style={{ maxWidth:900, margin:'0 auto' }}>
             <Scene>
-              <Tag n="04" label="Key Credentials" light />
+              <Tag n="05" label="Key Credentials" light />
               <motion.div variants={fadeUp} style={{ fontFamily:"'Alfa Slab One',serif",
                 fontSize:'clamp(2rem,6vw,3.5rem)', color:K.dark, lineHeight:1.1, marginBottom:'2.5rem' }}>
                 A Pedigree Built<br/>on Stage
@@ -460,7 +495,7 @@ export default function Karma() {
           <div style={{ position:'absolute', inset:0, zIndex:1, background:'rgba(8,5,4,0.8)' }} />
           <div style={{ position:'relative', zIndex:2, maxWidth:700, margin:'0 auto', textAlign:'center' }}>
             <Scene>
-              <Tag n="05" label="Get In Touch" light />
+              <Tag n="06" label="Get In Touch" light />
               <motion.div variants={wipe} style={{ height:1.5, background:K.gold, margin:'0 auto 2.5rem', originX:0.5, maxWidth:300 }} />
               <motion.div variants={stamp} style={{ fontFamily:"'Alfa Slab One',serif",
                 fontSize:'clamp(2rem,6vw,4rem)', color:K.off, letterSpacing:'0.06em', marginBottom:'3rem' }}>
