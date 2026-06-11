@@ -81,14 +81,14 @@ const PROGRAMME = [
 
 const MUSICIANS = [
   {
-    img:'/images/karma/aniel-someillan.jpg', objectPosition:'center 25%',
+    img:'/images/karma/aniel-someillan.jpg', objectPosition:'65% 40%',
     instrument:'DOUBLE BASS', name:'Aniel Someillan', origin:'CUBA · POLAND',
     bio:"Cuban-born double bassist and composer based in Warsaw. A graduate of the Amadeo Roldán Music Conservatory in Havana, Someillan has built an international career at the crossroads of Afro-Cuban jazz, son cubano and contemporary improvised music.",
     bio2:"MJAF laureate at the 41st Festival Internacional Jazz Plaza, Havana 2026 — performing alongside Rodney Barreto, Yilian Cañizares, Harold López Nussa and Héctor Quintana. Winner, Jazz Junior Competition 2022. Montreux Jazz Academy 2023. Stage credits include Giovanni Hidalgo, Daymé Arocena, Shabaka Hutchings, Amaro Freitas, Shai Maestro and Roberto Carcassés.",
     badges:['JAZZ PLAZA 2026','MONTREUX 2023','JAZZ JUNIOR 2022'],
   },
   {
-    img:'/images/karma/shahar-elatan.jpg', objectPosition:'center 15%',
+    img:'/images/karma/shahar-elatan.jpg', objectPosition:'53% 22%',
     instrument:'GUITAR', name:'Shahar Elatan', origin:'ISRAEL · INTERNATIONAL',
     bio:"Born in Jerusalem in 1993 into a family of musicians, Shahar Elatan began his guitar studies at the age of six under his father, guitarist Zohar Elnatan. At seventeen, he moved to New York to study under masters including Peter Bernstein, Lage Lund, Gilad Hekselman and Ari Hoenig.",
     bio2:"A laureate of the Israeli-American Cultural Foundation and winner of the Rimon School Jazz Competition, Elatan has performed at the IASJ conference in Graz and released his debut album One World (Razdaz Recordz, 2016) — co-produced with bassist Avishai Cohen. Active across New York, Berlin and Tel Aviv, his playing bridges jazz tradition with Mediterranean lyricism and world music colour.",
