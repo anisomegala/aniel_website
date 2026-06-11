@@ -431,8 +431,8 @@ export default function Karma() {
               <Rule />
             </Scene>
             <Scene>
-              <motion.div variants={fadeUp} style={{ position:'relative', width:'100%', maxWidth:560,
-                aspectRatio:'4/5', margin:'0 auto 4rem', overflow:'hidden' }}>
+              <motion.div variants={fadeUp} style={{ position:'relative', width:'100%', maxWidth:900,
+                aspectRatio:'1080/702', margin:'0 auto 4rem', overflow:'hidden' }}>
                 <Image src="/images/karma/karma-trio-stage.jpg" alt="Karma Trio — live on stage"
                   fill style={{ objectFit:'cover', filter:'sepia(15%) contrast(1.05)' }} />
               </motion.div>
