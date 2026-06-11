@@ -4,7 +4,12 @@ module.exports = {
   generateRobotsTxt: true,
   sitemapSize: 7000,
   generateIndexSitemap: false,
-  exclude: ['/api/*', '/server-sitemap.xml', '/xpop', '/*/xpop'],
+  exclude: [
+    '/api/*', '/server-sitemap.xml',
+    '/xpop', '/*/xpop',
+    '/karma', '/karma/*', '/*/karma', '/*/karma/*',
+    '/memorias', '/*/memorias',
+  ],
   alternateRefs: [
     { href: 'https://anielsomeillan.com',    hreflang: 'en' },
     { href: 'https://anielsomeillan.com/es', hreflang: 'es' },

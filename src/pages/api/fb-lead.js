@@ -49,15 +49,6 @@ export default async function handler(req, res) {
       pass: process.env.EMAIL_PASS,
     },
   });
-  // Add this temporarily to check your connection
-  transporter.verify(function (error, success) {
-    if (error) {
-      console.log("❌ iCloud Connection Error:", error);
-    } else {
-      console.log("✅ iCloud is ready to send emails!");
-    }
-  });
-
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to: process.env.EMAIL_RECEIVER || process.env.EMAIL_USER,

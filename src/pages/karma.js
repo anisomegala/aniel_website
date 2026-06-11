@@ -430,14 +430,16 @@ export default function Karma() {
               <Tag n="04" label="Three Worlds. One Sound." light />
               <Rule />
             </Scene>
+            <Scene>
+              <motion.div variants={fadeUp} style={{ position:'relative', width:'100%', maxWidth:560,
+                aspectRatio:'4/5', margin:'0 auto 4rem', overflow:'hidden' }}>
+                <Image src="/images/karma/karma-trio-stage.jpg" alt="Karma Trio — live on stage"
+                  fill style={{ objectFit:'cover', filter:'sepia(15%) contrast(1.05)' }} />
+              </motion.div>
+            </Scene>
             <div className="musician-grid">
               {MUSICIANS.map(m=>(
                 <Scene key={m.name}>
-                  <motion.div variants={fadeUp} style={{ position:'relative', width:'100%', aspectRatio:'4/5',
-                    marginBottom:'1.25rem', overflow:'hidden' }}>
-                    <Image src={m.img} alt={m.name} fill
-                      style={{ objectFit:'cover', objectPosition:m.objectPosition, filter:'sepia(15%) contrast(1.05)' }} />
-                  </motion.div>
                   <motion.div variants={fadeUp} style={{ fontFamily:"'Alfa Slab One',serif", fontSize:'0.6rem',
                     letterSpacing:'0.3em', color:K.gold, marginBottom:'0.5rem' }}>{m.instrument}</motion.div>
                   <motion.div variants={stamp} style={{ fontFamily:"'Alfa Slab One',serif", fontSize:'clamp(1.4rem,3.5vw,2rem)',
