@@ -62,6 +62,29 @@ function Tag({ n, label, light=false }) {
   )
 }
 
+function TierGroupLabel({ children, first=false }) {
+  return (
+    <motion.div variants={fadeUp} style={{ fontFamily:"'Alfa Slab One',serif", fontSize:'0.55rem',
+      letterSpacing:'0.3em', color:C.terra, opacity:0.8, padding: first ? '0 0.75rem 0.6rem' : '1.5rem 0.75rem 0.6rem' }}>
+      {children}
+    </motion.div>
+  )
+}
+
+function TierRow({ tier, i, accent=C.terra, tint='rgba(196,82,26,0.06)' }) {
+  return (
+    <motion.div variants={fadeUp} className="tiers-grid" style={{ display:'grid',
+      gridTemplateColumns:'170px 130px 1fr', gap:'0 1.5rem',
+      padding:'0.85rem 0.75rem', alignItems:'baseline',
+      background: i%2===0 ? 'transparent' : tint,
+      borderBottom:`1px solid rgba(196,82,26,0.12)` }}>
+      <span style={{ fontFamily:"'Alfa Slab One',serif", fontSize:'0.7rem', color:accent, letterSpacing:'0.1em' }}>{tier.tier}</span>
+      <span style={{ fontWeight:600, fontSize:'1rem', color:C.ink }}>{tier.amount}</span>
+      <span className="tier-reward" style={{ fontSize:'0.92rem', color:'rgba(26,14,5,0.65)' }}>{tier.reward}</span>
+    </motion.div>
+  )
+}
+
 function Marquee({ text, color=C.terra, bg='transparent' }) {
   const rep = Array(8).fill(text).join('  ◆  ')
   return (
@@ -247,10 +270,23 @@ export default function Memorias({ locale: localeProp }) {
   const t            = LOCALES[locale] || LOCALES.en
   const [gone, setGone]               = useState(false)
   const [ambientPlaying, setAmbientPlaying] = useState(false)
+  const [showSticky, setShowSticky]   = useState(false)
   const ambientRef     = useRef(null)
   const ambientStarted = useRef(false)
 
   useEffect(() => { const tm = setTimeout(()=>setGone(true), 2400); return ()=>clearTimeout(tm) }, [])
+
+  // Sticky CTA bar: appears once the hero is scrolled past, hides near the closing section
+  useEffect(() => {
+    const onScroll = () => {
+      const pastHero = window.scrollY > window.innerHeight * 0.9
+      const nearEnd  = window.scrollY + window.innerHeight > document.documentElement.scrollHeight - 400
+      setShowSticky(pastHero && !nearEnd)
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    onScroll()
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   // Ambient: start on first user gesture (click/touch), volume fades on scroll past 600px
   useEffect(() => {
@@ -314,6 +350,8 @@ export default function Memorias({ locale: localeProp }) {
             .tiers-grid{row-gap:0.25rem!important}
             .ask-grid{grid-template-columns:1fr!important}
             .ask-grid>div{border-left:none!important}
+            .sticky-cta{gap:0.4rem!important;padding:0.6rem 0.75rem!important}
+            .sticky-cta>a{flex:1 1 auto;text-align:center;padding:0.6rem 0.5rem!important;font-size:0.5rem!important}
           }
           @media(max-width:400px){
             .tiers-grid{grid-template-columns:1fr!important}
@@ -736,17 +774,17 @@ export default function Memorias({ locale: localeProp }) {
                   </Starburst>
                 </div>
               </motion.div>
+              <TierGroupLabel first>{t.s8.supportLabel}</TierGroupLabel>
               <motion.div variants={sg(0.08)}>
-                {t.s8.tiers.map((tier,i)=>(
-                  <motion.div key={tier.tier} variants={fadeUp} className="tiers-grid" style={{ display:'grid',
-                    gridTemplateColumns:'170px 130px 1fr', gap:'0 1.5rem',
-                    padding:'0.85rem 0.75rem', alignItems:'baseline',
-                    background: i%2===0 ? 'transparent' : 'rgba(196,82,26,0.06)',
-                    borderBottom:`1px solid rgba(196,82,26,0.12)` }}>
-                    <span style={{ fontFamily:"'Alfa Slab One',serif", fontSize:'0.7rem', color:C.terra, letterSpacing:'0.1em' }}>{tier.tier}</span>
-                    <span style={{ fontWeight:600, fontSize:'1rem', color:C.ink }}>{tier.amount}</span>
-                    <span className="tier-reward" style={{ fontSize:'0.92rem', color:'rgba(26,14,5,0.65)' }}>{tier.reward}</span>
-                  </motion.div>
+                {t.s8.tiersSupport.map((tier,i)=>(
+                  <TierRow key={tier.tier} tier={tier} i={i} />
+                ))}
+              </motion.div>
+
+              <TierGroupLabel>{t.s8.investmentLabel}</TierGroupLabel>
+              <motion.div variants={sg(0.08)}>
+                {t.s8.tiersInvestment.map((tier,i)=>(
+                  <TierRow key={tier.tier} tier={tier} i={i} accent={C.green} tint="rgba(45,80,22,0.08)" />
                 ))}
               </motion.div>
               <motion.div variants={fadeUp} style={{ marginTop:'2rem', padding:'1.25rem 1.5rem',
@@ -815,12 +853,42 @@ export default function Memorias({ locale: localeProp }) {
       {/* Ambient indicator — bottom-right, click to stop */}
       {ambientPlaying && (
         <div onClick={() => { const el = ambientRef.current; if (el) { el.pause(); el.currentTime = 0; ambientStarted.current = false } }}
-          style={{ position:'fixed', bottom:'1.5rem', right:'1.5rem', zIndex:800,
-            display:'flex', alignItems:'center', gap:'0.4rem', cursor:'pointer' }}>
+          style={{ position:'fixed', bottom: showSticky ? '4.75rem' : '1.5rem', right:'1.5rem', zIndex:800,
+            display:'flex', alignItems:'center', gap:'0.4rem', cursor:'pointer', transition:'bottom 0.2s' }}>
           <span className="rec" style={{ display:'block', width:5, height:5, borderRadius:'50%', background:'rgba(196,82,26,0.55)' }} />
           <span style={{ fontFamily:"'Alfa Slab One',serif", fontSize:'0.45rem', letterSpacing:'0.2em', color:'rgba(196,82,26,0.55)' }}>♪</span>
         </div>
       )}
+
+      {/* ── STICKY CTA BAR ──────────────────────────── */}
+      <AnimatePresence>
+        {showSticky && (
+          <motion.div className="sticky-cta"
+            initial={{ y:80, opacity:0 }} animate={{ y:0, opacity:1 }} exit={{ y:80, opacity:0 }}
+            transition={{ duration:0.25, ease:'easeOut' }}
+            style={{ position:'fixed', bottom:0, left:0, right:0, zIndex:850,
+              background:C.dark, borderTop:`1px solid ${C.terra}`,
+              padding:'0.75rem 1.25rem', display:'flex', alignItems:'center',
+              justifyContent:'center', gap:'0.75rem', flexWrap:'wrap' }}>
+            <a href="#s8"
+              onClick={e => { e.preventDefault(); document.getElementById('s8')?.scrollIntoView({behavior:'smooth'}) }}
+              style={{ fontFamily:"'Alfa Slab One',serif", fontSize:'0.6rem', letterSpacing:'0.15em',
+                padding:'0.7rem 1.25rem', border:`1px solid ${C.terra}`, color:C.terra,
+                textDecoration:'none', whiteSpace:'nowrap' }}>
+              {t.ask.tiers.replace(' ↓','')}
+            </a>
+            <a href="mailto:anielsomeillan@icloud.com"
+              style={{ fontFamily:"'Alfa Slab One',serif", fontSize:'0.6rem', letterSpacing:'0.15em',
+                padding:'0.7rem 1.5rem', background:C.terra, color:C.paper,
+                textDecoration:'none', whiteSpace:'nowrap' }}>
+              {t.ask.cta}
+            </a>
+            <a href="/EPK-Memorias-de-Bras-Cubas.pdf" download className="epk-btn" style={{ whiteSpace:'nowrap' }}>
+              EPK ↓
+            </a>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   )
 }

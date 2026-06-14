@@ -15,7 +15,11 @@ export default async function handler(req, res) {
   try {
     const response = await fetch(url);
     const data = await response.json();
-    
+
+    if (!response.ok) {
+      return res.status(502).json({ error: data.error?.message || "Calendar API error" });
+    }
+
     // Map the Google data to a clean format for your UI
     const shows = data.items?.map(event => ({
       id: event.id,

@@ -45,13 +45,13 @@ const Contact = () => {
             });
 
             if (response.ok) {
-                setStatus("Success! Your inquiry has been sent.");
+                setStatus({ type: 'success', text: t.contact.success });
                 e.target.reset();
             } else {
-                throw new Error("API Error");
+                setStatus({ type: 'error', text: t.contact.error });
             }
         } catch (err) {
-            setStatus("Message sent, but tracking encountered an error.");
+            setStatus({ type: 'error', text: t.contact.error });
         } finally {
             setIsSubmitting(false);
         }
@@ -101,7 +101,11 @@ const Contact = () => {
                                 ) : t.home.getInTouch}
                             </button>
                         </form>
-                        {status && <p className="mt-4 text-primary font-semibold">{status}</p>}
+                        {status && (
+                            <p className={`mt-4 font-semibold ${status.type === 'error' ? 'text-red-500' : 'text-primary'}`}>
+                                {status.text}
+                            </p>
+                        )}
                     </div>
                 </Layout>
             </main >

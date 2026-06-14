@@ -83,6 +83,7 @@ const ShowItem = ({ show, t }) => {
 export default function Shows() {
   const [shows, setShows] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   const router = useRouter();
   const { locale } = router;
 
@@ -91,11 +92,13 @@ export default function Shows() {
 
   useEffect(() => {
     fetch('/api/getShows')
-      .then(res => res.json())
-      .then(data => {
-        setShows(data);
-        setLoading(false);
-      });
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to fetch shows');
+        return res.json();
+      })
+      .then(data => setShows(data))
+      .catch(() => setError(true))
+      .finally(() => setLoading(false));
   }, []);
 
   const pageMeta = {
@@ -122,6 +125,8 @@ export default function Shows() {
         <div className="max-w-4xl mx-auto">
           {loading ? (
             <div className="animate-pulse text-center">{t.shows.syncing}</div>
+          ) : error ? (
+            <p className="text-center opacity-60">{t.shows.error}</p>
           ) : shows.length > 0 ? (
             shows.map(show => <ShowItem key={show.id} show={show} t={t} />)
           ) : (

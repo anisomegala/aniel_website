@@ -49,6 +49,7 @@ export default async function handler(req, res) {
       pass: process.env.EMAIL_PASS,
     },
   });
+
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to: process.env.EMAIL_RECEIVER || process.env.EMAIL_USER,
@@ -65,21 +66,28 @@ export default async function handler(req, res) {
     `,
   };
 
-  try {
-    // Fire both actions: Facebook CAPI and Email notification
-    const [fbResponse, mailResponse] = await Promise.all([
-      fetch(fbUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(eventData),
-      }),
-      transporter.sendMail(mailOptions)
-    ]);
+  // Fire both actions independently — a Facebook tracking failure must never
+  // mask whether the email (the actual inquiry) was delivered.
+  const [fbOutcome, mailOutcome] = await Promise.allSettled([
+    fetch(fbUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(eventData),
+    }),
+    transporter.sendMail(mailOptions),
+  ]);
 
-    const fbResult = await fbResponse.json();
-    return res.status(200).json({ success: true, fbResult, mailId: mailResponse.messageId });
-  } catch (error) {
-    console.error("Integration Error:", error);
-    return res.status(500).json({ error: error.message });
+  const emailSent = mailOutcome.status === 'fulfilled';
+  if (!emailSent) {
+    console.error("Contact email failed to send:", mailOutcome.reason);
   }
+  if (fbOutcome.status === 'rejected') {
+    console.error("Facebook CAPI tracking failed:", fbOutcome.reason);
+  }
+
+  if (!emailSent) {
+    return res.status(500).json({ success: false, emailSent: false, error: 'Email delivery failed' });
+  }
+
+  return res.status(200).json({ success: true, emailSent: true, mailId: mailOutcome.value.messageId });
 }

@@ -41,7 +41,9 @@
   },
   "articles": {
     "title": "En la prensa",
-    "readFull": "Leer artículo completo"
+    "readFull": "Leer artículo completo",
+    "error": "No se pudo cargar la cobertura de prensa — inténtalo de nuevo más tarde.",
+    "empty": "Todavía no hay cobertura de prensa — vuelve pronto."
   },
   "shop": {
     "title": "Rincón del Coleccionista",
@@ -54,11 +56,16 @@
     "calendarBtn": "Añadir al calendario",
     "buyTicketsBtn": "Comprar Entradas",
     "syncing": "Sincronizando con el calendario...",
-    "noShows": "No hay conciertos programados próximamente. ¡Vuelve pronto!"
+    "noShows": "No hay conciertos programados próximamente. ¡Vuelve pronto!",
+    "error": "No se pudieron cargar los conciertos — inténtalo de nuevo más tarde."
   },
   "success": {
     "title": "¡Gracias por su apoyo!",
     "message": "Se ha enviado un correo electrónico de confirmación y su contenido digital a su bandeja de entrada."
+  },
+  "contact": {
+    "success": "¡Listo! Tu mensaje ha sido enviado.",
+    "error": "Algo salió mal al enviar tu mensaje. Por favor, escribe directamente a anielsomeillan@icloud.com."
   },
   "common": {
     "share": "Compartir"
@@ -81,11 +88,11 @@
       "need": "SE BUSCA",
       "needVal": "€7,000 – €10,000 para completar la producción",
       "returns": "RETORNO",
-      "returnsVal": "Créditos de productor + hasta 5% de licencias netas",
+      "returnsVal": "Recompensas para todos + licencias netas (2–5%) desde €2.000",
       "status": "ESTADO",
       "statusVal": "4 temas grabados en Studio Ojala, Habana · 6 en producción",
       "cta": "CONTACTAR A ANIEL",
-      "tiers": "VER NIVELES DE INVERSIÓN ↓"
+      "tiers": "VER NIVELES DE APOYO E INVERSIÓN ↓"
     },
     "s2": {
       "label": "El Comienzo",
@@ -150,7 +157,9 @@
       "from": "DESDE",
       "licensing": "HASTA 5%\nINGRESOS NETOS",
       "note": "Los porcentajes de licencia aplican solo a ingresos netos de sync, cine/TV y contratos con sellos.",
-      "tiers": [
+      "supportLabel": "NIVELES DE APOYO — SOLO RECOMPENSAS",
+      "investmentLabel": "NIVELES DE INVERSIÓN — INGRESOS NETOS",
+      "tiersSupport": [
         {
           "tier": "SEGUIDOR",
           "amount": "€10–25",
@@ -175,7 +184,9 @@
           "tier": "PROD. ASOCIADO",
           "amount": "€500–1.000",
           "reward": "Crédito \"Productor Asociado\" + todo lo anterior"
-        },
+        }
+      ],
+      "tiersInvestment": [
         {
           "tier": "PROD. EJECUTIVO",
           "amount": "€2.000–4.000",

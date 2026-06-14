@@ -42,6 +42,7 @@ const ArticleLink = ({ article, index, t }) => (
 export default function Articles() {
     const [articles, setArticles] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
     const router = useRouter();
     const { locale } = router;
 
@@ -50,11 +51,13 @@ export default function Articles() {
 
     useEffect(() => {
         fetch('/api/getArticles')
-            .then(res => res.json())
-            .then(data => {
-                setArticles(data);
-                setLoading(false);
-            });
+            .then(res => {
+                if (!res.ok) throw new Error('Failed to fetch articles');
+                return res.json();
+            })
+            .then(data => setArticles(data))
+            .catch(() => setError(true))
+            .finally(() => setLoading(false));
     }, []);
 
     const pageMeta = {
@@ -86,10 +89,14 @@ export default function Articles() {
                         <div className="flex justify-center">
                             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-primary"></div>
                         </div>
-                    ) : (
+                    ) : error ? (
+                        <p className="text-center opacity-60">{t.articles.error}</p>
+                    ) : articles.length > 0 ? (
                         articles.map((art, index) => (
                             <ArticleLink key={index} article={art} index={index} t={t} />
                         ))
+                    ) : (
+                        <p className="text-center opacity-60">{t.articles.empty}</p>
                     )}
                 </div>
             </Layout>

@@ -41,7 +41,9 @@
   },
   "articles": {
     "title": "Na imprensa",
-    "readFull": "Ler artigo completo"
+    "readFull": "Ler artigo completo",
+    "error": "Não foi possível carregar a cobertura de imprensa — tente novamente mais tarde.",
+    "empty": "Ainda não há cobertura de imprensa — volte em breve."
   },
   "shop": {
     "title": "Canto do Colecionador",
@@ -54,11 +56,16 @@
     "calendarBtn": "Adicionar ao calendário",
     "buyTicketsBtn": "Comprar Ingressos",
     "syncing": "Sincronizando com o calendário...",
-    "noShows": "Não há shows agendados. Volte em breve!"
+    "noShows": "Não há shows agendados. Volte em breve!",
+    "error": "Não foi possível carregar os shows — tente novamente mais tarde."
   },
   "success": {
     "title": "Obrigado pelo seu apoio!",
     "message": "Um e-mail de confirmação e seu conteúdo digital foram enviados para sua caixa de entrada."
+  },
+  "contact": {
+    "success": "Pronto! Sua mensagem foi enviada.",
+    "error": "Algo deu errado ao enviar sua mensagem. Por favor, escreva diretamente para anielsomeillan@icloud.com."
   },
   "common": {
     "share": "Compartilhar"
@@ -81,11 +88,11 @@
       "need": "BUSCAMOS",
       "needVal": "€7.000 – €10.000 para concluir a produção",
       "returns": "RETORNO",
-      "returnsVal": "Créditos de produtor + até 5% de licenciamento líquido",
+      "returnsVal": "Recompensas para todos + licenciamento líquido (2–5%) a partir de €2.000",
       "status": "STATUS",
       "statusVal": "4 faixas gravadas no Studio Ojala, Havana · 6 em produção",
       "cta": "CONTATAR ANIEL",
-      "tiers": "VER COTAS DE INVESTIMENTO ↓"
+      "tiers": "VER COTAS DE APOIO E INVESTIMENTO ↓"
     },
     "s2": {
       "label": "O Início",
@@ -150,7 +157,9 @@
       "from": "A PARTIR DE",
       "licensing": "ATÉ 5%\nRECEITA LÍQUIDA",
       "note": "Percentuais de licenciamento aplicam-se apenas à receita líquida de sync, filme/TV e acordos com selos.",
-      "tiers": [
+      "supportLabel": "COTAS DE APOIO — SOMENTE RECOMPENSAS",
+      "investmentLabel": "COTAS DE INVESTIMENTO — RECEITA LÍQUIDA",
+      "tiersSupport": [
         {
           "tier": "APOIADOR",
           "amount": "€10–25",
@@ -175,7 +184,9 @@
           "tier": "PROD. ASSOCIADO",
           "amount": "€500–1.000",
           "reward": "Crédito \"Produtor Associado\" + tudo acima"
-        },
+        }
+      ],
+      "tiersInvestment": [
         {
           "tier": "PROD. EXECUTIVO",
           "amount": "€2.000–4.000",
