@@ -1,16 +1,28 @@
 import { NextResponse } from 'next/server'
 
-// Locale-prefixed variants of /memorias (default locale 'en' has no prefix)
-const PROTECTED_PATHS = ['/memorias', '/es/memorias', '/pt/memorias', '/pl/memorias']
+// Locale-prefixed variants of each gated page (default locale 'en' has no prefix)
+const GATES = [
+  {
+    paths: ['/memorias', '/es/memorias', '/pt/memorias', '/pl/memorias'],
+    envVar: 'MEMORIAS_PASSWORD',
+    realm: 'Memorias de Bras Cubas - Private Preview',
+  },
+  {
+    paths: ['/karma', '/es/karma', '/pt/karma', '/pl/karma'],
+    envVar: 'KARMA_PASSWORD',
+    realm: 'Karma Trio - Private Preview',
+  },
+]
 
 export function middleware(request) {
   const { pathname } = request.nextUrl
 
-  if (!PROTECTED_PATHS.includes(pathname)) {
+  const gate = GATES.find((g) => g.paths.includes(pathname))
+  if (!gate) {
     return NextResponse.next()
   }
 
-  const password = process.env.MEMORIAS_PASSWORD
+  const password = process.env[gate.envVar]
   // Fail open if no password is configured, so local/dev setups without the
   // env var don't get locked out.
   if (!password) {
@@ -29,10 +41,13 @@ export function middleware(request) {
 
   return new NextResponse('Authentication required', {
     status: 401,
-    headers: { 'WWW-Authenticate': 'Basic realm="Memorias de Bras Cubas - Private Preview"' },
+    headers: { 'WWW-Authenticate': `Basic realm="${gate.realm}"` },
   })
 }
 
 export const config = {
-  matcher: ['/memorias', '/es/memorias', '/pt/memorias', '/pl/memorias'],
+  matcher: [
+    '/memorias', '/es/memorias', '/pt/memorias', '/pl/memorias',
+    '/karma', '/es/karma', '/pt/karma', '/pl/karma',
+  ],
 }
