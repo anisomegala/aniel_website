@@ -1,5 +1,13 @@
 import { NextResponse } from 'next/server'
 
+// These pages are distributed directly to outreach contacts (investors, festival
+// bookers) via email links + an in-page access code (karma2026, etc). They rely on
+// next-sitemap's exclude + noindex for privacy from search engines, NOT on this
+// middleware. DO NOT set MEMORIAS_PASSWORD / KARMA_PASSWORD in production — doing
+// so would 401 every recipient of those outreach emails before they reach the
+// in-page code gate. This middleware fails open and exists only as dormant
+// infrastructure for a future page that needs real 1:1 access control.
+
 // Locale-prefixed variants of each gated page (default locale 'en' has no prefix)
 const GATES = [
   {
@@ -8,7 +16,10 @@ const GATES = [
     realm: 'Memorias de Bras Cubas - Private Preview',
   },
   {
-    paths: ['/karma', '/es/karma', '/pt/karma', '/pl/karma'],
+    paths: [
+      '/karma', '/es/karma', '/pt/karma', '/pl/karma',
+      '/karma/gallery', '/es/karma/gallery', '/pt/karma/gallery', '/pl/karma/gallery',
+    ],
     envVar: 'KARMA_PASSWORD',
     realm: 'Karma Trio - Private Preview',
   },
@@ -49,5 +60,6 @@ export const config = {
   matcher: [
     '/memorias', '/es/memorias', '/pt/memorias', '/pl/memorias',
     '/karma', '/es/karma', '/pt/karma', '/pl/karma',
+    '/karma/gallery', '/es/karma/gallery', '/pt/karma/gallery', '/pl/karma/gallery',
   ],
 }
