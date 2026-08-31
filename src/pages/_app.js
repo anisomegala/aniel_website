@@ -52,7 +52,7 @@ export default function App({ Component, pageProps }) {
     return () => router.events.off('routeChangeComplete', handleRouteChange);
   }, [router.events]);
 
-  const isStandalone = pathname === '/memorias' || pathname.startsWith('/karma')
+  const isStandalone = pathname === '/memorias' || pathname.startsWith('/karma') || pathname.startsWith('/listen')
 
   return (
     <>

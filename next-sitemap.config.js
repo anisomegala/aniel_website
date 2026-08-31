@@ -9,6 +9,7 @@ module.exports = {
     '/xpop', '/*/xpop',
     '/karma', '/karma/*', '/*/karma', '/*/karma/*',
     '/memorias', '/*/memorias',
+    '/listen', '/listen/*', '/*/listen', '/*/listen/*',
   ],
   alternateRefs: [
     { href: 'https://anielsomeillan.com',    hreflang: 'en' },
